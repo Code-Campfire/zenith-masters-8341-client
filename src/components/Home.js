@@ -4,7 +4,7 @@ import React from 'react';
 function Home() {
   return (
     <div>
-      hello there
+      Sup Hey y'all FE Folk!
     </div>
   );
 }
