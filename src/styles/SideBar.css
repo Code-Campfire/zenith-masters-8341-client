@@ -1,0 +1,50 @@
+.sideBar {
+    box-shadow: 1px 1px 5px rgb(193, 193, 193);
+    border: 4px solid grey;
+    height: 100vh;
+    border-radius: 7px;
+    z-index: 1000;
+    left: 10px;
+    top: 80px;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    overflow: hidden;
+    background-color: blue;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+}
+.sideBar.collapsed {
+    background-color: green;
+    width: 20px !important;
+}
+
+.sideBarToggle {
+    visibility: hidden;
+    width: 20px;
+    height: 250px;
+}
+
+@media (max-width: 868px) {
+    .sideBarToggle {
+        visibility: visible;
+    }
+    .sideBar {
+        position: absolute !important;
+        min-width: 84px;
+        width: 20%;
+    }
+    .sideBar.collapsed {
+        min-width: 20px !important;
+    }
+}
+
+
+.container-fluid {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    flex-wrap: nowrap !important;
+    padding: 0 !important;
+}
