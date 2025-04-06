@@ -1,4 +1,9 @@
 .sideBar {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
     box-shadow: 1px 1px 5px rgb(193, 193, 193);
     border: 4px solid grey;
     height: 100vh;
@@ -7,16 +12,11 @@
     border-radius: 7px;
     z-index: 1000;
     left: 10px;
-    top: 80px;
+    top: 74px;
     transition: transform 0.3s ease;
     transform: translateX(0);
     overflow: hidden;
     background-color: rgb(57, 57, 57);
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
 }
 .sideBar.collapsed {
     width: 20px !important;
@@ -58,5 +58,10 @@
     }
     .sideBar.collapsed {
         min-width: 24px !important;
+    }
+}
+@media (max-width: 374px) {
+    .sideBar {
+        top: 114px;
     }
 }
