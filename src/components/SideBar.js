@@ -1,11 +1,9 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react'
 import '../styles/SideBar.css'
 import { NavLink as SideBarLink } from 'react-router-dom'
 import { FaCog, FaBookmark, FaSignOutAlt } from 'react-icons/fa'
 
-
-export const SideBar = () => {
+export default function SideBar() {
     const resetSideBar = 894
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= resetSideBar);
@@ -31,7 +29,6 @@ export const SideBar = () => {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
       }, []);
-
 
     const handleLinkActivation = (e) => {
         const linkName = e.target.name
@@ -66,7 +63,6 @@ export const SideBar = () => {
                         <FaCog /> Settings
                     </a>
                 </li>
-
 
                 <li>
                     <a 
