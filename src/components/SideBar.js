@@ -41,7 +41,8 @@ export default function SideBar() {
         <div className={`sideBar ${isCollapsed ? "collapsed" : ""}`}>
             <button className="sideBarToggle" onClick={toggleSideBar}>|</button>
             <ul style={{marginLeft: "3.0rem", marginRight: "0.4rem", padding: "0", listStyleType: "none"}} className="d-flex flex-column">
-                {/*Temporary links until Routes are in place. The commented out SideBarLinks below  */}
+                {/*Temporary links until Routes are in place. The commented out SideBarLinks below have to be wrapped in Routes because
+                the Reactstrap component uses useLocation. The app crashes if you try to use those links unwrapped.*/}
                 <li>
                     <a 
                         onClick={handleLinkActivation} 
