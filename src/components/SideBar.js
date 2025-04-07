@@ -29,7 +29,7 @@ export default function SideBar() {
     return (
         <div className={`sideBar ${isCollapsed ? "collapsed" : ""}`}>
             <button className="sideBarToggle" onClick={toggleSideBar}>|</button>
-            <ul style={{marginLeft: "3.0rem", marginRight: "0.4rem", padding: "0", listStyleType: "none"}} className="d-flex flex-column">
+            <ul style={{marginLeft: "2.0rem", marginRight: "0.4rem", padding: "0", listStyleType: "none"}} className="d-flex flex-column">
                 <li>
                     <SideBarLink to="savedPosts" className={({ isActive }) => isActive ? "sideBar-link active" : "sideBar-link"}><FaBookmark /> Saved Posts</SideBarLink>
                 </li>
