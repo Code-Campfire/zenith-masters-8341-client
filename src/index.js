@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import NavigationBar from './components/NavigationBar';
-import SideBar from './components/SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import SideBar from './components/SideBar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
