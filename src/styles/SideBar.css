@@ -36,13 +36,13 @@
 }
 
 .sideBar-link {
-    color: rgb(244, 244, 244) !important;
+    color: rgb(135, 135, 135) !important;
     text-decoration: none;
     transition: color 0.5s ease;
     cursor: pointer;
 }
 .sideBar-link.active {
-    color: rgb(135, 135, 135) !important;
+    color: rgb(244, 244, 244) !important;
 }
 
 /* .nav-link:hover {

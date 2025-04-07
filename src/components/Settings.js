@@ -5,8 +5,8 @@ import '../styles/Settings.css'
 export default function Settings() {
     
   return (
-    <div className='welcomeCard col-9'>
-        <div className='title'> Settings </div>
+    <div className='grid-container'>
+      <div className='title'> Settings </div>
     </div>
   );
 }
