@@ -5,6 +5,7 @@ export default function NavigationBar() {
   return (
     <>
     <div id="navBar">
+        {/* Left section of the NavBar for (375/430) and (540/768) screen sizes */}
         <div className="logo">
           <picture>
             <source  
@@ -19,12 +20,22 @@ export default function NavigationBar() {
             />
             <img src="/facebook.svg" alt="Facebook Logo"/>
           </picture>
-          <div className="searchbar-lg">
-            <form>
-              <input type="text" placeholder="Search Facebook" className="search-bar" />
-            </form>
+          <div className="bg-lg">
+            <div className="searchbar-lg">
+              <picture>
+                <source
+                  media="(min-width: 540px)"
+                  srcSet="/eye-glass.svg"
+                />
+                <img src="/eye-glass.svg" alt="Search Icon" style={{ width: '25px' }} />
+              </picture>
+            </div>
           </div>
+          <div className="search-bar">
+                <input type="text" placeholder="Search Facebook" className="searchbar-xl" />
+            </div>
         </div>
+        {/* Mid section of the NavBar for min-width: 375-430px */}
         <div className="navButtons-mid">
           <a className="links-mid" href="/">
             <picture>
@@ -72,6 +83,7 @@ export default function NavigationBar() {
             </picture>
           </a>
         </div>
+        {/* Right section of the NavBar for all screen sizes (375/430, 540/768, 820/2560) */}
         <div className="navButtons-right">
           <div className="settings-links">
             <div className="bg-sm">
@@ -93,33 +105,65 @@ export default function NavigationBar() {
             <div className="bg-lg">
               <a class="lg-screen" href="/Menu">
                 <img src="/bento-icon.svg" style={{ 
-                        width: '20px',
-                        height: '20px',
+                        width: '17px',
+                        height: '17px',
                       }} alt="Search Icon" />
               </a>
             </div>
+            <div className="bg-xlg">
+              <a class="xlg-screen" href="/Menu">
+                <img src="/bento-icon.svg" style={{ 
+                        width: '20px',
+                        height: '20px',
+                      }} alt="bento Icon" />
+              </a>
+            </div>
             <div className="bg-lg">
-              <a class="lg-screen" href="/Menu">
+              <a class="lg-screen" href="/messenger">
+                <img src="/messenger-icon.svg" style={{ 
+                        width: '17px',
+                        height: '17px',
+                      }} alt="messenger Icon" />
+              </a>
+            </div>
+            <div className="bg-xlg">
+              <a class="xlg-screen" href="/messenger">
                 <img src="/messenger-icon.svg" style={{ 
                         width: '20px',
                         height: '20px',
-                      }} alt="Search Icon" />
+                      }} alt="messenger Icon" />
               </a>
             </div>
             <div className="bg-lg">
-              <a class="lg-screen" href="/Menu">
+              <a class="lg-screen" href="/notifications">
+                <img src="/bell.svg" style={{ 
+                        width: '17px',
+                        height: 'px',
+                      }} alt="notifications Icon" />
+              </a>
+            </div>
+            <div className="bg-xlg">
+              <a class="xlg-screen" href="/notifications">
                 <img src="/bell.svg" style={{ 
                         width: '20px',
                         height: '20px',
-                      }} alt="Search Icon" />
+                      }} alt="notifications Icon" />
               </a>
             </div>
             <div className="bg-lg">
-              <a class="lg-screen" href="/Menu">
+              <a class="lg-screen" href="/account">
                 <img src="/account-icon.png" style={{ 
                         width: '30px',
                         height: '30px',
-                      }} alt="Search Icon" />
+                      }} alt="Acct Icon" />
+              </a>
+            </div>
+            <div className="bg-xlg">
+              <a class="xlg-screen" href="/account">
+                <img src="/account-icon.png" style={{ 
+                        width: '30px',
+                        height: '30px',
+                      }} alt="Acct Icon" />
               </a>
             </div>
           </div>
