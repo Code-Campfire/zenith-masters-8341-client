@@ -1,12 +1,12 @@
-import React from 'react';
-import '../styles/Home.css'
 
-export default function Home() {
-  
+import React from 'react';
+
+function Home() {
   return (
-    <div className='grid-container'>
-      <div className='title'> Welcome to Facebook </div>
+    <div>
+      Sup Hey y'all FE Folk!
     </div>
   );
 }
 
+export default Home;
