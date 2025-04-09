@@ -35,7 +35,7 @@ export default function NavigationBar() {
                 <input type="text" placeholder="Search Facebook" className="searchbar-xl" />
             </div>
         </div>
-        {/* Mid section of the NavBar for min-width: 375-430px */}
+        {/* Mid section of the NavBar for min-width: 375-430px. */}
         <div className="navButtons-mid">
           <a className="links-mid" href="/">
             <picture>
