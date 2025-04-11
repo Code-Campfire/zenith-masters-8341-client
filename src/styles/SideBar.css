@@ -39,6 +39,10 @@
     opacity: 100%;
 }
 
+.sideBarToggle.isMobile {
+    opacity: 100%;
+}
+
 .container-fluid {
     display: flex !important;
     flex-direction: row-reverse !important;
@@ -65,44 +69,14 @@
 @media (max-width: 768px) {
     .sideBar {
         min-width: 164px;
-        height: 89vh;
-        top: 200px;
     }
     .sideBar.collapsed {
         min-width: 24px !important;
     }
 }
-@media (max-width: 539px) {
-    .sideBar {
-        min-width: 164px;
-        top: 200px;
-    }
-    .sideBar.collapsed {
-        min-width: 24px !important;
-    }
-}
+
 @media (max-width: 430px) {
     .sideBar {
-        min-width: 164px;
         height: 86vh;
-        top: 200px;
-    }
-    .sideBar.collapsed {
-        min-width: 24px !important;
-    }
-}
-
-
-
-@media (max-width: 374px) {
-    .sideBar {
-        top: 406px;
-    }
-}
-
-@media (max-width: 191px) {
-    .sideBar {
-        top: 694px;
-        height: 100vh;
     }
 }
