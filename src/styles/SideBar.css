@@ -4,13 +4,15 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: 1px 1px 5px rgb(193, 193, 193);
-    height: 91vh;
+    height: 89vh; /* Subtract navbar height from viewport */
     max-width: 250px;
     border-radius: 7px;
     transition: max-width 0.3s ease;
     overflow: hidden;
     background-color: white;
     margin-top: 20px;
+    margin-bottom: 20px;
+    z-index: 1000;
 }
 .sideBar ul {
     display: flex;
@@ -60,36 +62,44 @@
     color: rgb(90, 90, 90) !important;
 }
 
-/* .nav-link:hover {
-    color: rgb(209, 209, 209) !important;
-} */
-
-/* @media (max-width: 894px) { */
-@media (max-width: 1024px) {
-    .sideBarToggle {
-        /* visibility: visible; */
-    }
+@media (max-width: 768px) {
     .sideBar {
         min-width: 164px;
-        height: 80vh;
+        height: 89vh;
         top: 200px;
     }
     .sideBar.collapsed {
         min-width: 24px !important;
     }
 }
+@media (max-width: 539px) {
+    .sideBar {
+        min-width: 164px;
+        top: 200px;
+    }
+    .sideBar.collapsed {
+        min-width: 24px !important;
+    }
+}
+@media (max-width: 430px) {
+    .sideBar {
+        min-width: 164px;
+        height: 86vh;
+        top: 200px;
+    }
+    .sideBar.collapsed {
+        min-width: 24px !important;
+    }
+}
+
+
+
 @media (max-width: 374px) {
     .sideBar {
         top: 406px;
-        height: 60vh;
     }
 }
-@media (max-width: 287px) {
-    .sideBar {
-        top: 502px;
-        height: 60vh;
-    }
-}
+
 @media (max-width: 191px) {
     .sideBar {
         top: 694px;
