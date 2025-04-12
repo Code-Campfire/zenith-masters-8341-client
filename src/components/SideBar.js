@@ -35,8 +35,8 @@ export default function SideBar() {
         <div className={`sideBar ${isCollapsed ? "collapsed" : ""}`}>
             <button className={`sideBarToggle ${isMobile ? "isMobile" : ""}`} onClick={toggleSideBar}>☰</button>
             <ul className="d-flex flex-column">
-                <li className={activeLink("/savedPosts") ? "active" : ""}>
-                    <Link to="savedPosts" className="sideBar-link"><FaBookmark /> Saved Posts</Link>
+                <li className={activeLink("/posts/saved") ? "active" : ""}>
+                    <Link to="posts/saved" className="sideBar-link"><FaBookmark /> Saved Posts</Link>
                 </li>
                 <li className={activeLink("/settings") ? "active" : ""}>
                     <Link to="settings" className="sideBar-link"><FaCog /> Settings</Link>
