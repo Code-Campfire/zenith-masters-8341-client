@@ -13,11 +13,10 @@ export default function SideBar() {
         setIsCollapsed(!isCollapsed)
     }
 
-    const location = useLocation()
-    console.log(location.pathname)
+    const { pathname } = useLocation()
 
     function activeLink(path) {
-        return location.pathname === path
+        return pathname === path
     }
 
     useEffect(() => {
@@ -35,16 +34,15 @@ export default function SideBar() {
     return (
         <div className={`sideBar ${isCollapsed ? "collapsed" : ""}`}>
             <button className={`sideBarToggle ${isMobile ? "isMobile" : ""}`} onClick={toggleSideBar}>☰</button>
-            <ul style={{marginLeft: "2.0rem", marginRight: "0.4rem", padding: "0", listStyleType: "none"}} className="d-flex flex-column">
-                <li>
-                    {/* <SideBarLink to="savedPosts" className={({ isActive }) => isActive ? "sideBar-link active" : "sideBar-link"}><FaBookmark /> Saved Posts</SideBarLink> */}
-                    <Link to="savedPosts" className={ activeLink("/savedPosts") ? "sideBar-link active" : "sideBar-link"}><FaBookmark /> Saved Posts</Link>
+            <ul className="d-flex flex-column">
+                <li className={activeLink("/savedPosts") ? "active" : ""}>
+                    <Link to="savedPosts" className="sideBar-link"><FaBookmark /> Saved Posts</Link>
                 </li>
-                <li>
-                    <SideBarLink to="settings" className={({ isActive }) => isActive ? "sideBar-link active" : "sideBar-link"}><FaCog /> Settings</SideBarLink>
+                <li className={activeLink("/settings") ? "active" : ""}>
+                    <Link to="settings" className="sideBar-link"><FaCog /> Settings</Link>
                 </li>
-                <li>
-                    <SideBarLink to="logout" className={({ isActive }) => isActive ? "sideBar-link active" : "sideBar-link"}><FaSignOutAlt /> Logout</SideBarLink>
+                <li className={activeLink("/logout") ? "active" : ""}>
+                    <Link to="logout"  className="sideBar-link"><FaSignOutAlt /> Logout</Link>
                 </li>
             </ul>
         </div>

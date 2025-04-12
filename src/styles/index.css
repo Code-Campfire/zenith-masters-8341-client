@@ -43,6 +43,12 @@ a {
   border-radius: 7px;
   box-shadow: 1px 1px 5px rgb(193, 193, 193);
 }
+.links-mid.active {
+  background-color: #dddddd;
+}
+.links-mid.active:hover {
+  background-color: #c3c3c3;
+}
 /* I am starting with the smallest screen size -- Im thinking global reach for Androids in 3rd world countries*/
 
 @media screen and (max-width: 430px) {
