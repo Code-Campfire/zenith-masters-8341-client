@@ -43,10 +43,16 @@ a {
   border-radius: 7px;
   box-shadow: 1px 1px 5px rgb(193, 193, 193);
 }
-
+.links-mid.active {
+  background-color: #dddddd;
+}
+.links-mid.active:hover {
+  background-color: #c3c3c3;
+}
 /* I am starting with the smallest screen size -- Im thinking global reach for Androids in 3rd world countries*/
 
-@media screen and (min-width: 344px) and (max-width: 430px) {
+@media screen and (max-width: 430px) {
+/* @media screen and (min-width: 344px) and (max-width: 430px) { */
   #navBar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -153,7 +159,8 @@ a {
 
 }
 
-@media screen and (min-width: 540px) and (max-width: 768px)  {
+@media screen and (min-width: 431px) and (max-width: 819px)  {
+/* @media screen and (min-width: 540px) and (max-width: 768px)  { */
   #navBar {
     display: grid;
     grid-template-columns: 1fr 41% 1fr;

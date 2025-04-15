@@ -1,6 +1,14 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import '../styles/index.css'
 
 export default function NavigationBar() {
+  
+  const { pathname } =  useLocation()
+
+  function isActiveLink(path) {
+    return pathname === path
+  }
   
   return (
     <>
@@ -37,7 +45,7 @@ export default function NavigationBar() {
         </div>
         {/* Mid section of the NavBar for min-width: 375-430px */}
         <div className="navButtons-mid">
-          <a className="links-mid" href="/">
+          <Link className={`links-mid ${isActiveLink("/") ? "active" : ""}`} to="/">
             <picture>
               <source 
                 media="(min-width: 375px)"
@@ -45,8 +53,8 @@ export default function NavigationBar() {
               />
               <img src="/home-icon.svg" alt="Home Icon" style={{ width: '25px' }} />
             </picture>
-          </a>
-          <a class="links-mid" href="/Video">
+          </Link>
+          <Link className={`links-mid ${isActiveLink("/video") ? "active" : ""}`} to="/video">
             <picture>
               <source 
                 media="(min-width: 375px)" 
@@ -54,8 +62,8 @@ export default function NavigationBar() {
               />
               <img src="/video-icon.png" alt="Video Icon"  style={{ width: '25px' }} />
             </picture>
-          </a>
-          <a class="links-mid" href="/Marketplace">
+          </Link>
+          <Link className={`links-mid ${isActiveLink("/marketplace") ? "active" : ""}`} to="/marketplace">
             <picture>
               <source 
                 media="(min-width: 375px)" 
@@ -63,8 +71,8 @@ export default function NavigationBar() {
               />
               <img src="/marketplace-icon.png" alt="Marketplace Icon"  style={{ width: '25px' }} />
             </picture>
-          </a>
-          <a class="links-mid" href="/Groups"> 
+          </Link>
+          <Link className={`links-mid ${isActiveLink("/groups") ? "active" : ""}`} to="/groups"> 
             <picture>
               <source 
                 media="(min-width: 375px)" 
@@ -72,8 +80,8 @@ export default function NavigationBar() {
               />
               <img src="/group.png" alt="Marketplace Icon"  style={{ width: '25px' }} />
             </picture>
-          </a>
-          <a class="links-mid" href="/Gaming">
+          </Link>
+          <Link className={`links-mid ${isActiveLink("/gaming") ? "active" : ""}`} to="/gaming">
             <picture>
               <source 
                 media="(min-width: 375px)" 
@@ -81,90 +89,90 @@ export default function NavigationBar() {
               />
               <img src="/game-controller.png" alt="Marketplace Icon"  style={{ width: '25px' }} />
             </picture>
-          </a>
+          </Link>
         </div>
         {/* Right section of the NavBar for all screen sizes (375/430, 540/768, 820/2560) */}
         <div className="navButtons-right">
           <div className="settings-links">
             <div className="bg-sm">
-              <a class="links-right" href="/Search">
+              <Link className="links-right" to="/search">
                 <img src="/eye-glass.svg" style={{ 
                         width: '25px',
                         height: '25px',
                       }} alt="Search Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-sm">
-              <a class="links-right" href="/Menu">
+              <Link className="links-right" to="/menu">
                 <img src="/hamburger-menu.svg" style={{ 
                   width: '15px',
                   height: '15',
                 }} alt="Menu Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-lg">
-              <a class="lg-screen" href="/Menu">
+              <Link className="lg-screen" to="/menu">
                 <img src="/bento-icon.svg" style={{ 
                         width: '17px',
                         height: '17px',
                       }} alt="Search Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-xlg">
-              <a class="xlg-screen" href="/Menu">
+              <Link className="xlg-screen" to="/menu">
                 <img src="/bento-icon.svg" style={{ 
                         width: '20px',
                         height: '20px',
                       }} alt="bento Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-lg">
-              <a class="lg-screen" href="/messenger">
+              <Link className="lg-screen" to="/messenger">
                 <img src="/messenger-icon.svg" style={{ 
                         width: '17px',
                         height: '17px',
                       }} alt="messenger Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-xlg">
-              <a class="xlg-screen" href="/messenger">
+              <Link className="xlg-screen" to="/messenger">
                 <img src="/messenger-icon.svg" style={{ 
                         width: '20px',
                         height: '20px',
                       }} alt="messenger Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-lg">
-              <a class="lg-screen" href="/notifications">
+              <Link className="lg-screen" to="/notifications">
                 <img src="/bell.svg" style={{ 
                         width: '17px',
                         height: 'px',
                       }} alt="notifications Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-xlg">
-              <a class="xlg-screen" href="/notifications">
+              <Link className="xlg-screen" to="/notifications">
                 <img src="/bell.svg" style={{ 
                         width: '20px',
                         height: '20px',
                       }} alt="notifications Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-lg">
-              <a class="lg-screen" href="/account">
+              <Link className="lg-screen" to="/account">
                 <img src="/account-icon.png" style={{ 
                         width: '30px',
                         height: '30px',
                       }} alt="Acct Icon" />
-              </a>
+              </Link>
             </div>
             <div className="bg-xlg">
-              <a class="xlg-screen" href="/account">
+              <Link className="xlg-screen" to="/account">
                 <img src="/account-icon.png" style={{ 
                         width: '30px',
                         height: '30px',
                       }} alt="Acct Icon" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

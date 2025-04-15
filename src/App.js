@@ -14,7 +14,12 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/posts">
+            <Route index element={<div>Posts Go Here</div>} />
+            <Route path="saved" element={<div>Saved Posts go here</div>} />
+          </Route>
         </Route>
+
       </Routes>
     </Router>
   );
