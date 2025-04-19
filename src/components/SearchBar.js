@@ -65,6 +65,7 @@ const userData = [
 export default function SearchBar() {
   const [storedInput, setStoredInput] = useState('');
 
+  //Remove this comment
 
 function handleSearch(e) {
 let storedInput = e.target.value;
