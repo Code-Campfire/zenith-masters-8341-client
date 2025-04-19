@@ -1,19 +1,23 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 import '../styles/index.css'
+import SearchBar from "./SearchBar";
 
 export default function NavigationBar() {
+  const [userInput, setUserInput] = useState('');
   
   const { pathname } =  useLocation()
 
   function isActiveLink(path) {
     return pathname === path
   }
+
   
   return (
     <>
     <div id="navBar">
-        {/* Left section of the NavBar for (375/430) and (540/768) screen sizes */}
+        {/* Left section of the NavBar for all screen sizes */}
         <div className="logo">
           <picture>
             <source  
@@ -40,7 +44,7 @@ export default function NavigationBar() {
             </div>
           </div>
           <div className="search-bar">
-                <input type="text" placeholder="Search Facebook" className="searchbar-xl" />
+            <SearchBar searchInput={userInput} />
             </div>
         </div>
         {/* Mid section of the NavBar for min-width: 375-430px */}
