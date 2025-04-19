@@ -58,7 +58,7 @@ export default function NavigationBar() {
               <img src="/home-icon.svg" alt="Home Icon" style={{ width: '25px' }} />
             </picture>
           </Link>
-          <Link className={`links-mid ${isActiveLink("/video") ? "active" : " "}`} to="/video">
+          <Link className={`links-mid ${isActiveLink("/video") ? "active" : ""}`} to="/video">
             <picture>
               <source 
                 media="(min-width: 375px)" 
