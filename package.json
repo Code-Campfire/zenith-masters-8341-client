@@ -16,9 +16,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "jtest": "jest"
+    "test": "vitest --globals",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +38,6 @@
     ]
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "vitest": "^3.1.1"
   }
 }

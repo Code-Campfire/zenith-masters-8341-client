@@ -65,7 +65,6 @@ const userData = [
 export default function SearchBar() {
   const [storedInput, setStoredInput] = useState('');
 
-
 function handleSearch(e) {
 let storedInput = e.target.value;
 setStoredInput(storedInput);
@@ -91,7 +90,7 @@ function debounce(handleSearch, milliseconds) {
     <>
       <input 
       type="text" 
-      placeholder="Search Facebook" 
+      placeholder="Search Bookface" 
       className="searchbar-xl"
       onChange={debounce(handleSearch, 700)}
       name="SearchBar"
@@ -104,7 +103,7 @@ function debounce(handleSearch, milliseconds) {
             user.lastName === storedInput || 
             user.firstName + ' ' + user.lastName === storedInput 
           )
-          .map((user) => 
+          .map((user) => user ?
           <div className="SearchedUser">
             <picture>
               <source
@@ -118,6 +117,10 @@ function debounce(handleSearch, milliseconds) {
             <a href="/account">
               {user.firstName + ' ' + user.lastName}
             </a>
+          </div>
+          :
+          <div className="SearchedUser">
+            <p> Not Found </p>
           </div>
         )}
         </div>
