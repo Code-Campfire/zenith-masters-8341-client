@@ -27,10 +27,10 @@ export default function NavigationBar() {
             />
             <source  
               srcSet="/fb-logo-48.svg"
-              media="(min-width: 540px)"
+              media="(min-width: 575.98px)"
               style={{ width: '50px' }} 
             />
-            <img src="/facebook.svg" alt="Facebook Logo"/>
+            <img src="/facebook.svg" className="fb-logo" alt="Facebook Logo" />
           </picture>
           <div className="bg-lg">
             <div className="searchbar-lg">
@@ -58,15 +58,6 @@ export default function NavigationBar() {
               <img src="/home-icon.svg" alt="Home Icon" style={{ width: '25px' }} />
             </picture>
           </Link>
-          <Link className={`links-mid ${isActiveLink("/video") ? "active" : ""}`} to="/video">
-            <picture>
-              <source 
-                media="(min-width: 375px)" 
-                srcSet="/video-icon.png"
-              />
-              <img src="/video-icon.png" alt="Video Icon"  style={{ width: '25px' }} />
-            </picture>
-          </Link>
           <Link className={`links-mid ${isActiveLink("/marketplace") ? "active" : ""}`} to="/marketplace">
             <picture>
               <source 
@@ -83,15 +74,6 @@ export default function NavigationBar() {
                 srcSet="/group.png"
               />
               <img src="/group.png" alt="Marketplace Icon"  style={{ width: '25px' }} />
-            </picture>
-          </Link>
-          <Link className={`links-mid ${isActiveLink("/gaming") ? "active" : ""}`} to="/gaming">
-            <picture>
-              <source 
-                media="(min-width: 375px)" 
-                srcSet="/game-controller.png"
-              />
-              <img src="/game-controller.png" alt="Marketplace Icon"  style={{ width: '25px' }} />
             </picture>
           </Link>
         </div>
@@ -125,25 +107,9 @@ export default function NavigationBar() {
             <div className="bg-xlg">
               <Link className="xlg-screen" to="/menu">
                 <img src="/bento-icon.svg" style={{ 
-                        width: '20px',
-                        height: '20px',
-                      }} alt="bento Icon" />
-              </Link>
-            </div>
-            <div className="bg-lg">
-              <Link className="lg-screen" to="/messenger">
-                <img src="/messenger-icon.svg" style={{ 
                         width: '17px',
                         height: '17px',
-                      }} alt="messenger Icon" />
-              </Link>
-            </div>
-            <div className="bg-xlg">
-              <Link className="xlg-screen" to="/messenger">
-                <img src="/messenger-icon.svg" style={{ 
-                        width: '20px',
-                        height: '20px',
-                      }} alt="messenger Icon" />
+                      }} alt="Search Icon" />
               </Link>
             </div>
             <div className="bg-lg">
@@ -153,6 +119,7 @@ export default function NavigationBar() {
                         height: 'px',
                       }} alt="notifications Icon" />
               </Link>
+              <div className="noti"> 59 </div>
             </div>
             <div className="bg-xlg">
               <Link className="xlg-screen" to="/notifications">
@@ -161,6 +128,16 @@ export default function NavigationBar() {
                         height: '20px',
                       }} alt="notifications Icon" />
               </Link>
+              <div className="noti"> 59 </div>
+            </div>
+            <div className="bg-xxlg">
+              <Link className="xxlg-screen" to="/notifications">
+                <img src="/bell.svg" style={{ 
+                        width: '20px',
+                        height: '20px',
+                      }} alt="notifications Icon" />
+              </Link>
+              <div className="noti"> 10 </div>
             </div>
             <div className="bg-lg">
               <Link className="lg-screen" to="/account">
@@ -178,6 +155,14 @@ export default function NavigationBar() {
                       }} alt="Acct Icon" />
               </Link>
             </div>
+            <div className="bg-xxlg">
+              <Link className="xxlg-screen" to="/account">
+                <img src="/account-icon.png" style={{ 
+                        width: '30px',
+                        height: '30px',
+                      }} alt="Acct Icon" />
+              </Link>
+              </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-// const SearchBar = require('../components/SearchBar');
+const SearchBar = require('../components/SearchBar');
 
 test('Checks if it searches for user', () => {
-  expect('camden').toMatch(/camden/);
+  expect(SearchBar()).toBe('camden shaw');
 });
