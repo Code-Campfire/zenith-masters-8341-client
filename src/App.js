@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import './App.css';
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
-=======
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
 import './styles/App.css'
@@ -44,4 +27,3 @@ export default function App() {
 		</Router>
 	)
 }
->>>>>>> d1ff3089f71f23fdd4a6a249723c901e007f9cc7

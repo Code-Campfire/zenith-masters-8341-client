@@ -1,0 +1,12 @@
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.under-navbar {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+.main-content {
+  flex: 1;
+}
