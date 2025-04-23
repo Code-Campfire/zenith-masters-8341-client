@@ -1,0 +1,11 @@
+import '../styles/FriendsCard.css'
+
+export default function FriendsCard({ friend, index }) {
+	return (
+		<div key={index} className="friends-card">
+			<img src="https://upload.wikimedia.org/wikipedia/en/archive/b/b1/20210811082420%21Portrait_placeholder.png" alt="" />
+			<div>{friend.name}</div>
+			<button>Button</button>
+		</div>
+	)
+}

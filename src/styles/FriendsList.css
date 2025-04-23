@@ -1,0 +1,38 @@
+.friends-list-nav {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: 2px solid black;
+	width: 100%;
+	text-align: center;
+	height: 90px;
+}
+.top-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.bot-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.friends-list-content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	min-height: 640px;
+	justify-items: center;
+}
+.friends-list-pagination {
+	display: flex;
+	border: 2px solid blue;
+	max-width: 600px;
+	width: 100%;
+	align-self: center;
+	justify-content: space-between;
+	padding: 8px;
+}
+.pagination-numbers-container {
+	display: flex;
+	justify-content: center;
+}
