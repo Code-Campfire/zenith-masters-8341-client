@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import '../styles/index.css'
 import SearchBar from "./SearchBar";
+import NotificationsBubble from "./Notifications";
 
 export default function NavigationBar() {
   const [userInput, setUserInput] = useState('');
+  const [newNotify, setNewNotify] = useState(0);
+
+  const updateNotifications = () => {
+    setNewNotify(10);
+  }
   
   const { pathname } =  useLocation()
 
   function isActiveLink(path) {
     return pathname === path
   }
+
+  useEffect(() => {
+  updateNotifications();
+  }, []);
 
   
   return (
@@ -26,9 +36,9 @@ export default function NavigationBar() {
               style={{ width: '100px' }} 
             />
             <source  
-              srcSet="/fb-logo-48.svg"
+              srcSet="/fb-logo.svg"
               media="(min-width: 575.98px)"
-              style={{ width: '50px' }} 
+              style={{ width: '25px' }} 
             />
             <img src="/facebook.svg" className="fb-logo" alt="Facebook Logo" />
           </picture>
@@ -76,6 +86,15 @@ export default function NavigationBar() {
               <img src="/group.png" alt="Marketplace Icon"  style={{ width: '25px' }} />
             </picture>
           </Link>
+          <div className="bg-sm">
+              <Link className="sm-screen" to="/notifications">
+                <img src="/bell.svg" style={{ 
+                        width: '15px',
+                        height: '20px',
+                      }} alt="notifications Icon" />
+              </Link>
+              <NotificationsBubble newNotifications={newNotify} />
+            </div>
         </div>
         {/* Right section of the NavBar for all screen sizes (375/430, 540/768, 820/2560) */}
         <div className="navButtons-right">
@@ -119,7 +138,7 @@ export default function NavigationBar() {
                         height: 'px',
                       }} alt="notifications Icon" />
               </Link>
-              <div className="noti"> 59 </div>
+              <NotificationsBubble newNotifications={newNotify} />
             </div>
             <div className="bg-xlg">
               <Link className="xlg-screen" to="/notifications">
@@ -128,7 +147,7 @@ export default function NavigationBar() {
                         height: '20px',
                       }} alt="notifications Icon" />
               </Link>
-              <div className="noti"> 59 </div>
+              <NotificationsBubble newNotifications={newNotify} />
             </div>
             <div className="bg-xxlg">
               <Link className="xxlg-screen" to="/notifications">
@@ -137,7 +156,7 @@ export default function NavigationBar() {
                         height: '20px',
                       }} alt="notifications Icon" />
               </Link>
-              <div className="noti"> 10 </div>
+              <NotificationsBubble newNotifications={newNotify} />
             </div>
             <div className="bg-lg">
               <Link className="lg-screen" to="/account">
@@ -162,7 +181,7 @@ export default function NavigationBar() {
                         height: '30px',
                       }} alt="Acct Icon" />
               </Link>
-              </div>
+            </div>
           </div>
         </div>
       </div>
