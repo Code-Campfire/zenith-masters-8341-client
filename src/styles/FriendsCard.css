@@ -3,16 +3,31 @@
 	justify-content: space-between;
 	align-items: center;
 	border: 2px solid rgb(197, 197, 197);
-	margin: 16px;
 	max-width: 400px;
 	width: 100%;
 	height: 120px;
+	padding: 10px;
 }
 
 .friends-card img {
-	margin: 10px;
-	background-image: URL('https://upload.wikimedia.org/wikipedia/en/archive/b/b1/20210811082420%21Portrait_placeholder.png');
+	/* margin: 10px; */
 	width: 100px;
 	height: 100px;
 	object-fit: contain;
+}
+
+.friends-card button {
+	display: flex;
+	align-items: center;
+	border: none;
+	background-color: #406ab4;
+	border-radius: 2px;
+	color: white;
+	padding: 5px;
+}
+
+.friends-card h6 {
+	margin: 0;
+	color: white;
+	font-size: 16px;
 }
