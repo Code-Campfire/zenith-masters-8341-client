@@ -7,6 +7,7 @@ import NotFound from './components/NotFound'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import SavedPosts from './components/SavedPosts'
+import AccountPage from './pages/AccountPage'
 
 export default function App() {
 	return (
@@ -18,6 +19,7 @@ export default function App() {
 					<Route path="signup" element={<SignUp />} />
 					<Route path="settings" element={<Settings />} />
 					<Route path="*" element={<NotFound />} />
+					<Route path='/account' element={<AccountPage />} />
 					<Route path="/posts">
 						<Route index element={<div>Posts Go Here</div>} />
 						<Route path="saved" element={<SavedPosts />} />
