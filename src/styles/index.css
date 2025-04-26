@@ -42,7 +42,7 @@ a {
   color: var(--title-font-color);
   background-color: var(--component-cards-color);
   border-radius: 7px;
-  box-shadow: 1px 1px 5px rgb(193, 193, 193);
+  box-shadow: 1px 1px 5px rgb(228, 228, 228);
 }
 .links-mid.active {
   background-color: #dddddd;
