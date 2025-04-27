@@ -3,9 +3,17 @@
 body {
   background-color: var(--bg-color);
 }
+p {
+  padding: 0;
+  margin: 0;
+}
+h1 {
+  padding: 0;
+  margin: 0;
+}
 
 @media screen and (min-width: 320px) and (max-width: 575.98px) {
-#headerz{
+#header {
   display: grid;
   grid-template-rows: .6fr 1fr .3fr;
   grid-template-areas: 
@@ -16,11 +24,13 @@ body {
 }
 
 #coverBackground {
+
   display: flex;
-  background-color: var(--component-cards-color);
+  background-color: pink;
   justify-content: center;
   align-items: center;
   grid-area: cover;
+  height: 159.25px;
 }
 
 #main {
@@ -29,7 +39,69 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 222.98px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
   background-color: var(--component-cards-color);
+}
+.profile-pic-area {
+  position: relative;
+  height: 50%;
+}
+#profile-photo {
+  position: absolute;
+  top: -83px;
+  left: -83px;
+  right: 0px ;
+  background-color: rgb(68, 68, 68);
+  height: 168px;
+  width: 168px;
+  border-radius: 100px;
+  border-color: rgb(255, 255, 255);
+  border-width: 4px;
+  border-style: solid;
+  
+}
+.title-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 210px;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.title-friendAmount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: .9rem;
+  padding: 5px;
+}
+.action-btn-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
+  height: 20%;
+}
+.action-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 49%;
+  font-size: 16px;
+  font-weight: 600;
+  height: 36px;
+  border-radius: 8px;
+  border-color: transparent;
+}
+.action-btn:hover {
+  background-color: var(--hover-effect-color);
 }
 
 #links {
