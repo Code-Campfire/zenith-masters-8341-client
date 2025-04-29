@@ -31,6 +31,8 @@ h1 {
   align-items: center;
   grid-area: cover;
   height: 159.25px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #main {
@@ -164,5 +166,324 @@ h1 {
   border-bottom-color: var(--logo-color);
   color: var(--logo-color);
 }
-
 }
+
+@media screen and (min-width: 576px) and (max-width: 768px)  {
+  #header {
+    display: grid;
+    grid-template-rows: .6fr 1fr .3fr;
+    grid-template-areas: 
+    'cover' 
+    'main' 
+    'links';
+    height: 40vh;
+  }
+  
+  #coverBackground {
+  
+    display: flex;
+    background-color: rgb(68, 68, 68);
+    justify-content: center;
+    align-items: center;
+    grid-area: cover;
+    height: 213px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  #main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 222.98px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    background-color: var(--component-cards-color);
+  }
+  .profile-pic-area {
+    position: relative;
+    height: 50%;
+  }
+  #profile-photo {
+    position: absolute;
+    top: -83px;
+    left: -83px;
+    right: 0px ;
+    background-color: rgb(68, 68, 68);
+    height: 168px;
+    width: 168px;
+    border-radius: 100px;
+    border-color: rgb(255, 255, 255);
+    border-width: 4px;
+    border-style: solid;
+    
+  }
+  .title-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 210px;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .title-friendAmount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: .9rem;
+    padding: 5px;
+  }
+  .action-btn-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    width: 20rem;
+    height: 20%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  .action-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 48.5%;
+    font-size: 16px;
+    font-weight: 600;
+    height: 36px;
+    border-radius: 8px;
+    border-color: transparent;
+  }
+  .action-btn:hover {
+    background-color: var(--hover-effect-color);
+  }
+  
+  #links {
+    grid-area: links;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    background-color: var(--component-cards-color);
+    box-shadow: 0px 2px 2px rgb(228, 228, 228);
+  }
+  
+  #posts-btn {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--font-color);
+    width: 25%;
+    height: 100%;
+    border-width: 3px;
+    margin-left: 15px;
+    background-color: var(--component-cards-color);
+    border-color: transparent;
+  }
+  #posts-btn.clicked {
+    border-bottom-color: var(--logo-color);
+    border-style: solid;
+    border-radius: 4px;
+    color: var(--logo-color);
+  }
+  #about-btn {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--font-color);
+    width: 25%;
+    height: 100%;
+    border-width: 3px;
+    background-color: var(--component-cards-color);
+    border-color: transparent;
+  }
+  #about-btn.clicked {
+    border-style: solid;
+    border-radius: 4px;
+    border-bottom-color: var(--logo-color);
+    color: var(--logo-color);
+  }
+  #friends-btn {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--font-color);
+    width: 25%;
+    height: 100%;
+    border-width: 3px;
+    margin-right: 15px;
+    background-color: var(--component-cards-color);
+    border-color: transparent;
+  }
+  #friends-btn.clicked {
+    border-style: solid;
+    border-radius: 4px;
+    border-bottom-color: var(--logo-color);
+    color: var(--logo-color);
+  }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 912px)  {
+    #header {
+      display: grid;
+      grid-template-rows: .6fr 1fr .3fr;
+      grid-template-areas: 
+      'cover' 
+      'main' 
+      'links';
+      height: 40vh;
+    }
+    
+    #coverBackground {
+    
+      display: flex;
+      background-color: rgb(68, 68, 68);
+      justify-content: center;
+      align-items: center;
+      grid-area: cover;
+      height: 284px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    
+    #main {
+      grid-area: main;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 222.98px;
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-bottom: 16px;
+      background-color: var(--component-cards-color);
+    }
+    .profile-pic-area {
+      position: relative;
+      height: 50%;
+    }
+    #profile-photo {
+      position: absolute;
+      top: -83px;
+      left: -83px;
+      right: 0px ;
+      background-color: rgb(68, 68, 68);
+      height: 168px;
+      width: 168px;
+      border-radius: 100px;
+      border-color: rgb(255, 255, 255);
+      border-width: 4px;
+      border-style: solid;
+      
+    }
+    .title-name {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      width: 210px;
+      margin-bottom: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .title-friendAmount {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: .9rem;
+      padding: 5px;
+    }
+    .action-btn-area {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: end;
+      width: 20rem;
+      height: 20%;
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+    .action-btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 48.5%;
+      font-size: 16px;
+      font-weight: 600;
+      height: 36px;
+      border-radius: 8px;
+      border-color: transparent;
+    }
+    .action-btn:hover {
+      background-color: var(--hover-effect-color);
+    }
+    
+    #links {
+      grid-area: links;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+      background-color: var(--component-cards-color);
+      box-shadow: 0px 2px 2px rgb(228, 228, 228);
+    }
+    
+    #posts-btn {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--font-color);
+      width: 25%;
+      height: 100%;
+      border-width: 3px;
+      margin-left: 15px;
+      background-color: var(--component-cards-color);
+      border-color: transparent;
+    }
+    #posts-btn.clicked {
+      border-bottom-color: var(--logo-color);
+      border-style: solid;
+      border-radius: 4px;
+      color: var(--logo-color);
+    }
+    #about-btn {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--font-color);
+      width: 25%;
+      height: 100%;
+      border-width: 3px;
+      background-color: var(--component-cards-color);
+      border-color: transparent;
+    }
+    #about-btn.clicked {
+      border-style: solid;
+      border-radius: 4px;
+      border-bottom-color: var(--logo-color);
+      color: var(--logo-color);
+    }
+    #friends-btn {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--font-color);
+      width: 25%;
+      height: 100%;
+      border-width: 3px;
+      margin-right: 15px;
+      background-color: var(--component-cards-color);
+      border-color: transparent;
+    }
+    #friends-btn.clicked {
+      border-style: solid;
+      border-radius: 4px;
+      border-bottom-color: var(--logo-color);
+      color: var(--logo-color);
+    }
+  }
+
+  @media screen and (min-width: 913px) and (max-width: 3840px)  {
+  
+  }
