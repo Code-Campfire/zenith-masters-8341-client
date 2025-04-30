@@ -12,8 +12,28 @@ export default function Header({ friendListAmount, userObject }) {
   let userID = true;
 return (
   <>
-    <div id="header"> 
-      <div id='coverBackground'>Insert Cover Photo</div>
+    <div id="header">
+      <div id='coverBackgroundContainer'>
+        <div id='coverBackground'>
+          <picture>
+              <source
+              srcSet=''
+              />
+              <img 
+              src='cover-img.png' 
+              alt='cover-img'
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                width: '100%',
+                borderBottomRightRadius: '10px',
+                borderBottomLeftRadius: '10px',
+              }}
+              />
+          </picture>
+        </div>
+      </div>
       <div id='main'>
         <div className='profile-pic-area'>
           <ProfileImage />
@@ -24,10 +44,12 @@ return (
             <p>{friendListAmount} friends</p>
           </div>
         </div>
-          <div className='action-btn-area'>
+        <div className='action-btn-area'>
+          <div className='action-btn-container'>
             {userID ? <AddToStoryBtn /> : <AddFriendBtn />}
             <EditProfileBtn />
           </div>
+        </div>
         </div>
       <div id='links'>
         <button id='posts-btn' className='links-btn' onClick={() => {
