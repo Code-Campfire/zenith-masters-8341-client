@@ -6,9 +6,11 @@ export default function ProfileImage() {
       <div>
         <picture>
           <source 
-          srcSet="/jojo.jpeg"
+          srcSet='profile-img.svg'
+          alt=''
           />
-          <img src='/fb-logo.svg' alt='profile' id="profile-photo"/> 
+          <img src='profile-img.svg' alt='profile' id="profile-photo"
+          /> 
         </picture>
       </div>
     </>

@@ -9,7 +9,7 @@ import NameTitle from './NameTitle';
 export default function Header({ friendListAmount, userObject }) {
   const [currentPosts, setCurrentPosts] = useState([]);
   const [currentComponent, setCurrentComponent] = useState('posts');
-  const [user, setUser] = useState({firstName: 'Jovanni', lastName: 'Feliz'});
+  const [user, setUser] = useState({firstName: 'John', lastName: 'Smith'});
 
   let userID = true;
 return (
@@ -19,10 +19,11 @@ return (
         <div id='coverBackground'>
           <picture>
               <source
-              srcSet=''
+              srcSet='cover-img.svg'
+              alt='cover-img'
               />
               <img 
-              src='cover-img.png' 
+              src='cover-img.svg' 
               alt='cover-img'
               style={{
                 display: 'flex',
