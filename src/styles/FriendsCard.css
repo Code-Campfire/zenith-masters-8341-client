@@ -24,10 +24,16 @@
 	border-radius: 2px;
 	color: white;
 	padding: 5px;
+	height: 30px;
+}
+.friends-card button picture img {
+	width: 30px;
+	height: 20px !important;
 }
 
 .friends-card h6 {
 	margin: 0;
 	color: white;
-	font-size: 16px;
+	font-size: 14px;
+	letter-spacing: 0.5px;
 }

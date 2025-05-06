@@ -8,7 +8,7 @@ export default function FriendsCard({ friend, index }) {
 			<button>
 				<picture>
 					<source srcset="/add-friend.svg" />
-					<img alt="Friend Icon" src="/add-friend.svg" style={{ width: '30px', height: '25px' }} />
+					<img alt="Friend Icon" src="/add-friend.svg" />
 				</picture>
 				<h6>Add Friend</h6>
 			</button>

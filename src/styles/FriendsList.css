@@ -1,5 +1,7 @@
 .friends-list-container {
-	font-family: Helvetica;
+}
+.friends-list-container button {
+	border-radius: 2px;
 }
 .friends-list-nav {
 	display: flex;
@@ -18,11 +20,30 @@
 	flex-direction: row;
 	justify-content: space-between;
 }
+.top-nav h4 {
+	color: rgb(84, 84, 84);
+	margin: 0;
+}
 .bot-nav {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	align-content: center;
 }
+.bot-nav ul {
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+	margin: 0;
+}
+.bot-nav ul li button {
+	border: none;
+	margin-left: 8px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #406ab4;
+}
+
 .friends-list-content {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -50,18 +71,4 @@
 	border: 2px solid grey;
 	width: 40px;
 	cursor: pointer;
-}
-button {
-	border-radius: 2px;
-}
-
-h4 {
-	color: rgb(84, 84, 84);
-	margin: 0;
-	font-weight: bold;
-}
-h6 {
-	color: rgb(88, 111, 188);
-	font-weight: bold;
-	margin: 0;
 }

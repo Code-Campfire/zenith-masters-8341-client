@@ -5,6 +5,7 @@ import FriendsCard from './FriendsCard'
 export default function FriendsList() {
 	const [friends, setFriends] = useState([
 		{ name: 'Jake' },
+		{ name: 'Billy Nickles' },
 		{ name: 'Jacob' },
 		{ name: 'Allison' },
 		{ name: 'Tommy' },
@@ -33,10 +34,9 @@ export default function FriendsList() {
 		{ name: 'Grandpa' },
 		{ name: 'Grandpa' },
 		{ name: 'Grandpa' },
-		{ name: 'Billy Nickles' },
 	])
 	const [currentPage, setCurrentPage] = useState(1)
-	const itemsPerPage = 4
+	const itemsPerPage = 8
 	const numberOfPages = Math.ceil(friends.length / itemsPerPage)
 	const startIndex = (currentPage - 1) * itemsPerPage
 	const currentItems = friends.slice(startIndex, startIndex + itemsPerPage)
@@ -65,11 +65,21 @@ export default function FriendsList() {
 					<div>Suggest Friends</div>
 				</div>
 				<div className="bot-nav">
-					<h6>All Friends</h6>
-					<h6>Recently Added</h6>
-					<h6>People You May Know</h6>
-					<h6>Followers</h6>
-					<h6>Search Bar</h6>
+					<ul style={{ listStyleType: 'none' }}>
+						<li>
+							<button>All Friends</button>
+						</li>
+						<li>
+							<button>Recently Added</button>
+						</li>
+						<li>
+							<button>People You May Know</button>
+						</li>
+						<li>
+							<button>Followers</button>
+						</li>
+					</ul>
+					<input type="text" placeholder="Search for friend" />
 				</div>
 			</div>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
