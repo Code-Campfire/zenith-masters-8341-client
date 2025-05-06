@@ -28,6 +28,7 @@ a {
   justify-content: center;
   align-items: center;
 }
+
 .title {
   display: flex;
   flex-wrap: wrap;
@@ -41,7 +42,7 @@ a {
   color: var(--title-font-color);
   background-color: var(--component-cards-color);
   border-radius: 7px;
-  box-shadow: 1px 1px 5px rgb(193, 193, 193);
+  box-shadow: 1px 1px 5px rgb(228, 228, 228);
 }
 .links-mid.active {
   background-color: #dddddd;
@@ -51,17 +52,15 @@ a {
 }
 /* I am starting with the smallest screen size -- Im thinking global reach for Androids in 3rd world countries*/
 
-@media screen and (max-width: 430px) {
+@media screen and (min-width: 0px) and (max-width: 575.98px) {
 /* @media screen and (min-width: 344px) and (max-width: 430px) { */
   #navBar {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr;
     grid-template-areas: 
-    'logo free settings'
-    'navBtn navBtn navBtn';
+    'logo free settings';
     width: 100%;
-    height: 100px;
+    height: 56px;
     background-color: var(#ffffff);
     box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
     }
@@ -71,7 +70,14 @@ a {
       justify-content: space-between;
       align-items: center;
       grid-area: logo;
-      margin: 7px;
+      margin: 10px;
+      height: 35px;
+    }
+    .fb-logo {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-right: 2px;
     }
     .navButtons-right {
       display: flex;
@@ -79,23 +85,26 @@ a {
       justify-content: flex-end;
       align-items: center;
       grid-area: settings;
+      height: 56px;
     }
     .settings-links {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
+      width: auto;
     }
     .links-right {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
-      width: 2em;
+      width: 3em;
       height: 40px;
       margin-left: 5px;
       margin-right: 5px;
     }
-    .bg-sm {
+  .bg-sm {
+      position: relative;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -104,24 +113,60 @@ a {
       height: 2.5em;
       background-color: rgb(225, 225, 225);
       border-radius: 100px;
-      margin: 5px;
+      margin-right: 5px;
+      margin-left: 5px;
     }
     .bg-sm:hover {
       background-color: #c6c6c6;
     }
+  .sm-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 0px;
+  }
+  .noti {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: #ff0000;
+    width: 25px;
+    padding: 2px;
+    border-radius: 10px;
+    height: auto;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+  .links-mid {
+    width: 6.1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 8px;
+  }
+  .links-mid:hover {
+    background-color: #F2F2F2;
+  }
   .navButtons-mid {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      grid-area: navBtn;
-      padding: 15px;
+      display: none;
     }
     .lg-screen {
       display: none;
     }
+    .bg-lg {
+      display: none;
+    }
     .search-bar .searchbar-xl {
-      display: none;;
+      display: none;
     }
     .searchbar-lg {
       display: none;
@@ -130,6 +175,12 @@ a {
       display: none;
     }
     .xlg-screen {
+      display: none;
+    }
+    .bg-xxlg {
+      display: none;
+    }
+    .xxlg-screen {
       display: none;
     }
     .grid-container {
@@ -159,7 +210,7 @@ a {
 
 }
 
-@media screen and (min-width: 431px) and (max-width: 819px)  {
+@media screen and (min-width: 576px) and (max-width: 768px)  {
 /* @media screen and (min-width: 540px) and (max-width: 768px)  { */
   #navBar {
     display: grid;
@@ -170,29 +221,51 @@ a {
     background-color: var(#ffffff);
     box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
     }
+    .fb-logo {
+      margin-right: 2px;
+    }
   .logo {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      margin-left: 5px;
+      margin-left: 15px;
   }
   .bg-lg {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 2em;
-    height: 2em;
+    width: 2.5em;
+    height: 2.5em;
     background-color: rgb(225, 225, 225);
     border-radius: 100px;
-    margin-left: 5px;
     margin-right: 5px;
+    margin-left: 5px;
   }
   .bg-lg:hover {
     background-color: #c6c6c6;
   }
+  .noti {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: #ff0000;
+    width: 25px;
+    padding: 2px;
+    border-radius: 10px;
+    height: auto;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
   .bg-xlg {
+    display: none;
+  }
+  .bg-xxlg {
     display: none;
   }
   .xlg-screen {
@@ -201,14 +274,27 @@ a {
   .search-bar .searchbar-xl {
     display: none;
   }
+  .navButtons-mid .links-mid{
+    display: none;
+  }
+  .sm-screen{
+    display: none;
+  }
+  .bg-sm {
+    display: none;
+  }
   .searchbar-lg .search-bar{
     display: flex;
+    width: 12em;
+    height: 1em;
     border-radius: 50px;
     border-color: #c6c6c6;
     border-width: 0px;
     background-color: rgb(236, 236, 236);
+    font-size: 1rem;
     padding: 10px;
   }
+
   .navButtons-mid {
     display: flex;
     flex-direction: row;
@@ -292,7 +378,7 @@ a {
 }
 
 
-@media screen and (min-width: 820px) and (max-width: 2560px)  {
+@media screen and (min-width: 769px) and (max-width: 912px)  {
   #navBar {
     display: grid;
     grid-template-columns: 1fr 41% 1fr;
@@ -302,14 +388,18 @@ a {
     background-color: var(#ffffff);
     box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
     }
+  .fb-logo {
+    margin-right: 10px;
+  }
   .logo {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      margin-left: 5px;
+      margin-left: 15px;
   }
   .bg-xlg {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -323,6 +413,21 @@ a {
   }
   .bg-xlg:hover {
     background-color: #c6c6c6;
+  }
+  .noti {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: #ff0000;
+    width: 25px;
+    padding: 2px;
+    border-radius: 10px;
+    height: auto;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
   }
   .xlg-screen {
     display: flex;
@@ -339,11 +444,22 @@ a {
   .bg-lg {
     display: none;
   }
+  .sm-screen{
+    display: none;
+  }
+  .bg-sm {
+    display: none;
+  }
+  .bg-xxlg {
+    display: none;
+  }
+  .xxlg-screen {
+    display: none;
+  }
   .search-bar .searchbar-xl {
     display: flex;
-
     width: 12em;
-    height: 2em;
+    height: 1em;
     border-radius: 50px;
     border-color: #c6c6c6;
     border-width: 0px;
@@ -351,13 +467,31 @@ a {
     font-size: 1rem;
     padding: 10px;
   }
-  .navButtons-mid {
+  /* SearchBar Dropdown */
+  .dropdown {
+      position: relative;
+      display: block;
+      width: 100%;
+  }
+  .SearchDropdown {
+      display: block;
+      position: absolute;
+      background-color: var(--bg-color);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      width: 100%;
+  }
+  .SearchedUser {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    grid-area: nav-buttons;
-    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+/* End Drop Down */
+/* Start Nav Buttons */
+  .navButtons-mid {
+    display: none;
   }
   .links-mid {
     width: 6.1em;
@@ -367,9 +501,6 @@ a {
     align-items: center;
     height: 100%;
     border-radius: 8px;
-  }
-  .links-mid:hover {
-    background-color: #F2F2F2;
   }
   .navButtons-right {
     grid-area: settings;
@@ -413,82 +544,177 @@ a {
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
   }
-  
 }
 
-
-/* @media screen and (min-width: 1024px) {
-  #navBar {
-    display: grid;
-    grid-template-columns: 1fr 41% 1fr;
-    grid-template-areas: 'search nav-buttons settings';
-    width: 100%;
-    height: 56px;
-    background-color: var(#ffffff);
-    box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
+  @media screen and (min-width: 913px) and (max-width: 3840px)  {
+    #navBar {
+      display: grid;
+      grid-template-columns: 1fr 30% 1fr;
+      grid-template-areas: 'search nav-buttons settings';
+      width: 100%;
+      height: 56px;
+      background-color: var(#ffffff);
+      box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
+      }
+    .fb-logo {
+      margin-right: 10px;
     }
-  .logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 20px;
-  }
-  .navButtons-mid {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    grid-area: nav-buttons;
-    padding: 5px;
-  }
-  .links-mid {
-    width: 6.1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-radius: 8px;
-  }
-  .links-mid:hover {
-    background-color: #F2F2F2;
-  }
-  .navButtons-right {
-    grid-area: settings;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: row;
-    width: auto;
-  }
-  .settings-links {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: auto;
-    height: 100%;
-  }
-  .links-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 2em;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  .bg {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    height: 75%;
-    background-color: rgb(225, 225, 225);
-    border-radius: 100px;
-    margin: 5px;
-  }
-  .bg:hover {
-    background-color: #c6c6c6;
-  }
-} */
+    .logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 15px;
+    }
+    .bg-xlg {
+      display: none;
+    }
+    .bg-xxlg {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 2em;
+      height: 2em;
+      background-color: rgb(225, 225, 225);
+      border-radius: 100px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .bg-xxlg:hover {
+      background-color: #c6c6c6;
+    }
+    .xlg-screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 2em;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .noti {
+      position: absolute;
+      left: 15px;
+      bottom: 15px;
+      display: flex;
+      justify-content: center;
+      background-color: #ff0000;
+      width: 25px;
+      padding: 2px;
+      border-radius: 10px;
+      height: auto;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+    .lg-screen {
+      display: none;
+    }
+    .sm-screen{
+      display: none;
+    }
+    .bg-sm {
+      display: none;
+    }
+    .bg-lg {
+      display: none;
+    }
+    .search-bar .searchbar-xl {
+      display: flex;
+      width: 12em;
+      height: 1em;
+      border-radius: 50px;
+      border-color: #c6c6c6;
+      border-width: 0px;
+      background-color: rgb(236, 236, 236);
+      font-size: 1rem;
+      padding: 10px;
+    }
+    /* SearchBar Dropdown */
+    .dropdown {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+    .SearchDropdown {
+        display: block;
+        position: absolute;
+        background-color: var(--bg-color);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        width: 100%;
+    }
+    .SearchedUser {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+    }
+  /* End Drop Down */
+  /* Start Nav Buttons */
+    .navButtons-mid {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      grid-area: nav-buttons;
+      padding: 5px;
+    }
+    .links-mid {
+      width: 6.1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      border-radius: 8px;
+    }
+    .links-mid:hover {
+      background-color: #F2F2F2;
+    }
+    .navButtons-right {
+      grid-area: settings;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      width: auto;
+    }
+    .settings-links {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: auto;
+      height: 100%;
+    }
+    .links-right {
+      display: none;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: 'pages newsfeed online';
+      grid-gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: var(--component-cards-color);
+  
+    }
+    .title {
+      grid-area: newsfeed;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      height: 100px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
+    }
+  } 
