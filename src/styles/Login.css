@@ -1,3 +1,11 @@
+.login-form button {
+	cursor: pointer;
+}
+
+fieldset {
+	border: none;
+}
+
 .login-form {
 	grid-area: newsfeed;
 	display: flex;
@@ -11,18 +19,25 @@
 	border-radius: 7px;
 	box-shadow: 1px 1px 5px rgb(193, 193, 193);
 	padding: 10px 0 24px 0;
-	width: 396px;
-	font-family: Helvetica, Arial, sans-serif;
+	width: 396px !important;
+	font-family: Helvetica;
+}
+
+.login-form legend {
+	font-size: 22px;
+	color: rgb(80, 80, 80);
+	font-family: sans-serif;
 }
 
 .login-input {
-	height: 52px;
+	border: 1px solid #dddfe2 !important;
+	font-size: 18px;
+	height: 22px;
 	width: 330px;
 	border-radius: 7px;
 	margin-top: 6px;
 	margin-bottom: 6px;
 	padding: 14px 16px;
-	border: 1px solid #dddfe2 !important;
 }
 
 .login-button {
