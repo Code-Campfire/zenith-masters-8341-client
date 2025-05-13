@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/Home.css'
+import { NewsArticle } from './NewsArticle'
 
 function Home() {
-	// const [newsArticle, setNewsArticle] = useState([])
+	const [newsArticle, setNewsArticle] = useState([
+		{ id: 1, title: 'Article 1', body: 'Body of article 1', bottom: 'like, comment, share, etc' },
+		{ id: 2, title: 'Article 2', body: 'Body of article 2', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+	])
 	return (
 		<div className="home-container">
 			<div className="status">
@@ -32,9 +51,9 @@ function Home() {
 			</div>
 
 			<div className="newsfeed">
-				<div>title</div>
-				<div>body/image</div>
-				<div>bottom</div>
+				{newsArticle.map(article => {
+					return <NewsArticle key={article.id} article={article} />
+				})}
 			</div>
 		</div>
 	)
