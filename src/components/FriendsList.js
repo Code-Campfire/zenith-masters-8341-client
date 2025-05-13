@@ -56,16 +56,18 @@ export default function FriendsList() {
 			<div className="friends-list-nav">
 				<div className="top-nav">
 					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-						<picture>
-							<source srcset="/friend.svg" />
-							<img alt="Friend Icon" src="/friend.svg" style={{ width: '30px' }} />
-						</picture>
-						<h4>Friends</h4>
+						<h2>Friends</h2>
 					</div>
-					<div>Suggest Friends</div>
+					<div className="top-nav-right">
+						<label>
+							<input type="text" placeholder="Search" />
+						</label>
+						<div style={{ padding: '12px' }}>Friend Requests</div>
+						<div style={{ padding: '12px' }}>Find Friends</div>
+					</div>
 				</div>
 				<div className="bot-nav">
-					<ul style={{ listStyleType: 'none' }}>
+					{/* <ul style={{ listStyleType: 'none' }}>
 						<li>
 							<button>All Friends</button>
 						</li>
@@ -78,8 +80,7 @@ export default function FriendsList() {
 						<li>
 							<button>Followers</button>
 						</li>
-					</ul>
-					<input type="text" placeholder="Search for friend" />
+					</ul> */}
 				</div>
 			</div>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>

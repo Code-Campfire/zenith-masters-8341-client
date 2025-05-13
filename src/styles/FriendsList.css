@@ -1,4 +1,11 @@
 .friends-list-container {
+	margin-top: 80px;
+	margin-left: 80px;
+	margin-right: 100px;
+	width: 1218px;
+	box-shadow: 4px 4px 4px rgb(193, 193, 193);
+	border-radius: 16px;
+	background-color: white;
 }
 .friends-list-container button {
 	border-radius: 2px;
@@ -7,22 +14,41 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: rgb(242, 242, 242);
-	border-bottom: 2px solid lightgray;
-	/* border: 2px solid black; */
-	width: 100%;
 	text-align: center;
 	height: 90px;
 	padding: 10px;
+	border-radius: 4px;
 }
 .top-nav {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
-.top-nav h4 {
-	color: rgb(84, 84, 84);
+.top-nav h3 {
 	margin: 0;
+	font-size: 1.15rem;
+}
+.top-nav label input {
+	display: flex;
+	width: 12em;
+	height: 1em;
+	border-radius: 50px;
+	border-color: #c6c6c6;
+	border-width: 0px;
+	background-color: rgb(236, 236, 236);
+	font-size: 1rem;
+	padding: 10px;
+}
+.top-nav label input:focus {
+	outline: none;
+}
+
+.top-nav-right {
+	display: flex;
+	align-items: center;
+	color: var(--logo-color);
+	font-size: 1.05rem;
+	font-weight: 600;
 }
 .bot-nav {
 	display: flex;
@@ -54,7 +80,6 @@
 }
 .friends-list-pagination {
 	display: flex;
-	background-color: rgb(242, 242, 242);
 	border: 2px solid lightgray;
 	max-width: 600px;
 	width: 100%;
