@@ -47,11 +47,12 @@ a {
 .links-mid.active:hover {
 	background-color: #c3c3c3;
 }
-/* I am starting with the smallest screen size -- Im thinking global reach for Androids in 3rd world countries*/
+/*Added */
 #navBar {
 	position: fixed;
 	background-color: white;
 }
+/* I am starting with the smallest screen size -- Im thinking global reach for Androids in 3rd world countries*/
 @media screen and (min-width: 0px) and (max-width: 575.98px) {
 	/* @media screen and (min-width: 344px) and (max-width: 430px) { */
 	#navBar {
