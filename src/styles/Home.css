@@ -3,7 +3,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 800px;
+	max-width: 800px;
+	width: 100%;
 	box-sizing: border-box;
 }
 
@@ -17,6 +18,7 @@
 	height: 8.2rem;
 	margin: 20px 0px;
 	padding: 16px;
+	padding-bottom: 8px;
 	background-color: var(--component-cards-color);
 	border-radius: 7px;
 	box-shadow: 1px 1px 5px rgb(228, 228, 228);
@@ -24,6 +26,7 @@
 .status-top {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	border-bottom: 2px solid grey;
 	width: 100%;
 }
@@ -41,8 +44,15 @@
 .status-bottom {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
 	width: 100%;
+}
+.status-bottom button {
+	border: none;
+	padding: 10px;
+	color: grey;
+	font-size: 16px;
+	background-color: white;
 }
 
 .create-story-container {
@@ -56,6 +66,15 @@
 	background-color: var(--component-cards-color);
 	border-radius: 7px;
 	box-shadow: 1px 1px 5px rgb(228, 228, 228);
+	transition: background-color 0.3s ease;
+}
+
+.create-story-container h3 {
+	margin: 0;
+}
+.create-story-container:hover {
+	cursor: pointer;
+	background-color: var(--component-cards-color-hover);
 }
 
 .newsfeed {
@@ -63,6 +82,7 @@
 	gap: 20px;
 	display: flex;
 	flex-direction: column;
+	max-width: 800px;
 	width: 100%;
 	flex: 1;
 	height: 8.2rem;

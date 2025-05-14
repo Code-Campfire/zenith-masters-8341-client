@@ -27,25 +27,22 @@ function Home() {
 			<div className="status">
 				<div className="status-top">
 					<picture>
-						<img src="" alt="placeholder" />
+						<source srcSet="profile-img.svg" />
+						<img style={{ borderRadius: '25px' }} src="profile-image.svg" alt="placeholder" width="50px" />
 					</picture>
 					<input type="text" placeholder="What's on your mind?" />
 				</div>
 				<div className="status-bottom">
-					<button>Live video</button>
+					<button>Live Video</button>
 					<button>Photo/video</button>
 					<button>Feeling/activity</button>
 				</div>
 			</div>
 
 			<div className="create-story-container">
-				{/* <picture>
-					<source srcSet="/plus-sign.svg" style={{ width: '5px', height: '5px' }} />
-					<img src="/plus-sign.svg" alt="plus" style={{ width: '17px', height: '17px', marginRight: '10px' }} />
-				</picture> */}
-				<div style={{ fontSize: '30px', margin: '10px' }}>+</div>
+				<div style={{ fontSize: '40px', margin: '10px' }}>+</div>
 				<div style={{ display: 'flex', flexDirection: 'column' }}>
-					<p>Create Story</p>
+					<h3>Create Story</h3>
 					<p>Share a photo or write something</p>
 				</div>
 			</div>
