@@ -15,6 +15,12 @@
 	font-family: Helvetica, Arial, sans-serif;
 }
 
+.sign-up-form legend {
+	font-size: 22px;
+	color: rgb(80, 80, 80);
+	font-family: sans-serif;
+}
+
 .sign-up-button {
 	background-color: #00a400;
 	color: white;

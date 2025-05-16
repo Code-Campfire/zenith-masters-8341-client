@@ -18,6 +18,10 @@
 	opacity: 100%;
 }
 
+.sideBar button {
+	cursor: pointer;
+}
+
 .sideBarToggle {
 	opacity: 0;
 	width: 28px;
