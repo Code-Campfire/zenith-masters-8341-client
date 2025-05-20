@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import '../styles/SideBar.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaCog, FaBookmark, FaSignOutAlt } from 'react-icons/fa'
+import { useAppContext } from './AppContext'
 
 export default function SideBar() {
 	const resetSideBar = 768
 	const [isCollapsed, setIsCollapsed] = useState(true)
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= resetSideBar)
+	const { setLoggedInUser } = useAppContext()
 	const navigate = useNavigate()
 
 	const toggleSideBar = () => {
@@ -36,6 +38,7 @@ export default function SideBar() {
 		localStorage.removeItem('user')
 		localStorage.removeItem('token')
 		localStorage.removeItem('refresh')
+		setLoggedInUser(null)
 		navigate('/login')
 	}
 	//

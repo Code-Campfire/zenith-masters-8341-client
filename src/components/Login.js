@@ -17,9 +17,9 @@ export default function Login() {
 		}
 	)
 	const navigate = useNavigate()
-	function navigateToSignUp(e) {
+	function navigateToRegister(e) {
 		e.preventDefault()
-		navigate('/signup')
+		navigate('/register')
 	}
 
 	const handleLogin = async () => {
@@ -53,7 +53,7 @@ export default function Login() {
 				</button>
 				<Link className="forgot-password-link">Forgot password?</Link>
 				<div className="separator"></div>
-				<button onClick={navigateToSignUp} className="create-account-button">
+				<button onClick={navigateToRegister} className="create-account-button">
 					Create new account
 				</button>
 			</form>
