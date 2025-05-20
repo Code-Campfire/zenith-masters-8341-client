@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react'
 import '../styles/SideBar.css'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaCog, FaBookmark, FaSignOutAlt } from 'react-icons/fa'
 
 export default function SideBar() {
 	const resetSideBar = 768
 	const [isCollapsed, setIsCollapsed] = useState(true)
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= resetSideBar)
+	const navigate = useNavigate()
 
 	const toggleSideBar = () => {
 		setIsCollapsed(!isCollapsed)
@@ -30,6 +31,13 @@ export default function SideBar() {
 		window.addEventListener('resize', handleResize)
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
+
+	function handleLogout() {
+		localStorage.removeItem('user')
+		localStorage.removeItem('token')
+		localStorage.removeItem('refresh')
+		navigate('/login')
+	}
 	//
 	return (
 		<div className={`sideBar ${isCollapsed ? 'collapsed' : ''}`}>
@@ -47,7 +55,7 @@ export default function SideBar() {
 						<FaCog /> Settings
 					</Link>
 				</li>
-				<li className={activeLink('/login') ? 'active' : ''}>
+				<li className={activeLink('/login') ? 'active' : ''} onClick={handleLogout}>
 					<Link to="login" className="sideBar-link">
 						<FaSignOutAlt /> Logout
 					</Link>
