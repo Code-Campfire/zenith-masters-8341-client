@@ -1,57 +1,71 @@
 import React, { useState } from 'react'
 import '../styles/Home.css'
-import { NewsArticle } from './NewsArticle'
+import { useAppContext } from './AppContext'
+import { NewsArticleCard } from './home-sub-components/NewsArticleCard'
 
 function Home() {
+	const { loggedInUser } = useAppContext()
+	const username = loggedInUser?.username || 'user'
 	const [newsArticle, setNewsArticle] = useState([
-		{ id: 1, title: 'Article 1', body: 'Body of article 1', bottom: 'like, comment, share, etc' },
-		{ id: 2, title: 'Article 2', body: 'Body of article 2', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
-		{ id: 3, title: 'Article 3', body: 'Body of article 3', bottom: 'like, comment, share, etc' },
+		{ id: 1, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 2, name: 'Tommy', timestamp: '5-22-2025', title: 'Article 2', body: 'Body of article 2', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 3, name: 'Timmy', timestamp: '5-22-2025', title: 'Article 3', body: 'Body of article 3', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 4, name: 'Jimmy', timestamp: '5-22-2025', title: 'Article 4', body: 'Body of article 4', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 5, name: 'Jamie', timestamp: '5-22-2025', title: 'Article 5', body: 'Body of article 5', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 6, name: 'Bobby', timestamp: '5-22-2025', title: 'Article 6', body: 'Body of article 6', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 7, name: 'Teddy', timestamp: '5-22-2025', title: 'Article 7', body: 'Body of article 7', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 8, name: 'Andy', timestamp: '5-22-2025', title: 'Article 8', body: 'Body of article 8', like: 'Like', comment: 'Comment', share: 'Share' },
 	])
 	return (
 		<div className="home-container">
-			<div className="status">
-				<div className="status-top">
-					<picture>
-						<source srcSet="profile-img.svg" />
-						<img style={{ borderRadius: '25px' }} src="profile-image.svg" alt="placeholder" width="50px" />
-					</picture>
-					<input type="text" placeholder="What's on your mind?" />
-				</div>
-				<div className="status-bottom">
-					<button>Live Video</button>
-					<button>Photo/video</button>
-					<button>Feeling/activity</button>
+			<div className="home-sidebar-wrapper">
+				<div className="home-sidebar">
+					<div className="home-sidebar-item">
+						<picture>
+							<source srcset="profile-img.svg" />
+							<img alt="placeholder" style={{ borderRadius: '20px', width: '40px', marginRight: '20px' }} />
+						</picture>
+						<div>{username}</div>
+					</div>
+					<div className="home-sidebar-item">Placeholder 1</div>
+					<div className="home-sidebar-item">Placeholder 1</div>
+					<div className="home-sidebar-item">Placeholder 1</div>
+					<div className="home-sidebar-item">Placeholder 1</div>
+					<div className="home-sidebar-item">Placeholder 1</div>
+					<div className="home-sidebar-item">Placeholder 1</div>
 				</div>
 			</div>
+			<div className="home-content-container">
+				<div className="status">
+					<div className="status-top">
+						<picture>
+							<source srcSet="profile-img.svg" />
+							<img style={{ borderRadius: '25px' }} src="profile-image.svg" alt="placeholder" width="50px" />
+						</picture>
+						<input type="text" placeholder="What's on your mind?" />
+					</div>
+					<div className="status-bottom">
+						<button>Live Video</button>
+						<button>Photo/video</button>
+						<button>Feeling/activity</button>
+					</div>
+				</div>
 
-			<div className="create-story-container">
-				<div style={{ fontSize: '40px', margin: '10px' }}>+</div>
-				<div style={{ display: 'flex', flexDirection: 'column' }}>
-					<h3>Create Story</h3>
-					<p>Share a photo or write something</p>
+				<div className="create-story-container">
+					<div style={{ fontSize: '40px', margin: '10px' }}>+</div>
+					<div style={{ display: 'flex', flexDirection: 'column' }}>
+						<h3>Create Story</h3>
+						<p>Share a photo or write something</p>
+					</div>
+				</div>
+
+				<div className="newsfeed">
+					{newsArticle.map(article => {
+						return <NewsArticleCard key={article.id} article={article} />
+					})}
 				</div>
 			</div>
-
-			<div className="newsfeed">
-				{newsArticle.map(article => {
-					return <NewsArticle key={article.id} article={article} />
-				})}
-			</div>
+			<div className="home-sidebar-fake"></div>
 		</div>
 	)
 }

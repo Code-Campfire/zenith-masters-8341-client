@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/FriendsList.css'
 import FriendsCard from './FriendsCard'
 
@@ -25,21 +25,41 @@ export default function FriendsList() {
 		{ name: 'Grandpa' },
 		{ name: 'Grandpa' },
 		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
+		{ name: 'Zelda' },
 	])
+	const [pagination, setPagination] = useState({
+		friends: [],
+		totalFriendsLength: 0,
+		lastFriendIndex: 0,
+		firstFriendIndex: 0,
+		numberOfPages: 0,
+		lastPageFriends: 0,
+	})
 	const [currentPage, setCurrentPage] = useState(1)
-	const itemsPerPage = 8
+	const itemsPerPage = 10
 	const numberOfPages = Math.ceil(friends.length / itemsPerPage)
-	const startIndex = (currentPage - 1) * itemsPerPage
-	const currentItems = friends.slice(startIndex, startIndex + itemsPerPage)
+
+	useEffect(() => {
+		setPagination(() => {
+			const totalFriendsLength = friends.length
+			const lastFriendIndex = currentPage * itemsPerPage - 1
+			const firstFriendIndex = lastFriendIndex - (itemsPerPage - 1)
+			const lastPageFriends = totalFriendsLength % itemsPerPage
+			const paginatedFriends = friends.filter((_, index) => {
+				return index >= firstFriendIndex && index <= lastFriendIndex
+			})
+			console.log(paginatedFriends, ' paginated friends')
+			return {
+				friends: paginatedFriends,
+				totalFriendsLength,
+				lastFriendIndex,
+				firstFriendIndex,
+				numberOfPages,
+				lastPageFriends,
+			}
+		})
+		console.log(pagination, ' pagination')
+	}, [currentPage])
 
 	function goToPage(pageToGoTo) {
 		setCurrentPage(pageToGoTo)
@@ -51,11 +71,15 @@ export default function FriendsList() {
 		setCurrentPage(prev => (prev - 1 >= 1 ? prev - 1 : currentPage))
 	}
 
+	function requestFriends(pageNumber, perPage) {
+		// const reponse = responseFriends(pageNumber, perPage)
+	}
+
 	return (
 		<div className="friends-list-container">
 			<div className="friends-list-nav">
 				<div className="top-nav">
-					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+					<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: '10px' }}>
 						<h2>Friends</h2>
 					</div>
 					<div className="top-nav-right">
@@ -85,7 +109,7 @@ export default function FriendsList() {
 			</div>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<div className="friends-list-content">
-					{currentItems.map((friend, index) => {
+					{pagination.friends.map((friend, index) => {
 						return <FriendsCard friend={friend} index={index} />
 					})}
 				</div>
@@ -94,7 +118,7 @@ export default function FriendsList() {
 						{'<'}
 					</button>
 					<div className="pagination-numbers-container">
-						{Array.from({ length: numberOfPages }).map((item, index) => {
+						{Array.from({ length: pagination.numberOfPages }).map((item, index) => {
 							return (
 								<button onClick={() => goToPage(index + 1)} style={{ backgroundColor: index + 1 === currentPage ? 'lightgrey' : '' }}>
 									{index + 1}

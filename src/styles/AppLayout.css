@@ -13,4 +13,5 @@
 	flex-direction: column;
 	align-items: center;
 	flex: 1;
+	max-height: 1800px;
 }

@@ -36,14 +36,14 @@ export default function App() {
 						}
 					/>
 					<Route
-						path="/account"
+						path="account"
 						element={
 							<AuthorizedRoute>
 								<AccountPage />
 							</AuthorizedRoute>
 						}
 					/>
-					<Route path="/posts">
+					<Route path="posts">
 						<Route
 							index
 							element={
