@@ -7,7 +7,7 @@ function Home() {
 	const { loggedInUser } = useAppContext()
 	const username = loggedInUser?.username || 'user'
 	const [newsArticle, setNewsArticle] = useState([
-		{ id: 1, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', like: 'Like', comment: 'Comment', share: 'Share' },
+		{ id: 1, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
 		{ id: 2, name: 'Tommy', timestamp: '5-22-2025', title: 'Article 2', body: 'Body of article 2', like: 'Like', comment: 'Comment', share: 'Share' },
 		{ id: 3, name: 'Timmy', timestamp: '5-22-2025', title: 'Article 3', body: 'Body of article 3', like: 'Like', comment: 'Comment', share: 'Share' },
 		{ id: 4, name: 'Jimmy', timestamp: '5-22-2025', title: 'Article 4', body: 'Body of article 4', like: 'Like', comment: 'Comment', share: 'Share' },

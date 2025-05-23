@@ -23,9 +23,9 @@ export default function FriendsList() {
 		{ name: 'Grandpa' },
 		{ name: 'Grandpa' },
 		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Zelda' },
+		// { name: 'Grandpa' },
+		// { name: 'Grandpa' },
+		// { name: 'Zelda' },
 	])
 	const [pagination, setPagination] = useState({
 		friends: [],

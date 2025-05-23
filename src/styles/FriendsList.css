@@ -1,8 +1,7 @@
 .friends-list-container {
 	margin-top: 80px;
-	margin-left: 80px;
-	margin-right: 100px;
-	width: 1218px;
+	max-width: 1218px;
+	width: 100%;
 	box-shadow: 4px 4px 4px rgb(193, 193, 193);
 	border-radius: 16px;
 	background-color: white;
@@ -71,14 +70,20 @@
 }
 
 .friends-list-content {
+	/* display: flex; */
+	/* flex-wrap: wrap; */
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	min-height: 640px;
 	justify-items: center;
-	padding: 20px;
-	height: 810px;
 }
+
+@media screen and (max-width: 615px) {
+	.friends-list-content {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
 .friends-list-pagination {
 	display: flex;
 	border: 2px solid lightgray;

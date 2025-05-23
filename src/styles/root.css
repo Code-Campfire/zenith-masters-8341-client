@@ -1,25 +1,29 @@
 :root {
-/* ______index.css______ */
-/* Dark Mode starts with --dark-XXX */
---component-cards-color: #FFFFFF;
---input-fields: #F0F2F5;
---hover-effect-color: #E2E5E9;
---font-color: #3D3D3E;
---title-font-color: #080809;
---notification-color: #DD2334;
---online-indicator-color: #24832C;
+	/* ______index.css______ */
+	/* Dark Mode starts with --dark-XXX */
+	--component-cards-color: #ffffff;
+	--input-fields: #f0f2f5;
+	--hover-effect-color: #e2e5e9;
+	--font-color: #3d3d3e;
+	--title-font-color: #080809;
+	--notification-color: #dd2334;
+	--online-indicator-color: #24832c;
 
---dark-component-cards-color: #252728;
---dark-input-fields-color: #333334;
---dark-title-font-color: #E2E5E9;
---dark-font-color: #DBDEE2;
---dark-notification-color: #DD2334;
---dark-online-indicator-color: #3FBB46;
+	--dark-component-cards-color: #252728;
+	--dark-input-fields-color: #333334;
+	--dark-title-font-color: #e2e5e9;
+	--dark-font-color: #dbdee2;
+	--dark-notification-color: #dd2334;
+	--dark-online-indicator-color: #3fbb46;
 
+	/*General use*/
+	--border-box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
+	--fb-button-light-color: #ebf5ff;
+	--fb-button-light-hover-color: #dfe8f2;
+	--fb-button-text-blue-color: #5c9cd3;
 
-/* ______App.css______ */
---logo-color: #0866FF;
---bg-color: #F2F4F7;
---dark-bg-color: #1C1C1D;
-
+	/* ______App.css______ */
+	--logo-color: #0866ff;
+	--bg-color: #f2f4f7;
+	--dark-bg-color: #1c1c1d;
 }

@@ -51,6 +51,7 @@ a {
 #navBar {
 	position: fixed;
 	background-color: white;
+	z-index: 1;
 }
 /* I am starting with the smallest screen size -- Im thinking global reach for Androids in 3rd world countries*/
 @media screen and (min-width: 0px) and (max-width: 575.98px) {

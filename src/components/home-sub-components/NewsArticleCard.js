@@ -19,7 +19,12 @@ export const NewsArticleCard = ({ article }) => {
 				</div>
 				<div className="news-article-title">{article.title}--------------------------</div>
 			</div>
-			<div className="news-article-body">{article.body}</div>
+			<div className="news-article-body">
+				{console.log(article)}
+				<picture>
+					<img alt src={article.img} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+				</picture>
+			</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
 					<div>Likes: 21</div>

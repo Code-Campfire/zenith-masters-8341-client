@@ -19,6 +19,9 @@
 }
 .news-article-body {
 	min-height: 294px;
+	max-height: 594px;
+	max-width: 680px;
+	width: 100%;
 	border: 2px solid black;
 }
 
