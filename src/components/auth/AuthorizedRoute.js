@@ -5,7 +5,8 @@ import { CgSpinner } from 'react-icons/cg'
 export const AuthorizedRoute = ({ children }) => {
 	const { loading } = useAppContext()
 	const token = localStorage.getItem('token')
-	const isLoggedIn = token ? true : false
+	const isLoggedIn = true
+	// const isLoggedIn = token ? true : false
 	if (loading)
 		return (
 			<div>
