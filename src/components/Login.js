@@ -1,9 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import '../styles/Login.css'
 import { useReducer } from 'react'
+import { fetchLogin } from '../services/auth'
+import { useAppContext } from './AppContext'
 
 export default function Login() {
-	const [state, dispatch] = useReducer(
+	const { loggedInUser, setLoggedInUser } = useAppContext()
+	const [user, dispatch] = useReducer(
 		(state, action) => ({
 			...state,
 			...action,
@@ -14,9 +17,25 @@ export default function Login() {
 		}
 	)
 	const navigate = useNavigate()
-	function navigateToSignUp(e) {
+	function navigateToRegister(e) {
 		e.preventDefault()
-		navigate('/signup')
+		navigate('/register')
+	}
+
+	const handleLogin = async () => {
+		try {
+			const data = await fetchLogin(user.username, user.password)
+			if (data.user) {
+				console.log(data.user)
+				setLoggedInUser(data.user)
+				navigate('/')
+			} else {
+				throw new Error('Login failed: Failed to retrieve token')
+			}
+		} catch (error) {
+			console.error('Login failed:', error)
+			alert('Login failed. Please check your username and password.')
+		}
 	}
 
 	return (
@@ -29,10 +48,12 @@ export default function Login() {
 					<label for="password"></label>
 					<input type="password" id="password" name="password" className="login-input" placeholder="Password" onChange={e => dispatch({ password: e.target.value })} />
 				</fieldset>
-				<button className="login-button">Log In</button>
+				<button onClick={handleLogin} className="login-button">
+					Log In
+				</button>
 				<Link className="forgot-password-link">Forgot password?</Link>
 				<div className="separator"></div>
-				<button onClick={navigateToSignUp} className="create-account-button">
+				<button onClick={navigateToRegister} className="create-account-button">
 					Create new account
 				</button>
 			</form>
