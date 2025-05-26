@@ -9,7 +9,7 @@ import NameTitle from './NameTitle';
 export default function Header({ friendListAmount, userObject }) {
   const [currentPosts, setCurrentPosts] = useState([]);
   const [currentComponent, setCurrentComponent] = useState('posts');
-  const [user, setUser] = useState({firstName: 'John', lastName: 'Smith'});
+  const [user, setUser] = useState({firstName: 'firstName', lastName: 'lastName'});
 
   let userID = true;
 return (
