@@ -10,7 +10,8 @@ export default function NavigationBar() {
   const [newNotify, setNewNotify] = useState(0);
 
   const updateNotifications = () => {
-    setNewNotify(10);
+    // Incoming Calls for new Notifications come through here
+    setNewNotify(0);
   }
   
   const { pathname } =  useLocation()
