@@ -32,8 +32,8 @@ export default function FriendsList() {
 		totalFriendsLength: 0,
 		lastFriendIndex: 0,
 		firstFriendIndex: 0,
-		numberOfPages: 0,
 		lastPageFriends: 0,
+		numberOfPages: 0,
 	})
 	const [currentPage, setCurrentPage] = useState(1)
 	const itemsPerPage = 10
@@ -45,17 +45,17 @@ export default function FriendsList() {
 			const lastFriendIndex = currentPage * itemsPerPage - 1
 			const firstFriendIndex = lastFriendIndex - (itemsPerPage - 1)
 			const lastPageFriends = totalFriendsLength % itemsPerPage
-			const paginatedFriends = friends.filter((_, index) => {
-				return index >= firstFriendIndex && index <= lastFriendIndex
-			})
+			const paginatedFriends = friends.slice(firstFriendIndex, lastFriendIndex + 1)
 			console.log(paginatedFriends, ' paginated friends')
+
+			//Values needed to be retreived from the backend
 			return {
 				friends: paginatedFriends,
 				totalFriendsLength,
 				lastFriendIndex,
 				firstFriendIndex,
-				numberOfPages,
 				lastPageFriends,
+				numberOfPages,
 			}
 		})
 		console.log(pagination, ' pagination')
