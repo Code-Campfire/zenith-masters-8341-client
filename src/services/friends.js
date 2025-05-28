@@ -31,3 +31,17 @@ export const fetchWithdrawFriendRequest = async friendId => {
 	console.log(data)
 	return data
 }
+
+export const fetchPendingFriendRequests = async () => {
+	const token = getToken()
+	console.log(token)
+	const response = await fetch(`${base_url}/bookface/simps/active_relationships/`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	})
+	const data = await response.json()
+	console.log(data)
+	return data
+}

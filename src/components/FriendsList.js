@@ -104,7 +104,7 @@ export default function FriendsList() {
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<div id="friends-list-content" className="friends-list-content">
 					{pagination.friends.map((friend, index) => {
-						return view?.findFriends ? <FindFriendsCard friend={friend} index={index} /> : view?.friendRequests ? 'Friend Requests Placeholder' : view?.allFriends ? 'All Friends Placeholder' : 'Loading...'
+						return view?.findFriends ? <FindFriendsCard nonFriend={friend} index={index} /> : view?.friendRequests ? 'Friend Requests Placeholder' : view?.allFriends ? 'All Friends Placeholder' : 'Loading...'
 					})}
 				</div>
 				<div className="friends-list-pagination">

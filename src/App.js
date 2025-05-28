@@ -12,65 +12,63 @@ import Register from './components/Register'
 
 export default function App() {
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<AppLayout />}>
-					<Route path="login" element={<Login />} />
-					<Route path="register" element={<Register />} />
+		<Routes>
+			<Route path="/" element={<AppLayout />}>
+				<Route path="login" element={<Login />} />
+				<Route path="register" element={<Register />} />
 
+				<Route
+					index
+					element={
+						<AuthorizedRoute>
+							<Home />
+						</AuthorizedRoute>
+					}
+				/>
+
+				<Route
+					path="settings"
+					element={
+						<AuthorizedRoute>
+							<Settings />
+						</AuthorizedRoute>
+					}
+				/>
+				<Route
+					path="account"
+					element={
+						<AuthorizedRoute>
+							<AccountPage />
+						</AuthorizedRoute>
+					}
+				/>
+				<Route path="posts">
 					<Route
 						index
 						element={
 							<AuthorizedRoute>
-								<Home />
-							</AuthorizedRoute>
-						}
-					/>
-
-					<Route
-						path="settings"
-						element={
-							<AuthorizedRoute>
-								<Settings />
+								<div>Posts Go Here</div>
 							</AuthorizedRoute>
 						}
 					/>
 					<Route
-						path="account"
+						path="saved"
 						element={
 							<AuthorizedRoute>
-								<AccountPage />
-							</AuthorizedRoute>
-						}
-					/>
-					<Route path="posts">
-						<Route
-							index
-							element={
-								<AuthorizedRoute>
-									<div>Posts Go Here</div>
-								</AuthorizedRoute>
-							}
-						/>
-						<Route
-							path="saved"
-							element={
-								<AuthorizedRoute>
-									<SavedPosts />
-								</AuthorizedRoute>
-							}
-						/>
-					</Route>
-					<Route
-						path="*"
-						element={
-							<AuthorizedRoute>
-								<NotFound />
+								<SavedPosts />
 							</AuthorizedRoute>
 						}
 					/>
 				</Route>
-			</Routes>
-		</Router>
+				<Route
+					path="*"
+					element={
+						<AuthorizedRoute>
+							<NotFound />
+						</AuthorizedRoute>
+					}
+				/>
+			</Route>
+		</Routes>
 	)
 }

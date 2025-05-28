@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Home() {
 	const { loggedInUser } = useAppContext()
-	const username = loggedInUser?.username || 'user'
+	const username = loggedInUser?.username
 	const [newsArticle, setNewsArticle] = useState([
 		{ id: 1, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
 		{ id: 2, name: 'Tommy', timestamp: '5-22-2025', title: 'Article 2', body: 'Body of article 2', like: 'Like', comment: 'Comment', share: 'Share' },
@@ -70,7 +70,7 @@ function Home() {
 							<source srcSet="profile-img.svg" />
 							<img style={{ borderRadius: '25px' }} src="profile-image.svg" alt="placeholder" width="50px" />
 						</picture>
-						<div className="whats-on-your-mind">{`What's on your mind, ${username}?`}</div>
+						<div className="whats-on-your-mind">{username && `What's on your mind, ${username}?`}</div>
 					</div>
 					<div className="status-bottom">
 						<button>Live Video</button>
