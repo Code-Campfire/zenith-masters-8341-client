@@ -9,9 +9,7 @@ export const fetchLogin = async (username, password) => {
 		body: JSON.stringify({ username, password }),
 	})
 	const data = await response.json()
-	console.log(data)
 	if (response.ok && data.tokens) {
-		console.log('JKDSFLJSDFK')
 		localStorage.setItem('token', data.tokens.access)
 		localStorage.setItem('refresh', data.tokens.refresh)
 		localStorage.setItem('user', JSON.stringify(data.user))

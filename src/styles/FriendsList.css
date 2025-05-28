@@ -27,7 +27,7 @@
 	margin: 0;
 	font-size: 1.15rem;
 }
-.top-nav label input {
+.top-nav input {
 	display: flex;
 	width: 12em;
 	height: 1em;

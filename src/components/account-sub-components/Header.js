@@ -1,5 +1,5 @@
 import '../../styles/account-sub-components/header.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddFriendBtn from './AddFriendBtn'
 import AddToStoryBtn from './AddToStoryBtn'
 import EditProfileBtn from './EditProfileBtn'
@@ -11,6 +11,21 @@ export default function Header({ friendListAmount, userObject }) {
 	const [currentPosts, setCurrentPosts] = useState([])
 	const [currentComponent, setCurrentComponent] = useState('posts')
 	const [user, setUser] = useState({ firstName: 'John', lastName: 'Smith' })
+
+	useEffect(() => {
+		if (currentComponent) scrollToElement()
+	}, [currentComponent])
+
+	const scrollToElement = () => {
+		if (currentComponent) {
+			console.log(currentComponent, ' currentComponent')
+			const scrollToId = `${currentComponent}-anchor`
+			if (scrollToId) {
+				const scrollToElement = document.getElementById(`${scrollToId}`)
+				scrollToElement?.scrollIntoView({ behavior: 'smooth' })
+			}
+		}
+	}
 
 	let userID = true
 	return (
@@ -50,7 +65,7 @@ export default function Header({ friendListAmount, userObject }) {
 						</div>
 						<div className="action-btn-area">
 							<div className="action-btn-container">
-								{userID ? <AddToStoryBtn customStyles={{ width: '100px', height: '1000px', color: 'green' }} /> : <AddFriendBtn />}
+								{userID ? <AddToStoryBtn customStyles={{ width: '100px', height: '100px' }} /> : <AddFriendBtn />}
 								<EditProfileBtn />
 							</div>
 						</div>
@@ -63,6 +78,7 @@ export default function Header({ friendListAmount, userObject }) {
 							className="links-btn"
 							onClick={() => {
 								setCurrentComponent('posts')
+								scrollToElement()
 								document.getElementById('about-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.remove('clicked')
 								document.getElementById('posts-btn').classList.add('clicked')
@@ -75,6 +91,7 @@ export default function Header({ friendListAmount, userObject }) {
 							className="links-btn"
 							onClick={() => {
 								setCurrentComponent('about')
+								scrollToElement()
 								document.getElementById('posts-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.remove('clicked')
 								document.getElementById('about-btn').classList.add('clicked')
@@ -87,6 +104,7 @@ export default function Header({ friendListAmount, userObject }) {
 							className="links-btn"
 							onClick={() => {
 								setCurrentComponent('friends')
+								scrollToElement()
 								document.getElementById('posts-btn').classList.remove('clicked')
 								document.getElementById('about-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.add('clicked')

@@ -41,12 +41,21 @@ a {
 	border-radius: 7px;
 	box-shadow: 1px 1px 5px rgb(228, 228, 228);
 }
-.links-mid.active {
-	background-color: #dddddd;
+
+.navButtons-mid a:active {
+	background-color: var(--fb-active-click-link-color) !important;
 }
-.links-mid.active:hover {
-	background-color: #c3c3c3;
+
+.navButtons-mid a:hover {
+	background-color: var(--fb-hover-link-color);
 }
+.navButtons-mid a.active {
+	background-color: var(--fb-active-class-link-color);
+}
+.navButtons-mid a.active:hover {
+	background-color: var(--fb-active-class-hover-link-color);
+}
+
 /*Added */
 #navBar {
 	position: fixed;

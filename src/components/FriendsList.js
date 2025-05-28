@@ -1,32 +1,10 @@
 import { useEffect, useState } from 'react'
 import '../styles/FriendsList.css'
 import FriendsCard from './FriendsCard'
+import { fetchGetAllUsers } from '../services/users'
+import FindFriendsCard from './FindFriendsCard'
 
 export default function FriendsList() {
-	const [friends, setFriends] = useState([
-		{ name: 'Jake' },
-		{ name: 'Billy Nickles' },
-		{ name: 'Jacob' },
-		{ name: 'Allison' },
-		{ name: 'Tommy' },
-		{ name: 'Timmy' },
-		{ name: 'Sharron' },
-		{ name: 'Ronda' },
-		{ name: 'Granny' },
-		{ name: 'Tim' },
-		{ name: 'Carlson' },
-		{ name: 'Abby' },
-		{ name: 'Dana' },
-		{ name: 'Witherspoon' },
-		{ name: 'Clodbo' },
-		{ name: 'Radkipper' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		{ name: 'Grandpa' },
-		// { name: 'Grandpa' },
-		// { name: 'Grandpa' },
-		// { name: 'Zelda' },
-	])
 	const [pagination, setPagination] = useState({
 		friends: [],
 		totalFriendsLength: 0,
@@ -36,43 +14,68 @@ export default function FriendsList() {
 		numberOfPages: 0,
 	})
 	const [currentPage, setCurrentPage] = useState(1)
-	const itemsPerPage = 10
-	const numberOfPages = Math.ceil(friends.length / itemsPerPage)
+	const [view, setView] = useState({
+		findFriends: false,
+		friendRequests: false,
+		allFriends: false,
+	})
 
 	useEffect(() => {
-		setPagination(() => {
-			const totalFriendsLength = friends.length
-			const lastFriendIndex = currentPage * itemsPerPage - 1
-			const firstFriendIndex = lastFriendIndex - (itemsPerPage - 1)
-			const lastPageFriends = totalFriendsLength % itemsPerPage
-			const paginatedFriends = friends.slice(firstFriendIndex, lastFriendIndex + 1)
-			console.log(paginatedFriends, ' paginated friends')
+		setView(prev => ({
+			...prev,
+			findFriends: true,
+		}))
+		fetchGetAllUsers().then(users => {
+			console.log(users)
+			setPagination(() => {
+				const itemsPerPage = 10
+				const numberOfPages = Math.ceil(users.length / itemsPerPage)
+				const totalFriendsLength = users.length
+				const lastFriendIndex = currentPage * itemsPerPage - 1
+				const firstFriendIndex = lastFriendIndex - (itemsPerPage - 1)
+				const lastPageFriends = totalFriendsLength % itemsPerPage
+				const paginatedFriends = users.slice(firstFriendIndex, lastFriendIndex + 1)
+				console.log(firstFriendIndex, 'first friend index')
+				console.log(lastFriendIndex, 'last friend index')
+				console.log(paginatedFriends, ' paginated friends')
 
-			//Values needed to be retreived from the backend
-			return {
-				friends: paginatedFriends,
-				totalFriendsLength,
-				lastFriendIndex,
-				firstFriendIndex,
-				lastPageFriends,
-				numberOfPages,
-			}
+				//Values needed to be retreived from the backend
+				return {
+					friends: paginatedFriends,
+					totalFriendsLength,
+					lastFriendIndex,
+					firstFriendIndex,
+					lastPageFriends,
+					numberOfPages,
+				}
+			})
 		})
-		console.log(pagination, ' pagination')
 	}, [currentPage])
 
+	//
 	function goToPage(pageToGoTo) {
 		setCurrentPage(pageToGoTo)
 	}
 	function next() {
-		setCurrentPage(prev => (prev + 1 <= numberOfPages ? prev + 1 : currentPage))
+		setCurrentPage(prev => (prev + 1 <= pagination.numberOfPages ? prev + 1 : currentPage))
 	}
 	function previous() {
 		setCurrentPage(prev => (prev - 1 >= 1 ? prev - 1 : currentPage))
 	}
-
-	function requestFriends(pageNumber, perPage) {
-		// const reponse = responseFriends(pageNumber, perPage)
+	function handleFriendBar(e) {
+		setView(prev => {
+			const newView = {}
+			for (const prop in prev) {
+				console.log(prev)
+				if (prop === e.target.dataset.name) {
+					newView[prop] = true
+				} else {
+					newView[prop] = false
+				}
+			}
+			console.log(newView)
+			return newView
+		})
 	}
 
 	return (
@@ -83,34 +86,25 @@ export default function FriendsList() {
 						<h2>Friends</h2>
 					</div>
 					<div className="top-nav-right">
-						<label>
-							<input type="text" placeholder="Search" />
-						</label>
-						<div style={{ padding: '12px' }}>Friend Requests</div>
-						<div style={{ padding: '12px' }}>Find Friends</div>
+						<input type="text" placeholder="Search" />
+						<button className="word-button" data-name="allFriends" onClick={handleFriendBar}>
+							All Friends
+						</button>
+						<button className="word-button" data-name="friendRequests" onClick={handleFriendBar}>
+							Friend Requests
+						</button>
+						<button className="word-button" data-name="findFriends" onClick={handleFriendBar} style={{ border: 'none', backgroundColor: 'transparent', color: '' }}>
+							Find Friends
+						</button>
 					</div>
 				</div>
-				<div className="bot-nav">
-					{/* <ul style={{ listStyleType: 'none' }}>
-						<li>
-							<button>All Friends</button>
-						</li>
-						<li>
-							<button>Recently Added</button>
-						</li>
-						<li>
-							<button>People You May Know</button>
-						</li>
-						<li>
-							<button>Followers</button>
-						</li>
-					</ul> */}
-				</div>
+				<div className="bot-nav"></div>
 			</div>
+			<div id="friends-anchor" />
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<div className="friends-list-content">
+				<div id="friends-list-content" className="friends-list-content">
 					{pagination.friends.map((friend, index) => {
-						return <FriendsCard friend={friend} index={index} />
+						return view?.findFriends ? <FindFriendsCard friend={friend} index={index} /> : view?.friendRequests ? 'Friend Requests Placeholder' : view?.allFriends ? 'All Friends Placeholder' : 'Loading...'
 					})}
 				</div>
 				<div className="friends-list-pagination">
