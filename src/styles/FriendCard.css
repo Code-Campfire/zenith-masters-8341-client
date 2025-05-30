@@ -24,18 +24,6 @@
 	/* object-fit: contain; */
 }
 
-.button-add-friend {
-	display: flex;
-	align-items: center;
-	border: none;
-	background-color: var(--fb-button-light-color);
-	border-radius: 6px;
-	height: 30px;
-	max-width: 200px;
-	width: 100%;
-	margin: 6px;
-	cursor: pointer;
-}
 .find-friends-card button h6 {
 	color: var(--fb-button-text-blue-color);
 }
@@ -63,7 +51,7 @@
 	align-items: center;
 	justify-content: center;
 	/* border: 2px solid black; */
-	margin-top: 6px;
+	margin-top: 80px;
 	width: 11vw;
 	height: 5vh;
 	border-radius: 8px;
@@ -71,14 +59,13 @@
 	font-size: 1.3vw;
 	color: rgb(70, 70, 70);
 	opacity: 0%;
-	transition: transform 0.1s ease, background-color 0.4s ease, opacity 1s ease;
+	transition: transform 0.1s ease, background-color 0.1s ease, opacity 0.5s ease;
 }
 .pending-request-banner.active {
 	transform: scale(1.2);
 	background-color: grey;
-	opacity: 50%;
-
-	transition: transform 0.1s ease, background-color 0.4s ease, opacity 1s ease;
+	opacity: 100%;
+	transition: transform 0.1s ease, background-color 0.1s ease, opacity 0.5s ease;
 }
 
 .button-withdraw {
@@ -92,4 +79,33 @@
 	width: 100%;
 	margin: 6px;
 	cursor: pointer;
+}
+.button-accept-request {
+	display: flex;
+	align-items: center;
+	border: none;
+	background-color: rgba(82, 208, 82, 0.653);
+	border-radius: 6px;
+	height: 30px;
+	max-width: 200px;
+	width: 100%;
+	margin: 6px;
+	cursor: pointer;
+}
+
+.button-add-friend {
+	display: flex;
+	align-items: center;
+	border: none;
+	background-color: var(--fb-button-light-color);
+	border-radius: 6px;
+	height: 30px;
+	max-width: 200px;
+	width: 100%;
+	margin: 6px;
+	cursor: pointer;
+}
+
+.user-image {
+	opacity: 50%;
 }

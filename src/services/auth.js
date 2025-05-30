@@ -20,7 +20,6 @@ export const fetchLogin = async (username, password) => {
 }
 
 export const fetchRegister = async (email, username, password) => {
-	console.log(JSON.stringify({ email, username, password }))
 	const response = await fetch(`${api}/register/`, {
 		method: 'POST',
 		headers: {
@@ -31,8 +30,6 @@ export const fetchRegister = async (email, username, password) => {
 	const data = await response.json()
 
 	if (!response.ok) {
-		console.log(data.errors)
 		throw data.errors
 	}
-	console.log(data, ' fetch sign up data')
 }

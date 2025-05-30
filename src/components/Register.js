@@ -22,7 +22,6 @@ export default function Register() {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-		console.log(state)
 		if (state.password !== state.matchingPassword) {
 			alert('Passwords do not match!')
 		}
@@ -30,7 +29,6 @@ export default function Register() {
 		try {
 			const data = await fetchRegister(state.email, state.username, state.password)
 			navigate('/')
-			console.log('Success! ', data)
 		} catch (errors) {
 			console.log(errors)
 			for (const error in errors) {

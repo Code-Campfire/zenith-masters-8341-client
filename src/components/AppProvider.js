@@ -10,9 +10,7 @@ export const AppProvider = ({ children }) => {
 	const navigate = useNavigate()
 
 	const validateUser = async () => {
-		console.log(loggedInUser)
 		const token = localStorage.getItem('token')
-		console.log(token)
 		if (!token) {
 			setLoggedInUser(null)
 			setLoading(false)
@@ -25,7 +23,6 @@ export const AppProvider = ({ children }) => {
 				return JSON.parse(localStorage.getItem('user')) || loggedInUser
 			}
 			const userToValidate = getUser()
-			console.log(userToValidate, ' user to validate')
 			const user = await fetchGetUserById(userToValidate.id, token)
 			if (user) {
 				setLoggedInUser(user)
@@ -49,18 +46,6 @@ export const AppProvider = ({ children }) => {
 	useEffect(() => {
 		validateUser()
 	}, [location.pathname])
-
-	console.log('APP PROVIDER RAN')
-	// useEffect(() => {
-	// 	console.log('APP PROVIDER RAN IN USEEFFECT')
-	// 	setLoading(true)
-	// 	const storedUser = localStorage.getItem('user')
-	// 	if (storedUser) {
-	// 		const parsedUser = JSON.parse(storedUser)
-	// 		setLoggedInUser(parsedUser)
-	// 	}
-	// 	setLoading(false)
-	// }, [])
 
 	return <AppContext.Provider value={{ loggedInUser, setLoggedInUser, loading, setLoading }}>{children}</AppContext.Provider>
 }

@@ -5,12 +5,13 @@ import AddToStoryBtn from './AddToStoryBtn'
 import EditProfileBtn from './EditProfileBtn'
 import ProfileImage from './ProfileImage'
 import NameTitle from './NameTitle'
-import FriendsList from '../FriendsList'
+import FriendsList from '../friends-list/FriendsList'
+import { useAppContext } from '../AppContext'
 
 export default function Header({ friendListAmount, userObject }) {
 	const [currentPosts, setCurrentPosts] = useState([])
 	const [currentComponent, setCurrentComponent] = useState('posts')
-	const [user, setUser] = useState({ firstName: 'John', lastName: 'Smith' })
+	const { loggedInUser, setLoggedInUser } = useAppContext()
 
 	useEffect(() => {
 		if (currentComponent) scrollToElement()
@@ -18,7 +19,6 @@ export default function Header({ friendListAmount, userObject }) {
 
 	const scrollToElement = () => {
 		if (currentComponent) {
-			console.log(currentComponent, ' currentComponent')
 			const scrollToId = `${currentComponent}-anchor`
 			if (scrollToId) {
 				const scrollToElement = document.getElementById(`${scrollToId}`)
@@ -58,7 +58,7 @@ export default function Header({ friendListAmount, userObject }) {
 							<ProfileImage />
 						</div>
 						<div className="title-name">
-							<NameTitle fname={user.firstName} lname={user.lastName} />
+							<NameTitle fname={loggedInUser?.first_name} lname={loggedInUser?.last_name} />
 							<div className="title-friendAmount">
 								<p>{friendListAmount} friends</p>
 							</div>

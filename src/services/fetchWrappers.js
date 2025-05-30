@@ -9,7 +9,6 @@ export const fetchGetWrapper = async (api, endpoint) => {
 		},
 	})
 	const data = await response.json()
-	console.log(data, ' fetchGetWrapper data')
 	return data
 }
 
@@ -24,6 +23,5 @@ export const fetchPostWrapper = async (api, endpoint, payload) => {
 		body: JSON.stringify(payload),
 	})
 	const data = await response.json()
-	console.log(data, ' fetchGetWrapper data')
 	return data
 }

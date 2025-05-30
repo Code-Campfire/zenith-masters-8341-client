@@ -26,7 +26,6 @@ export default function Login() {
 		try {
 			const data = await fetchLogin(user.username, user.password)
 			if (data.user) {
-				console.log(data.user)
 				setLoggedInUser(data.user)
 				navigate('/')
 			} else {
