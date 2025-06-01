@@ -103,3 +103,18 @@
 	width: 40px;
 	cursor: pointer;
 }
+.word-button {
+	border: none;
+	font-weight: 700;
+	font-size: 15px;
+	background-color: transparent;
+	color: var(--font-color);
+	padding: 10px;
+	letter-spacing: 0.3px;
+}
+
+.word-button.active {
+	border-radius: 2px;
+	border-bottom: 3px solid var(--fb-logo);
+	color: var(--logo-color);
+}

@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react'
 import '../../styles/FriendsList.css'
-import { fetchGetAllUsers, fetchGetAllUsersAndRelationships } from '../../services/users'
-import FriendCard from './FriendCard'
-import { useAppContext } from '../AppContext'
-import { fetchAllFriendsPending, fetchAllIncomingFriendRequests, fetchGetAllFriends } from '../../services/friends'
 import { AllFriends } from './sub-components/AllFriends'
 import { FindFriends } from './sub-components/FindFriends'
 import { IncomingRequests } from './sub-components/IncomingRequests'
 import { OutgoingRequests } from './sub-components/OutgoingRequests'
+import { setAllFriends, setFindFriends, setIncomingRequests, setOutgoingRequests } from '../../utils/setFriendViews'
 
 export default function FriendsList() {
-	const { loggedInUser } = useAppContext()
 	const [currentPage, setCurrentPage] = useState(1)
 	const [pagination, setPagination] = useState({
 		friends: [],
@@ -73,43 +69,10 @@ export default function FriendsList() {
 	}
 
 	useEffect(() => {
-		if (view.findFriends) {
-			fetchGetAllUsersAndRelationships().then(users => {
-				console.log(users, ' users with relationships')
-				setPagination(() => {
-					const allUsers = createPagination(users)
-					return allUsers
-				})
-			})
-		}
-		if (view.incomingRequests) {
-			fetchAllIncomingFriendRequests().then(users => {
-				setPagination(() => {
-					const allUsers = createPagination(users)
-					return allUsers
-				})
-			})
-		}
-		if (view.outgoingRequests) {
-			fetchAllFriendsPending().then(users => {
-				setPagination(() => {
-					const pendingUsers = createPagination(users)
-					return pendingUsers
-				})
-			})
-		}
-		if (view.allFriends) {
-			fetchGetAllFriends().then(users => {
-				setPagination(() => {
-					const pendingUsers = createPagination(users)
-					return pendingUsers
-				})
-			})
-		}
-		console.log(view, 'VIEW OR CURRENT PAGE CHANGED')
-		console.log(view, 'VIEW OR CURRENT PAGE CHANGED')
-		console.log(view, 'VIEW OR CURRENT PAGE CHANGED')
-		console.log(view, 'VIEW OR CURRENT PAGE CHANGED')
+		if (view.findFriends) setFindFriends(createPagination, setPagination)
+		if (view.incomingRequests) setIncomingRequests(createPagination, setPagination)
+		if (view.outgoingRequests) setOutgoingRequests(createPagination, setPagination)
+		if (view.allFriends) setAllFriends(createPagination, setPagination)
 	}, [view, currentPage])
 
 	return (
@@ -121,16 +84,16 @@ export default function FriendsList() {
 					</div>
 					<div className="top-nav-right">
 						<input type="text" placeholder="Search" />
-						<button className="word-button" data-name="incomingRequests" onClick={handleFriendBar}>
+						<button className={`word-button ${view.incomingRequests ? 'active' : ''}`} data-name="incomingRequests" onClick={handleFriendBar}>
 							Incoming Requests
 						</button>
-						<button className="word-button" data-name="allFriends" onClick={handleFriendBar}>
+						<button className={`word-button ${view.allFriends ? 'active' : ''}`} data-name="allFriends" onClick={handleFriendBar}>
 							All Friends
 						</button>
-						<button className="word-button" data-name="outgoingRequests" onClick={handleFriendBar}>
+						<button className={`word-button ${view.outgoingRequests ? 'active' : ''}`} data-name="outgoingRequests" onClick={handleFriendBar}>
 							Outgoing Requests
 						</button>
-						<button className="word-button" data-name="findFriends" onClick={handleFriendBar} style={{ border: 'none', backgroundColor: 'transparent', color: '' }}>
+						<button className={`word-button ${view.findFriends ? 'active' : ''}`} data-name="findFriends" onClick={handleFriendBar}>
 							Find Friends
 						</button>
 					</div>
@@ -141,10 +104,10 @@ export default function FriendsList() {
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<div id="friends-list-content" className="friends-list-content">
 					{pagination.friends.map((friend, index) => {
-						if (view.findFriends) return <FindFriends key={friend.id} friend={friend} index={index} currentPage={currentPage} tab={view} createPagination={createPagination} setPagination={setPagination} view={view} />
-						if (view.allFriends) return <AllFriends key={friend.id} friend={friend} index={index} currentPage={currentPage} tab={view} createPagination={createPagination} setPagination={setPagination} view={view} />
-						if (view.incomingRequests) return <IncomingRequests key={friend.id} friend={friend} index={index} currentPage={currentPage} tab={view} createPagination={createPagination} setPagination={setPagination} view={view} />
-						if (view.outgoingRequests) return <OutgoingRequests key={friend.id} friend={friend} index={index} currentPage={currentPage} tab={view} createPagination={createPagination} setPagination={setPagination} view={view} />
+						if (view.findFriends) return <FindFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+						if (view.allFriends) return <AllFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+						if (view.incomingRequests) return <IncomingRequests key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+						if (view.outgoingRequests) return <OutgoingRequests key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
 					})}
 				</div>
 				<div className="friends-list-pagination">

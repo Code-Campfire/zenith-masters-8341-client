@@ -13,6 +13,19 @@ export const fetchGetAllFriends = async () => {
 	return data
 }
 
+export const fetchRemoveFriend = async friendId => {
+	const token = getToken()
+	const response = await fetch(`${base_url}/bookface/simps/with-user/${friendId}/`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${token}`,
+		},
+		body: JSON.stringify({ action: 'unfriend', message: `I'm done with you!` }),
+	})
+	const data = await response.json()
+	return data
+}
 export const fetchAcceptFriendRequest = async friendId => {
 	const token = getToken()
 	const response = await fetch(`${base_url}/bookface/simps/with-user/${friendId}/`, {
@@ -40,7 +53,7 @@ export const fetchAllIncomingFriendRequests = async () => {
 	return modifiedData
 }
 
-export const fetchAllFriendsPending = async () => {
+export const fetchAllOutgoingFriendRequests = async () => {
 	const token = getToken()
 	const response = await fetch(`${base_url}/bookface/simps/pending_relationships`, {
 		method: 'GET',
