@@ -1,5 +1,5 @@
-import { fetchApiGet, getUrls } from '../services/fetchApiGet'
-import { fetchAcceptFriendRequest, fetchRemoveFriend, fetchSendFriendRequest, fetchWithdrawFriendRequest } from '../services/friends'
+import { fetchApiGet, getUrls } from '../services/apiGet'
+import { fetchAcceptFriendRequest, fetchSendFriendRequest, fetchWithdrawFriendRequest } from '../services/friends'
 import { setIncomingRequests } from './setFriendViews'
 
 export const handleWithdrawRequest = async (friend, setPagination, createPagination) => {
@@ -36,14 +36,3 @@ export const handleAddFriend = async (friend, loggedInUser, setPagination, creat
 		})
 	})
 }
-
-// async function removeFriend(friend, setPagination, createPagination) {
-// 	const friendId = friend.other_user.id
-// 	await fetchRemoveFriend(friendId)
-// 	await fetchApiGet(getUrls.friends)().then(users => {
-// 		setPagination(() => {
-// 			const allFriends = createPagination(users)
-// 			return allFriends
-// 		})
-// 	})
-// }

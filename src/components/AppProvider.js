@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AppContext } from './AppContext'
 import { useLocation } from 'react-router-dom'
-import { fetchApiGet, getUrls } from '../services/fetchApiGet'
+import { fetchApiGet, getUrls } from '../services/apiGet'
 
 export const AppProvider = ({ children }) => {
 	const [loggedInUser, setLoggedInUser] = useState(null)

@@ -1,4 +1,4 @@
-import { fetchApiGet, getUrls } from '../services/fetchApiGet'
+import { fetchApiGet, getUrls } from '../services/apiGet'
 
 export const setFindFriends = async () => {
 	const users = await fetchApiGet('/bookface/users/AndRelationships/')

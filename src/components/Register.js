@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useReducer } from 'react'
-import { fetchRegister } from '../services/auth.js'
+import { fetchRegister } from '../services/apiLoginAndRegister.js'
 import '../styles/Register.css'
 
 export default function Register() {

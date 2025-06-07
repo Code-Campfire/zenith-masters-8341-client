@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import '../styles/Login.css'
 import { useReducer } from 'react'
-import { fetchLogin } from '../services/auth'
+import { fetchLogin } from '../services/apiLoginAndRegister'
 import { useAppContext } from './AppContext'
 
 export default function Login() {

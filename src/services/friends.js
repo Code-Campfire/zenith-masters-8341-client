@@ -1,3 +1,4 @@
+//These, and where they are invoked, need to be converted to use the new API endpoint wrappers
 const base_url = `http://localhost:8000`
 const getToken = () => localStorage.getItem('token')
 

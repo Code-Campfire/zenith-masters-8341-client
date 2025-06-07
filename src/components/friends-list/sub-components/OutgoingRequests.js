@@ -1,4 +1,4 @@
-import { fetchApiGet, getUrls } from '../../../services/fetchApiGet'
+import { fetchApiGet, getUrls } from '../../../services/apiGet'
 import { fetchWithdrawFriendRequest } from '../../../services/friends'
 import FriendCard from '../FriendCard'
 

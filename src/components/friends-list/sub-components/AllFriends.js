@@ -1,5 +1,5 @@
 import { fetchRemoveFriend } from '../../../services/friends'
-import { fetchApiGet, getUrls } from '../../../services/fetchApiGet'
+import { fetchApiGet, getUrls } from '../../../services/apiGet'
 import FriendCard from '../FriendCard'
 import '../../../styles/FriendCard.css'
 

@@ -1,4 +1,4 @@
-import { fetchRefreshAccessToken } from './apiRefresh'
+import { fetchRefreshAccessToken } from './apiRefreshToken'
 
 const base_url = `http://localhost:8000/`
 const getToken = () => localStorage.getItem('token')
@@ -7,7 +7,7 @@ export const fetchApiGet = async endpoint => {
 	try {
 		const accessToken = getToken()
 
-		const response = await fetch(`${base_url}/${endpoint}`, {
+		const response = await fetch(`${base_url}${endpoint}`, {
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
@@ -21,7 +21,7 @@ export const fetchApiGet = async endpoint => {
 			const refreshResponse = await fetchRefreshAccessToken()
 			if (refreshResponse.ok) {
 				const updatedAccessToken = getToken()
-				const retryResponse = await fetch(`${base_url}/${endpoint}`, {
+				const retryResponse = await fetch(`${base_url}${endpoint}`, {
 					method: 'GET',
 					headers: {
 						Authorization: `Bearer ${updatedAccessToken}`,
