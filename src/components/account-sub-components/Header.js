@@ -7,25 +7,13 @@ import ProfileImage from './ProfileImage'
 import NameTitle from './NameTitle'
 import FriendsList from '../friends-list/FriendsList'
 import { useAppContext } from '../AppContext'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 export default function Header({ friendListAmount, userObject }) {
 	const [currentPosts, setCurrentPosts] = useState([])
 	const [currentComponent, setCurrentComponent] = useState('posts')
 	const { loggedInUser, setLoggedInUser } = useAppContext()
-
-	useEffect(() => {
-		if (currentComponent) scrollToElement()
-	}, [currentComponent])
-
-	const scrollToElement = () => {
-		if (currentComponent) {
-			const scrollToId = `${currentComponent}-anchor`
-			if (scrollToId) {
-				const scrollToElement = document.getElementById(`${scrollToId}`)
-				scrollToElement?.scrollIntoView({ behavior: 'smooth' })
-			}
-		}
-	}
+	const navigate = useNavigate()
 
 	let userID = true
 	return (
@@ -77,8 +65,8 @@ export default function Header({ friendListAmount, userObject }) {
 							id="posts-btn"
 							className="links-btn"
 							onClick={() => {
+								navigate('posts')
 								setCurrentComponent('posts')
-								scrollToElement()
 								document.getElementById('about-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.remove('clicked')
 								document.getElementById('posts-btn').classList.add('clicked')
@@ -90,8 +78,8 @@ export default function Header({ friendListAmount, userObject }) {
 							id="about-btn"
 							className="links-btn"
 							onClick={() => {
+								navigate('about')
 								setCurrentComponent('about')
-								scrollToElement()
 								document.getElementById('posts-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.remove('clicked')
 								document.getElementById('about-btn').classList.add('clicked')
@@ -103,8 +91,8 @@ export default function Header({ friendListAmount, userObject }) {
 							id="friends-btn"
 							className="links-btn"
 							onClick={() => {
+								navigate('friends')
 								setCurrentComponent('friends')
-								scrollToElement()
 								document.getElementById('posts-btn').classList.remove('clicked')
 								document.getElementById('about-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.add('clicked')
@@ -114,8 +102,11 @@ export default function Header({ friendListAmount, userObject }) {
 						</button>
 					</div>
 				</div>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<Outlet />
+				</div>
 				<div id="account-root" />
-				<div style={{ display: 'flex', justifyContent: 'center' }}>{(currentComponent === 'posts' && <p>Posts Component Placeholder</p>) || (currentComponent === 'about' && <p>About Page Component Placeholder </p>) || (currentComponent === 'friends' && <FriendsList />)}</div>
+				{/* <div style={{ display: 'flex', justifyContent: 'center' }}>{(currentComponent === 'posts' && <p>Posts Component Placeholder</p>) || (currentComponent === 'about' && <p>About Page Component Placeholder </p>) || (currentComponent === 'friends' && <FriendsList />)}</div> */}
 			</div>
 		</>
 	)

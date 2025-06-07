@@ -1,12 +1,11 @@
-import { fetchAcceptFriendRequest, fetchAllIncomingFriendRequests, fetchAllOutgoingFriendRequests, fetchGetAllFriends, fetchRemoveFriend, fetchSendFriendRequest, fetchWithdrawFriendRequest } from '../services/friends'
-import { fetchGetAllUsersAndRelationships } from '../services/users'
+import { fetchApiGet, getUrls } from '../services/fetchApiGet'
+import { fetchAcceptFriendRequest, fetchRemoveFriend, fetchSendFriendRequest, fetchWithdrawFriendRequest } from '../services/friends'
+import { setIncomingRequests } from './setFriendViews'
 
 export const handleWithdrawRequest = async (friend, setPagination, createPagination) => {
-	console.log(friend)
 	await fetchWithdrawFriendRequest(friend.id)
-	await fetchGetAllUsersAndRelationships().then(users => {
+	await fetchApiGet(getUrls.usersWithRelationships).then(users => {
 		const filteredUsers = users.filter(user => user?.simpery?.status !== 'accepted')
-		console.log(filteredUsers, ' users with relationships')
 		setPagination(() => {
 			const allUsers = createPagination(filteredUsers)
 			return allUsers
@@ -16,7 +15,7 @@ export const handleWithdrawRequest = async (friend, setPagination, createPaginat
 
 export const handleAcceptRequest = async (friend, setPagination, createPagination) => {
 	await fetchAcceptFriendRequest(friend.other_user.id)
-	await fetchAllIncomingFriendRequests().then(users => {
+	await setIncomingRequests().then(users => {
 		setPagination(() => {
 			const allUsers = createPagination(users)
 			return allUsers
@@ -29,9 +28,8 @@ export const handleAddFriend = async (friend, loggedInUser, setPagination, creat
 		return console.log("Can't friend yourself")
 	}
 	await fetchSendFriendRequest(friend.id)
-	await fetchGetAllUsersAndRelationships().then(users => {
+	await fetchApiGet(getUrls.usersWithRelationships).then(users => {
 		const filteredUsers = users.filter(user => user?.simpery?.status !== 'accepted')
-		console.log(filteredUsers, ' users with relationships')
 		setPagination(() => {
 			const allUsers = createPagination(filteredUsers)
 			return allUsers
@@ -39,13 +37,13 @@ export const handleAddFriend = async (friend, loggedInUser, setPagination, creat
 	})
 }
 
-async function removeFriend(friend, setPagination, createPagination) {
-	const friendId = friend.other_user.id
-	await fetchRemoveFriend(friendId)
-	await fetchGetAllFriends().then(users => {
-		setPagination(() => {
-			const allFriends = createPagination(users)
-			return allFriends
-		})
-	})
-}
+// async function removeFriend(friend, setPagination, createPagination) {
+// 	const friendId = friend.other_user.id
+// 	await fetchRemoveFriend(friendId)
+// 	await fetchApiGet(getUrls.friends)().then(users => {
+// 		setPagination(() => {
+// 			const allFriends = createPagination(users)
+// 			return allFriends
+// 		})
+// 	})
+// }

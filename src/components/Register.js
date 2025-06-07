@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
-import '../styles/Register.css'
 import { useReducer } from 'react'
 import { fetchRegister } from '../services/auth.js'
+import '../styles/Register.css'
 
 export default function Register() {
 	const [state, dispatch] = useReducer(
@@ -29,10 +29,12 @@ export default function Register() {
 		try {
 			const data = await fetchRegister(state.email, state.username, state.password)
 			navigate('/')
+			if (!data) {
+				throw new Error(`Registration failed`)
+			}
 		} catch (errors) {
-			console.log(errors)
 			for (const error in errors) {
-				errors[error].forEach(err => console.log(`Error: `, err))
+				errors[error].forEach(err => console.error(`Error: `, err))
 			}
 		}
 	}

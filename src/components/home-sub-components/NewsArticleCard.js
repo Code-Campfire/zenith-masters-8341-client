@@ -7,7 +7,7 @@ export const NewsArticleCard = ({ article }) => {
 				<div className="picture-name-timestamp-container">
 					<picture className="article-icon">
 						<img
-							alt="PH"
+							alt="placeholder"
 							src="https://static.vecteezy.com/system/resources/previews/027/989/305/non_2x/placeholder-icon-in-trendy-flat-style-isolated-on-white-background-placeholder-silhouette-symbol-for-your-website-design-logo-app-ui-illustration-eps10-free-vector.jpg"
 							style={{ height: '40px' }}
 						/>

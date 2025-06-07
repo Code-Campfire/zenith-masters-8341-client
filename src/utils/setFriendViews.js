@@ -1,40 +1,24 @@
-import { fetchAllIncomingFriendRequests, fetchAllOutgoingFriendRequests, fetchGetAllFriends } from '../services/friends'
-import { fetchGetAllUsersAndRelationships } from '../services/users'
+import { fetchApiGet, getUrls } from '../services/fetchApiGet'
 
-export const setFindFriends = async (createPagination, setPagination) => {
-	const users = await fetchGetAllUsersAndRelationships()
-	console.log(users, ' unfiltered users')
+export const setFindFriends = async () => {
+	const users = await fetchApiGet('/bookface/users/AndRelationships/')
 	const filteredUsers = users.filter(user => user?.simpery?.status !== 'accepted')
-	console.log(filteredUsers, ' filtered users')
-	setPagination(() => {
-		const allUsers = createPagination(filteredUsers)
-		return allUsers
-	})
+	return filteredUsers
 }
 
-export const setIncomingRequests = async (createPagination, setPagination) => {
-	const users = await fetchAllIncomingFriendRequests()
+export const setIncomingRequests = async () => {
+	const users = await fetchApiGet('/bookface/simps/pending_relationships/')
 	const filteredUsers = users.filter(user => user.direction === 'incoming')
-	console.log(filteredUsers)
-	setPagination(() => {
-		const allUsers = createPagination(filteredUsers)
-		return allUsers
-	})
+	return filteredUsers
 }
 
-export const setOutgoingRequests = async (createPagination, setPagination) => {
-	const users = await fetchAllOutgoingFriendRequests()
+export const setOutgoingRequests = async () => {
+	const users = await fetchApiGet('/bookface/simps/pending_relationships/')
 	const filteredUsers = users.filter(user => user.direction === 'outgoing')
-	setPagination(() => {
-		const pendingUsers = createPagination(filteredUsers)
-		return pendingUsers
-	})
+	return filteredUsers
 }
 
-export const setAllFriends = async (createPagination, setPagination) => {
-	const users = await fetchGetAllFriends()
-	setPagination(() => {
-		const pendingUsers = createPagination(users)
-		return pendingUsers
-	})
+export const setAllFriends = async () => {
+	const users = await fetchApiGet(getUrls.friends)
+	return users
 }

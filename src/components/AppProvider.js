@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { AppContext } from './AppContext'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { fetchGetUserById } from '../services/users'
+import { useLocation } from 'react-router-dom'
+import { fetchApiGet, getUrls } from '../services/fetchApiGet'
 
 export const AppProvider = ({ children }) => {
 	const [loggedInUser, setLoggedInUser] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const location = useLocation()
-	const navigate = useNavigate()
 
 	const validateUser = async () => {
 		const token = localStorage.getItem('token')
@@ -15,7 +14,6 @@ export const AppProvider = ({ children }) => {
 			setLoggedInUser(null)
 			setLoading(false)
 			localStorage.removeItem('user')
-			navigate('/login')
 			return
 		}
 		try {
@@ -23,7 +21,7 @@ export const AppProvider = ({ children }) => {
 				return JSON.parse(localStorage.getItem('user')) || loggedInUser
 			}
 			const userToValidate = getUser()
-			const user = await fetchGetUserById(userToValidate.id, token)
+			const user = await fetchApiGet(getUrls.userById(userToValidate.id))
 			if (user) {
 				setLoggedInUser(user)
 			} else {
@@ -37,7 +35,6 @@ export const AppProvider = ({ children }) => {
 			localStorage.removeItem('token')
 			localStorage.removeItem('refresh')
 			localStorage.removeItem('user')
-			navigate('/login')
 		} finally {
 			setLoading(false)
 		}

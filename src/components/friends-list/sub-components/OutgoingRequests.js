@@ -1,13 +1,11 @@
-import { fetchAllOutgoingFriendRequests, fetchWithdrawFriendRequest } from '../../../services/friends'
+import { fetchApiGet, getUrls } from '../../../services/fetchApiGet'
+import { fetchWithdrawFriendRequest } from '../../../services/friends'
 import FriendCard from '../FriendCard'
 
 export const OutgoingRequests = ({ setPagination, createPagination, friend, index }) => {
-	console.log(friend, ' card withdraw request')
-
 	async function handleWithdrawRequest() {
-		console.log(friend)
 		await fetchWithdrawFriendRequest(friend.other_user.id)
-		await fetchAllOutgoingFriendRequests().then(users => {
+		await fetchApiGet(getUrls.pendingRelationships).then(users => {
 			setPagination(() => {
 				const pendingUsers = createPagination(users)
 				return pendingUsers

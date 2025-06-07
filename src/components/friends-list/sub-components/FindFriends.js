@@ -1,38 +1,10 @@
-import { fetchAllOutgoingFriendRequests, fetchSendFriendRequest, fetchWithdrawFriendRequest } from '../../../services/friends'
-import { fetchGetAllUsersAndRelationships } from '../../../services/users'
 import { useAppContext } from '../../AppContext'
-import '../../../styles/FriendCard.css'
-import FriendCard from '../FriendCard'
 import { handleAddFriend, handleWithdrawRequest } from '../../../utils/friendHandlers'
+import FriendCard from '../FriendCard'
+import '../../../styles/FriendCard.css'
 
 export const FindFriends = ({ friend, setPagination, createPagination, view }) => {
-	console.log(friend)
 	const { loggedInUser } = useAppContext()
-
-	// async function handleAddFriend() {
-	// 	if (loggedInUser.id === friend.id) {
-	// 		return console.log("Can't friend yourself")
-	// 	}
-	// 	await fetchSendFriendRequest(friend.id)
-	// 	await fetchGetAllUsersAndRelationships().then(users => {
-	// 		setPagination(() => {
-	// 			const allUsers = createPagination(users)
-	// 			return allUsers
-	// 		})
-	// 	})
-	// }
-
-	// async function handleWithdrawRequest() {
-	// 	console.log(friend)
-
-	// 	await fetchWithdrawFriendRequest(friend.id)
-	// 	await fetchGetAllUsersAndRelationships().then(users => {
-	// 		setPagination(() => {
-	// 			const pendingUsers = createPagination(users)
-	// 			return pendingUsers
-	// 		})
-	// 	})
-	// }
 
 	return (
 		<FriendCard friend={friend}>
@@ -50,7 +22,7 @@ export const FindFriends = ({ friend, setPagination, createPagination, view }) =
 						<source srcset="/add-friend.svg" />
 						<img alt="Friend Icon" src="/add-friend.svg" />
 					</picture>
-					<h6>Add Friend</h6>
+					<h6 style={{ marginRight: '18px' }}>Add Friend</h6>
 				</button>
 			)}
 		</FriendCard>

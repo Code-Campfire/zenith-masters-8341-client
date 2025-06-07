@@ -1,19 +1,19 @@
+import { fetchRemoveFriend } from '../../../services/friends'
+import { fetchApiGet, getUrls } from '../../../services/fetchApiGet'
 import FriendCard from '../FriendCard'
 import '../../../styles/FriendCard.css'
-import { fetchGetAllFriends, fetchRemoveFriend } from '../../../services/friends'
 
 export const AllFriends = ({ setPagination, createPagination, friend, index }) => {
 	async function removeFriend() {
 		const friendId = friend.other_user.id
 		await fetchRemoveFriend(friendId)
-		await fetchGetAllFriends().then(users => {
+		await fetchApiGet(getUrls.friends).then(users => {
 			setPagination(() => {
 				const allFriends = createPagination(users)
 				return allFriends
 			})
 		})
 	}
-	console.log(friend, ' friend')
 	return (
 		<FriendCard friend={friend}>
 			<button className="button-add-friend" onClick={removeFriend}>

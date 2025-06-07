@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import '../styles/Home.css'
 import { useAppContext } from './AppContext'
 import { NewsArticleCard } from './home-sub-components/NewsArticleCard'

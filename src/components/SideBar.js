@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react'
-import '../styles/SideBar.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaCog, FaBookmark, FaSignOutAlt } from 'react-icons/fa'
 import { useAppContext } from './AppContext'
+import '../styles/SideBar.css'
 
 export default function SideBar() {
 	const resetSideBar = 768
@@ -41,7 +41,6 @@ export default function SideBar() {
 		setLoggedInUser(null)
 		navigate('/login')
 	}
-	//
 	return (
 		<div className={`sideBar ${isCollapsed ? 'collapsed' : ''}`}>
 			<button className={`sideBarToggle ${isMobile ? 'isMobile' : ''}`} onClick={toggleSideBar}>

@@ -10,8 +10,6 @@ export default function AccountPage() {
 	const [user, setUser] = useState({})
 	const [friendListTotal, setFriendListTotal] = useState(0)
 
-	// Set API call for friend list and user object here.
-
 	return (
 		<>
 			<Header friendListAmount={friendListTotal} userObject={user} />

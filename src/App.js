@@ -9,14 +9,14 @@ import SavedPosts from './components/SavedPosts'
 import AccountPage from './pages/AccountPage'
 import { AuthorizedRoute } from './components/auth/AuthorizedRoute'
 import Register from './components/Register'
+import FriendsList from './components/friends-list/FriendsList'
 
 export default function App() {
 	return (
 		<Routes>
+			<Route path="login" element={<Login />} />
+			<Route path="register" element={<Register />} />
 			<Route path="/" element={<AppLayout />}>
-				<Route path="login" element={<Login />} />
-				<Route path="register" element={<Register />} />
-
 				<Route
 					index
 					element={
@@ -25,7 +25,6 @@ export default function App() {
 						</AuthorizedRoute>
 					}
 				/>
-
 				<Route
 					path="settings"
 					element={
@@ -34,6 +33,39 @@ export default function App() {
 						</AuthorizedRoute>
 					}
 				/>
+				<Route
+					path="account"
+					element={
+						<AuthorizedRoute>
+							<AccountPage />
+						</AuthorizedRoute>
+					}
+				>
+					<Route
+						path="friends"
+						element={
+							<AuthorizedRoute>
+								<FriendsList />
+							</AuthorizedRoute>
+						}
+					/>
+					<Route
+						path="about"
+						element={
+							<AuthorizedRoute>
+								<NotFound />
+							</AuthorizedRoute>
+						}
+					/>
+					<Route
+						path="posts"
+						element={
+							<AuthorizedRoute>
+								<NotFound />
+							</AuthorizedRoute>
+						}
+					/>
+				</Route>
 				<Route
 					path="account"
 					element={

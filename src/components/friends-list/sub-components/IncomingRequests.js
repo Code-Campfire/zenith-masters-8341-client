@@ -12,7 +12,7 @@ export const IncomingRequests = ({ friend, createPagination, setPagination }) =>
 					<source srcset="/add-friend.svg" />
 					<img alt="Friend Icon" src="/add-friend.svg" />
 				</picture>
-				<h6>Accept</h6>
+				<h6 style={{ marginRight: '20px' }}>Accept</h6>
 			</button>
 		</FriendCard>
 	)
