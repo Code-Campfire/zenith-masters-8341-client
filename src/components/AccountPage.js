@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/account-sub-components/Header'
+import Header from './account-sub-components/Header'
 import { useState } from 'react'
 
 //TODO: This has to be based off User ID
