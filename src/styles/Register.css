@@ -1,0 +1,42 @@
+.sign-up-form {
+	grid-area: newsfeed;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	/* height: 5rem; */
+	justify-self: center;
+	background-color: var(--component-cards-color);
+	border-radius: 7px;
+	box-shadow: 1px 1px 5px rgb(193, 193, 193);
+	padding: 10px 0 24px 0;
+	width: 396px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.sign-up-form legend {
+	font-size: 22px;
+	color: rgb(80, 80, 80);
+	font-family: sans-serif;
+}
+
+.sign-up-button {
+	background-color: #00a400;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 48px;
+	padding: 0 16px;
+	width: 194px;
+	margin-top: 10px;
+}
+.sign-up-button:hover {
+	background-color: #009e00;
+	color: rgb(239, 239, 239);
+}
+.sign-up-button:active {
+	transform: translateY(1px);
+}
