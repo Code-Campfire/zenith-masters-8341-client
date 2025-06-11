@@ -20,7 +20,15 @@
 	--border-box-shadow: 0px 2px 4px rgb(0, 0, 0, 12%);
 	--fb-button-light-color: #ebf5ff;
 	--fb-button-light-hover-color: #dfe8f2;
+	--fb-button-light-hover-active-color: #c3d3e7;
 	--fb-button-text-blue-color: #5c9cd3;
+
+	/*Custom*/
+	--button-withdraw-color: rgb(255, 226, 226);
+	--button-withdraw-hover-color: rgb(255, 210, 210);
+
+	--button-accept-color: rgb(210, 255, 214);
+	--button-accept-hover-color: rgb(183, 255, 189);
 
 	/* ______App.css______ */
 	--logo-color: #0866ff;

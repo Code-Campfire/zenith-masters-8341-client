@@ -17,7 +17,9 @@
 	max-width: 250px;
 	border: 2px solid pink;
 } */
-
+.active {
+	background-color: var(--fb-active-click-link-color);
+}
 .home-sidebar-item {
 	display: flex;
 	justify-content: flex-start;
@@ -27,10 +29,19 @@
 	font-weight: 500;
 	padding: 10px;
 	color: var(--fb-primary-text-color);
+	cursor: pointer;
+}
+.home-sidebar-item:hover:active {
+	background-color: var(--fb-active-click-link-color) !important;
 }
 .home-sidebar-item:hover {
-	background-color: rgb(234, 234, 234);
-	cursor: pointer;
+	background-color: var(--fb-hover-link-color);
+}
+.home-sidebar-item.active {
+	background-color: var(--fb-active-class-link-color);
+}
+.home-sidebar-item.active:hover {
+	background-color: var(--fb-active-class-hover-link-color);
 }
 
 .home-content-container {
@@ -67,8 +78,9 @@
 	border-bottom: 2px solid grey;
 	width: 100%;
 }
-.status-top input {
+.whats-on-your-mind {
 	display: flex;
+	align-items: center;
 	height: 1em;
 	width: 100%;
 	border-radius: 50px;
@@ -76,8 +88,20 @@
 	border-width: 0px;
 	background-color: rgb(236, 236, 236);
 	font-size: 1rem;
-	padding: 10px;
+	padding: 12px;
+	font-size: 18px;
+	margin-left: 14px;
+	color: grey;
+	outline: none;
+	cursor: pointer;
 }
+.whats-on-your-mind:hover {
+	background-color: var(--component-cards-hover-color);
+}
+.whats-on-your-mind:hover:active {
+	background-color: var(--component-cards-active-click-hover-color);
+}
+
 .status-bottom {
 	display: flex;
 	flex-direction: row;
@@ -111,7 +135,7 @@
 }
 .create-story-container:hover {
 	cursor: pointer;
-	background-color: var(--component-cards-color-hover);
+	background-color: var(--component-cards-hover-color);
 }
 
 .newsfeed {

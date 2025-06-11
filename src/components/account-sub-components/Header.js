@@ -1,16 +1,19 @@
 import '../../styles/account-sub-components/header.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddFriendBtn from './AddFriendBtn'
 import AddToStoryBtn from './AddToStoryBtn'
 import EditProfileBtn from './EditProfileBtn'
 import ProfileImage from './ProfileImage'
 import NameTitle from './NameTitle'
-import FriendsList from '../FriendsList'
+import FriendsList from '../friends-list/FriendsList'
+import { useAppContext } from '../AppContext'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 export default function Header({ friendListAmount, userObject }) {
 	const [currentPosts, setCurrentPosts] = useState([])
 	const [currentComponent, setCurrentComponent] = useState('posts')
-	const [user, setUser] = useState({ firstName: 'John', lastName: 'Smith' })
+	const { loggedInUser, setLoggedInUser } = useAppContext()
+	const navigate = useNavigate()
 
 	let userID = true
 	return (
@@ -43,14 +46,14 @@ export default function Header({ friendListAmount, userObject }) {
 							<ProfileImage />
 						</div>
 						<div className="title-name">
-							<NameTitle fname={user.firstName} lname={user.lastName} />
+							<NameTitle fname={loggedInUser?.first_name} lname={loggedInUser?.last_name} />
 							<div className="title-friendAmount">
 								<p>{friendListAmount} friends</p>
 							</div>
 						</div>
 						<div className="action-btn-area">
 							<div className="action-btn-container">
-								{userID ? <AddToStoryBtn customStyles={{ width: '100px', height: '1000px', color: 'green' }} /> : <AddFriendBtn />}
+								{userID ? <AddToStoryBtn customStyles={{ width: '100px', height: '100px' }} /> : <AddFriendBtn />}
 								<EditProfileBtn />
 							</div>
 						</div>
@@ -62,6 +65,7 @@ export default function Header({ friendListAmount, userObject }) {
 							id="posts-btn"
 							className="links-btn"
 							onClick={() => {
+								navigate('posts')
 								setCurrentComponent('posts')
 								document.getElementById('about-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.remove('clicked')
@@ -74,6 +78,7 @@ export default function Header({ friendListAmount, userObject }) {
 							id="about-btn"
 							className="links-btn"
 							onClick={() => {
+								navigate('about')
 								setCurrentComponent('about')
 								document.getElementById('posts-btn').classList.remove('clicked')
 								document.getElementById('friends-btn').classList.remove('clicked')
@@ -86,6 +91,7 @@ export default function Header({ friendListAmount, userObject }) {
 							id="friends-btn"
 							className="links-btn"
 							onClick={() => {
+								navigate('friends')
 								setCurrentComponent('friends')
 								document.getElementById('posts-btn').classList.remove('clicked')
 								document.getElementById('about-btn').classList.remove('clicked')
@@ -96,8 +102,11 @@ export default function Header({ friendListAmount, userObject }) {
 						</button>
 					</div>
 				</div>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<Outlet />
+				</div>
 				<div id="account-root" />
-				<div style={{ display: 'flex', justifyContent: 'center' }}>{(currentComponent === 'posts' && <p>Posts Component Placeholder</p>) || (currentComponent === 'about' && <p>About Page Component Placeholder </p>) || (currentComponent === 'friends' && <FriendsList />)}</div>
+				{/* <div style={{ display: 'flex', justifyContent: 'center' }}>{(currentComponent === 'posts' && <p>Posts Component Placeholder</p>) || (currentComponent === 'about' && <p>About Page Component Placeholder </p>) || (currentComponent === 'friends' && <FriendsList />)}</div> */}
 			</div>
 		</>
 	)

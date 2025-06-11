@@ -1,5 +1,5 @@
-import '../styles/UserProfile.css'
 import FriendsList from './FriendsList'
+import '../styles/UserProfile.css'
 
 export default function UserProfile() {
 	return (
@@ -13,7 +13,6 @@ export default function UserProfile() {
 						<FriendsList />
 					</div>
 				</div>
-				{/*CHILDREN*/}
 			</div>
 		</div>
 	)

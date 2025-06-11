@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
-import '../styles/Register.css'
 import { useReducer } from 'react'
-import { fetchRegister } from '../services/auth.js'
+import { fetchRegister } from '../services/apiLoginAndRegister.js'
+import '../styles/Register.css'
 
 export default function Register() {
 	const [state, dispatch] = useReducer(
@@ -12,6 +12,8 @@ export default function Register() {
 		{
 			email: '',
 			username: '',
+			firstname: '',
+			lastname: '',
 			password: '',
 			matchingPassword: '',
 		}
@@ -20,7 +22,6 @@ export default function Register() {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-		console.log(state)
 		if (state.password !== state.matchingPassword) {
 			alert('Passwords do not match!')
 		}
@@ -28,11 +29,12 @@ export default function Register() {
 		try {
 			const data = await fetchRegister(state.email, state.username, state.password)
 			navigate('/')
-			console.log('Success! ', data)
+			if (!data) {
+				throw new Error(`Registration failed`)
+			}
 		} catch (errors) {
-			console.log(errors)
 			for (const error in errors) {
-				errors[error].forEach(err => console.log(`Error: `, err))
+				errors[error].forEach(err => console.error(`Error: `, err))
 			}
 		}
 	}
