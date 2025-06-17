@@ -6,10 +6,10 @@ import Settings from './components/Settings'
 import NotFound from './components/NotFound'
 import Login from './components/Login'
 import SavedPosts from './components/SavedPosts'
-import AccountPage from './pages/AccountPage'
 import { AuthorizedRoute } from './components/auth/AuthorizedRoute'
 import Register from './components/Register'
 import FriendsList from './components/friends-list/FriendsList'
+import AccountPage from './components/AccountPage'
 
 export default function App() {
 	return (

@@ -6,7 +6,7 @@ const getToken = () => localStorage.getItem('token')
 export const fetchApiGet = async endpoint => {
 	try {
 		const accessToken = getToken()
-
+		console.log(base_url + endpoint)
 		const response = await fetch(`${base_url}${endpoint}`, {
 			method: 'GET',
 			headers: {
@@ -43,6 +43,7 @@ export const fetchApiGet = async endpoint => {
 export const getUrls = {
 	pendingRelationships: 'bookface/simps/pending_relationships/',
 	users: 'bookface/users/',
+	posts: 'bookface/posts/',
 	friends: 'bookface/simps/accepted_relationships/',
 	usersWithRelationships: 'bookface/users/AndRelationships/',
 	userById: userId => `bookface/users/${userId}/`,

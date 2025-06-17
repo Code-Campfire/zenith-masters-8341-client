@@ -1,6 +1,7 @@
 import '../../styles/home-sub-components/newsArticleCard.css'
 
 export const NewsArticleCard = ({ article }) => {
+	const { author } = article
 	return (
 		<div className="news-article-container">
 			<div className="news-heading-container">
@@ -13,16 +14,17 @@ export const NewsArticleCard = ({ article }) => {
 						/>
 					</picture>
 					<div className="name-timestamp-container">
-						<div className="article-username">{article.name}</div>
+						<div className="article-username">{author.username}</div>
 						<div className="article-timestamp">{article.timestamp}</div>
 					</div>
 				</div>
 				<div className="news-article-title">{article.title}--------------------------</div>
 			</div>
 			<div className="news-article-body">
-				<picture>
+				{article?.content}
+				{/* <picture>
 					<img alt src={article.img} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-				</picture>
+				</picture> */}
 			</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
