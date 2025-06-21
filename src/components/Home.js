@@ -1,23 +1,30 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/Home.css'
 import { useAppContext } from './AppContext'
 import { NewsArticleCard } from './home-sub-components/NewsArticleCard'
 import { useNavigate } from 'react-router-dom'
+import Modal from './post-components/Modal'
+import { CreatePost } from './post-components/CreatePost.js'
+import { fetchApiGet, getUrls } from '../services/apiGet.js'
 
 function Home() {
 	const { loggedInUser } = useAppContext()
 	const username = loggedInUser?.username
 	const [newsArticle, setNewsArticle] = useState([
-		{ id: 1, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
-		{ id: 2, name: 'Tommy', timestamp: '5-22-2025', title: 'Article 2', body: 'Body of article 2', like: 'Like', comment: 'Comment', share: 'Share' },
-		{ id: 3, name: 'Timmy', timestamp: '5-22-2025', title: 'Article 3', body: 'Body of article 3', like: 'Like', comment: 'Comment', share: 'Share' },
-		{ id: 4, name: 'Jimmy', timestamp: '5-22-2025', title: 'Article 4', body: 'Body of article 4', like: 'Like', comment: 'Comment', share: 'Share' },
-		{ id: 5, name: 'Jamie', timestamp: '5-22-2025', title: 'Article 5', body: 'Body of article 5', like: 'Like', comment: 'Comment', share: 'Share' },
-		{ id: 6, name: 'Bobby', timestamp: '5-22-2025', title: 'Article 6', body: 'Body of article 6', like: 'Like', comment: 'Comment', share: 'Share' },
-		{ id: 7, name: 'Teddy', timestamp: '5-22-2025', title: 'Article 7', body: 'Body of article 7', like: 'Like', comment: 'Comment', share: 'Share' },
-		{ id: 8, name: 'Andy', timestamp: '5-22-2025', title: 'Article 8', body: 'Body of article 8', like: 'Like', comment: 'Comment', share: 'Share' },
+		// { id: 2, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
 	])
+	const [cardsToRender, setCardsToRender] = useState(5)
+	useEffect(() => {
+		const getPosts = async () => {
+			const posts = await fetchApiGet(getUrls.posts)
+			if (posts) {
+				setNewsArticle(posts)
+			}
+		}
+		getPosts()
+	}, [])
 	const navigate = useNavigate()
+	const [isOpen, setIsOpen] = useState(false)
 	function handleSidebarClick(e) {
 		const sideBarItems = document.querySelectorAll('.home-sidebar-item')
 		const sideBarItemsArray = Array.from(sideBarItems)
@@ -26,6 +33,24 @@ function Home() {
 		})
 		e.target.classList.add('active')
 	}
+
+	useEffect(() => {
+		const mainContent = document.querySelector('.main-content')
+		function handleScroll() {
+			const { scrollTop, clientHeight, scrollHeight } = mainContent
+			console.log(scrollTop, clientHeight, scrollHeight)
+			console.log(cardsToRender)
+			if (scrollTop + clientHeight >= scrollHeight - 200) {
+				setCardsToRender(prev => prev + 5)
+				console.log('BOOM RENDER MORE')
+			}
+		}
+		mainContent.addEventListener('scroll', handleScroll)
+		// homeContainer.addEventListener('scroll', () => console.log('home scroll'))
+		// mainContent.addEventListener('scroll', () => console.log('home scroll'))
+		return () => mainContent.removeEventListener('scroll', handleScroll)
+	}, [])
+
 	return (
 		<div className="home-container">
 			<div className="home-sidebar-wrapper">
@@ -70,7 +95,9 @@ function Home() {
 							<source srcSet="profile-img.svg" />
 							<img style={{ borderRadius: '25px' }} src="profile-image.svg" alt="placeholder" width="50px" />
 						</picture>
-						<div className="whats-on-your-mind">{username && `What's on your mind, ${username}?`}</div>
+						<div onClick={() => setIsOpen(true)} className="whats-on-your-mind">
+							{username && `What's on your mind, ${username}?`}
+						</div>
 					</div>
 					<div className="status-bottom">
 						<button>Live Video</button>
@@ -78,6 +105,9 @@ function Home() {
 						<button>Feeling/activity</button>
 					</div>
 				</div>
+				<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+					<CreatePost setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />
+				</Modal>
 
 				<div className="create-story-container">
 					<div style={{ fontSize: '40px', margin: '10px' }}>+</div>
@@ -88,9 +118,15 @@ function Home() {
 				</div>
 
 				<div className="newsfeed">
-					{newsArticle.map(article => {
-						return <NewsArticleCard key={article.id} article={article} />
-					})}
+					{newsArticle
+						.sort((a, b) => new Date(b.last_update) - new Date(a.last_update))
+						.map((newsArticle, index) => {
+							console.log(newsArticle, ' ARTICLE')
+							console.log(index, ' INDEX')
+							if (index < cardsToRender) {
+								return <NewsArticleCard key={newsArticle.id} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
+							}
+						})}
 				</div>
 			</div>
 			<div className="home-sidebar-fake"></div>

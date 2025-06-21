@@ -1,6 +1,28 @@
+import { useState } from 'react'
 import '../../styles/home-sub-components/newsArticleCard.css'
+import { useAppContext } from '../AppContext'
+import { deleteUrls, fetchApiDelete } from '../../services/apiDelete'
+import Modal from '../post-components/Modal'
+import EditPost from '../post-components/EditPost'
+import { fetchApiGet } from '../../services/apiGet'
+import { getUrls } from '../../services/apiPost'
 
-export const NewsArticleCard = ({ article }) => {
+export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
+	const { loggedInUser } = useAppContext()
+	const { author } = newsArticle
+	const [userIsAuthor] = useState(loggedInUser.id === author.id ? true : false)
+	const [isOpen, setIsOpen] = useState(false)
+	async function handleDeletePost() {
+		await fetchApiDelete(deleteUrls.deletePost, newsArticle.id)
+		const getPosts = async () => {
+			const posts = await fetchApiGet(getUrls.posts)
+			if (posts) {
+				setNewsArticle(posts)
+			}
+		}
+		getPosts()
+	}
+
 	return (
 		<div className="news-article-container">
 			<div className="news-heading-container">
@@ -13,16 +35,17 @@ export const NewsArticleCard = ({ article }) => {
 						/>
 					</picture>
 					<div className="name-timestamp-container">
-						<div className="article-username">{article.name}</div>
-						<div className="article-timestamp">{article.timestamp}</div>
+						<div className="article-username">{author.username}</div>
+						<div className="article-timestamp">{newsArticle.timestamp}</div>
 					</div>
 				</div>
-				<div className="news-article-title">{article.title}--------------------------</div>
+				<div className="news-article-title">{newsArticle.title}--------------------------</div>
 			</div>
 			<div className="news-article-body">
-				<picture>
+				{newsArticle?.content}
+				{/* <picture>
 					<img alt src={article.img} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-				</picture>
+				</picture> */}
 			</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
@@ -30,11 +53,22 @@ export const NewsArticleCard = ({ article }) => {
 					<div>13 comments</div>
 				</div>
 				<div className="footer-bottom">
-					<div>{article.like}</div>
-					<div>{article.comment}</div>
-					<div>{article.share}</div>
+					<div>{newsArticle.like}</div>
+					<div>{newsArticle.comment}</div>
+					<div>{newsArticle.share}</div>
 				</div>
+				{userIsAuthor && (
+					<div className="news-article-buttons">
+						<button onClick={() => setIsOpen(true)}>Edit</button>
+						<button onClick={handleDeletePost}>Delete</button>
+					</div>
+				)}
 			</div>
+			{isOpen && (
+				<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+					<EditPost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />
+				</Modal>
+			)}
 		</div>
 	)
 }

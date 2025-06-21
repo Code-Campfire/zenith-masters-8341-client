@@ -1,4 +1,5 @@
 :root {
+	overflow: hidden;
 	/* ______index.css______ */
 	/* Dark Mode starts with --dark-XXX */
 	--component-cards-color: #ffffff;

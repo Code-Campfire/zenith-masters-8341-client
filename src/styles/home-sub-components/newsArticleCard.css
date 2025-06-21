@@ -13,6 +13,8 @@
 
 .news-heading-container {
 	padding: 6px;
+	box-sizing: border-box;
+	border-bottom: 2px solid grey;
 }
 
 .news-article-title {
@@ -23,6 +25,7 @@
 	max-width: 680px;
 	width: 100%;
 	border: 2px solid black;
+	align-self: center;
 }
 
 .article-username {

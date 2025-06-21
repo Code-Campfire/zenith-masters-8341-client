@@ -5,6 +5,7 @@
 	box-shadow: 4px 4px 4px rgb(193, 193, 193);
 	border-radius: 16px;
 	background-color: white;
+	margin-bottom: 2em;
 }
 .friends-list-nav {
 	display: flex;
