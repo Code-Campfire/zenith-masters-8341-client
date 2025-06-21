@@ -4,7 +4,7 @@ import { useAppContext } from './AppContext'
 import { NewsArticleCard } from './home-sub-components/NewsArticleCard'
 import { useNavigate } from 'react-router-dom'
 import Modal from './post-components/Modal'
-import Post from './post-components/Post.js'
+import { CreatePost } from './post-components/CreatePost.js'
 import { fetchApiGet, getUrls } from '../services/apiGet.js'
 
 function Home() {
@@ -12,13 +12,6 @@ function Home() {
 	const username = loggedInUser?.username
 	const [newsArticle, setNewsArticle] = useState([
 		// { id: 2, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
-		// { id: 3, name: 'Tommy', timestamp: '5-22-2025', title: 'Article 2', body: 'Body of article 2', like: 'Like', comment: 'Comment', share: 'Share' },
-		// { id: 4, name: 'Timmy', timestamp: '5-22-2025', title: 'Article 3', body: 'Body of article 3', like: 'Like', comment: 'Comment', share: 'Share' },
-		// { id: 5, name: 'Jimmy', timestamp: '5-22-2025', title: 'Article 4', body: 'Body of article 4', like: 'Like', comment: 'Comment', share: 'Share' },
-		// { id: 6, name: 'Jamie', timestamp: '5-22-2025', title: 'Article 5', body: 'Body of article 5', like: 'Like', comment: 'Comment', share: 'Share' },
-		// { id: 7, name: 'Bobby', timestamp: '5-22-2025', title: 'Article 6', body: 'Body of article 6', like: 'Like', comment: 'Comment', share: 'Share' },
-		// { id: 8, name: 'Teddy', timestamp: '5-22-2025', title: 'Article 7', body: 'Body of article 7', like: 'Like', comment: 'Comment', share: 'Share' },
-		// { id: 9, name: 'Andy', timestamp: '5-22-2025', title: 'Article 8', body: 'Body of article 8', like: 'Like', comment: 'Comment', share: 'Share' },
 	])
 	useEffect(() => {
 		const getPosts = async () => {
@@ -94,7 +87,7 @@ function Home() {
 					</div>
 				</div>
 				<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-					<Post setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />
+					<CreatePost setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />
 				</Modal>
 
 				<div className="create-story-container">
@@ -108,9 +101,9 @@ function Home() {
 				<div className="newsfeed">
 					{newsArticle
 						.sort((a, b) => new Date(b.last_update) - new Date(a.last_update))
-						.map(article => {
-							console.log(article, ' ARTICLE')
-							return <NewsArticleCard key={article.id} article={article} />
+						.map(newsArticle => {
+							console.log(newsArticle, ' ARTICLE')
+							return <NewsArticleCard key={newsArticle.id} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
 						})}
 				</div>
 			</div>

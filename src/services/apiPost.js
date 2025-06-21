@@ -24,11 +24,12 @@ export const fetchApiPost = async (endpoint, body) => {
 			if (refreshResponse.ok) {
 				const updatedAccessToken = getToken()
 				const retryResponse = await fetch(`${base_url}${endpoint}`, {
-					method: 'GET',
+					method: 'POST',
 					headers: {
 						Authorization: `Bearer ${updatedAccessToken}`,
 						'Content-Type': 'application/json',
 					},
+					body: JSON.stringify(body),
 				})
 				const data = await retryResponse.json()
 				return data

@@ -3,16 +3,17 @@ import { fetchRefreshAccessToken } from './apiRefreshToken'
 const base_url = `http://localhost:8000/`
 const getToken = () => localStorage.getItem('token')
 
-export const fetchApiDelete = async (endpoint, articleId) => {
+export const fetchApiPatch = async (endpoint, articleId, content) => {
 	try {
 		const accessToken = getToken()
 		console.log(base_url + endpoint + articleId)
 		const response = await fetch(`${base_url}${endpoint}${articleId}/`, {
-			method: 'DELETE',
+			method: 'PATCH',
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 				'Content-Type': 'application/json',
 			},
+			body: JSON.stringify({ content }),
 		})
 		console.log(response)
 		if (response.ok) {
@@ -24,11 +25,12 @@ export const fetchApiDelete = async (endpoint, articleId) => {
 			if (refreshResponse.ok) {
 				const updatedAccessToken = getToken()
 				const retryResponse = await fetch(`${base_url}${endpoint}${articleId}/`, {
-					method: 'DELETE',
+					method: 'PATCH',
 					headers: {
 						Authorization: `Bearer ${updatedAccessToken}`,
 						'Content-Type': 'application/json',
 					},
+					body: JSON.stringify({ content }),
 				})
 				const data = await retryResponse.json()
 				return data
@@ -42,6 +44,6 @@ export const fetchApiDelete = async (endpoint, articleId) => {
 	}
 }
 
-export const deleteUrls = {
-	deletePost: 'bookface/posts/',
+export const patchUrls = {
+	patchPost: 'bookface/posts/',
 }

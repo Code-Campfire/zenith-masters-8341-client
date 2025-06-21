@@ -4,26 +4,22 @@ import { useAppContext } from '../AppContext'
 import { fetchApiPost } from '../../services/apiPost'
 import { getUrls } from '../../services/apiGet'
 
-export function Post({ setNewsArticle, setIsOpen }) {
+export function CreatePost({ setNewsArticle, setIsOpen }) {
 	const { loggedInUser } = useAppContext()
 	const [bodyHasText, setBodyHasText] = useState(false)
-	const [content, setContent] = useState({ content: '' })
+	const [content, setContent] = useState('')
 
 	function handleButtonToggle(e) {
 		if (e.target.value.length > 0) return setBodyHasText(true)
 		setBodyHasText(false)
 	}
 	function handleSetContent(e) {
-		setContent(prev => ({
-			...prev,
-			content: e.target.value,
-		}))
-		console.log(content)
+		setContent(e.target.value)
 	}
 	async function handleCreatingPost(e) {
 		e.preventDefault()
-		const newPost = await fetchApiPost(getUrls.posts, content)
-		console.log(newPost)
+		if (content.length === 0) return alert(`The body of your message must have content before posting.`)
+		const newPost = await fetchApiPost(getUrls.posts, { content })
 		setNewsArticle(prev => [...prev, newPost])
 		setIsOpen(false)
 	}
@@ -47,7 +43,7 @@ export function Post({ setNewsArticle, setIsOpen }) {
 					placeholder={`What's on your mind, ${loggedInUser.username}?`}
 				></textarea>
 				<div className="create-post-media">Add media to post</div>
-				<button onClick={handleCreatingPost} className={`create-post-button ${bodyHasText ? 'active' : ''}`}>
+				<button type="submit" onClick={handleCreatingPost} className={`create-post-button ${bodyHasText ? 'active' : ''}`}>
 					Post
 				</button>
 			</div>
@@ -55,4 +51,4 @@ export function Post({ setNewsArticle, setIsOpen }) {
 	)
 }
 
-export default Post
+export default CreatePost
