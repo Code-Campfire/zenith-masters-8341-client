@@ -13,6 +13,7 @@ function Home() {
 	const [newsArticle, setNewsArticle] = useState([
 		// { id: 2, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
 	])
+	const [cardsToRender, setCardsToRender] = useState(5)
 	useEffect(() => {
 		const getPosts = async () => {
 			const posts = await fetchApiGet(getUrls.posts)
@@ -32,6 +33,24 @@ function Home() {
 		})
 		e.target.classList.add('active')
 	}
+
+	useEffect(() => {
+		const mainContent = document.querySelector('.main-content')
+		function handleScroll() {
+			const { scrollTop, clientHeight, scrollHeight } = mainContent
+			console.log(scrollTop, clientHeight, scrollHeight)
+			console.log(cardsToRender)
+			if (scrollTop + clientHeight >= scrollHeight - 200) {
+				setCardsToRender(prev => prev + 5)
+				console.log('BOOM RENDER MORE')
+			}
+		}
+		mainContent.addEventListener('scroll', handleScroll)
+		// homeContainer.addEventListener('scroll', () => console.log('home scroll'))
+		// mainContent.addEventListener('scroll', () => console.log('home scroll'))
+		return () => mainContent.removeEventListener('scroll', handleScroll)
+	}, [])
+
 	return (
 		<div className="home-container">
 			<div className="home-sidebar-wrapper">
@@ -101,9 +120,12 @@ function Home() {
 				<div className="newsfeed">
 					{newsArticle
 						.sort((a, b) => new Date(b.last_update) - new Date(a.last_update))
-						.map(newsArticle => {
+						.map((newsArticle, index) => {
 							console.log(newsArticle, ' ARTICLE')
-							return <NewsArticleCard key={newsArticle.id} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
+							console.log(index, ' INDEX')
+							if (index < cardsToRender) {
+								return <NewsArticleCard key={newsArticle.id} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
+							}
 						})}
 				</div>
 			</div>
