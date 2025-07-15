@@ -1,13 +1,20 @@
 import { useState } from 'react'
+import { fetchApiPost, postUrls } from '../../services/apiPost'
 import '../../styles/Post.css'
-import { useAppContext } from '../AppContext'
-import { fetchApiPatch, patchUrls } from '../../services/apiPatch'
 
 export function Comment({ newsArticle, setIsOpen }) {
-	const [commentContent, setCommentContent] = useState(null)
-	function handleSubmitComment() {
+	const [content, setContent] = useState(null)
+	async function handleSubmitComment(e) {
+		e.preventDefault()
+		try {
+			const comment = await fetchApiPost(postUrls.comments(newsArticle.id), { content })
+			console.log(comment, ' comment')
+		} catch (error) {
+			console.error(`Failed to create comment: `, error)
+		} finally {
+			setIsOpen(false)
+		}
 		console.log('submit comment')
-		setIsOpen(false)
 	}
 	return (
 		<form>
@@ -17,7 +24,15 @@ export function Comment({ newsArticle, setIsOpen }) {
 				</div>
 				<div>{newsArticle.content}</div>
 				<div>Placeholder for user comments</div>
-				<textarea onChange={e => {}} value={commentContent} className="" placeholder="Write a comment..."></textarea>
+				<textarea
+					onChange={e => {
+						console.log(e.target.value)
+						setContent(e.target.value)
+					}}
+					value={content}
+					className=""
+					placeholder="Write a comment..."
+				></textarea>
 				<button type="submit" onClick={handleSubmitComment}>
 					Submit comment
 				</button>

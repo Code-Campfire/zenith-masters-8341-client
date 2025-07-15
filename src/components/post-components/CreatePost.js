@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import '../../styles/Post.css'
 import { useAppContext } from '../AppContext'
-import { fetchApiPost } from '../../services/apiPost'
-import { getUrls } from '../../services/apiGet'
+import { fetchApiPost, postUrls } from '../../services/apiPost'
 
 export function CreatePost({ setNewsArticle, setIsOpen }) {
 	const { loggedInUser } = useAppContext()
@@ -19,7 +18,7 @@ export function CreatePost({ setNewsArticle, setIsOpen }) {
 	async function handleCreatingPost(e) {
 		e.preventDefault()
 		if (content.length === 0) return alert(`The body of your message must have content before posting.`)
-		const newPost = await fetchApiPost(getUrls.posts, { content })
+		const newPost = await fetchApiPost(postUrls.posts, { content })
 		setNewsArticle(prev => [...prev, newPost])
 		setIsOpen(false)
 	}

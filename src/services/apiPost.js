@@ -35,6 +35,7 @@ export const fetchApiPost = async (endpoint, body = null) => {
 				return data
 			}
 		} else {
+			console.log(response, ' response that is not ok')
 			throw new Error(`Response not ok and couldn't refresh`)
 		}
 	} catch (error) {
@@ -43,7 +44,7 @@ export const fetchApiPost = async (endpoint, body = null) => {
 	}
 }
 
-export const getUrls = {
+export const postUrls = {
 	pendingRelationships: 'bookface/simps/pending_relationships/',
 	users: 'bookface/users/',
 	posts: 'bookface/posts/',
@@ -51,4 +52,5 @@ export const getUrls = {
 	usersWithRelationships: 'bookface/users/AndRelationships/',
 	userById: userId => `bookface/users/${userId}/`,
 	likes: postId => `bookface/posts/${postId}/like/`,
+	comments: postId => `bookface/posts/${postId}/comments/`,
 }

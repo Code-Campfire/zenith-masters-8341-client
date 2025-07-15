@@ -5,7 +5,7 @@ import { deleteUrls, fetchApiDelete } from '../../services/apiDelete'
 import Modal from '../post-components/Modal'
 import EditPost from '../post-components/EditPost'
 import { fetchApiGet } from '../../services/apiGet'
-import { fetchApiPost, getUrls } from '../../services/apiPost'
+import { fetchApiPost, postUrls } from '../../services/apiPost'
 import Comment from '../post-components/Comment'
 
 export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
@@ -20,7 +20,7 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 	async function handleDeletePost() {
 		await fetchApiDelete(deleteUrls.deletePost, newsArticle.id)
 		const getPosts = async () => {
-			const { results } = await fetchApiGet(getUrls.posts)
+			const { results } = await fetchApiGet(postUrls.posts)
 			if (results) {
 				setNewsArticle(results)
 			}
@@ -30,7 +30,7 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 
 	async function handleLike() {
 		try {
-			await fetchApiPost(getUrls.likes(newsArticle.id))
+			await fetchApiPost(postUrls.likes(newsArticle.id))
 		} catch (error) {
 			alert(`You've already liked this post!`)
 			console.error(`Like failed: ${error}`)
