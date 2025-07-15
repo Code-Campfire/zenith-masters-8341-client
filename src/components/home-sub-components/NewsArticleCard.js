@@ -5,22 +5,45 @@ import { deleteUrls, fetchApiDelete } from '../../services/apiDelete'
 import Modal from '../post-components/Modal'
 import EditPost from '../post-components/EditPost'
 import { fetchApiGet } from '../../services/apiGet'
-import { getUrls } from '../../services/apiPost'
+import { fetchApiPost, getUrls } from '../../services/apiPost'
+import Comment from '../post-components/Comment'
 
 export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
+	console.log(newsArticle, ' newsArticle')
+	const [count, setCount] = useState(999)
 	const { loggedInUser } = useAppContext()
 	const { author } = newsArticle
 	const [userIsAuthor] = useState(loggedInUser.id === author.id ? true : false)
 	const [isOpen, setIsOpen] = useState(false)
+	const [modalType, setModalType] = useState(null)
+
 	async function handleDeletePost() {
 		await fetchApiDelete(deleteUrls.deletePost, newsArticle.id)
 		const getPosts = async () => {
-			const posts = await fetchApiGet(getUrls.posts)
-			if (posts) {
-				setNewsArticle(posts)
+			const { results } = await fetchApiGet(getUrls.posts)
+			if (results) {
+				setNewsArticle(results)
 			}
 		}
 		getPosts()
+	}
+
+	async function handleLike() {
+		try {
+			await fetchApiPost(getUrls.likes(newsArticle.id))
+		} catch (error) {
+			alert(`You've already liked this post!`)
+			console.error(`Like failed: ${error}`)
+		}
+	}
+
+	function openModal(type) {
+		setModalType(type)
+		setIsOpen(true)
+	}
+	function closeModal() {
+		setModalType(null)
+		setIsOpen(false)
 	}
 
 	return (
@@ -49,24 +72,24 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 			</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
-					<div>Likes: 21</div>
-					<div>13 comments</div>
+					<div>Likes: {count}</div>
+					<div>99 comments</div>
 				</div>
 				<div className="footer-bottom">
-					<div>{newsArticle.like}</div>
-					<div>{newsArticle.comment}</div>
-					<div>{newsArticle.share}</div>
+					<button onClick={handleLike}>Like</button>
+					<button onClick={() => openModal('comment')}>Comment</button>
 				</div>
 				{userIsAuthor && (
 					<div className="news-article-buttons">
-						<button onClick={() => setIsOpen(true)}>Edit</button>
+						<button onClick={() => openModal('edit')}>Edit</button>
 						<button onClick={handleDeletePost}>Delete</button>
 					</div>
 				)}
 			</div>
 			{isOpen && (
-				<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-					<EditPost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />
+				<Modal isOpen={isOpen} onClose={closeModal}>
+					{modalType === 'edit' && <EditPost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />}
+					{modalType === 'comment' && <Comment newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />}
 				</Modal>
 			)}
 		</div>

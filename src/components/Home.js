@@ -16,9 +16,10 @@ function Home() {
 	const [cardsToRender, setCardsToRender] = useState(5)
 	useEffect(() => {
 		const getPosts = async () => {
-			const posts = await fetchApiGet(getUrls.posts)
-			if (posts) {
-				setNewsArticle(posts)
+			const { results } = await fetchApiGet(getUrls.posts)
+			console.log(results, ' posts')
+			if (results) {
+				setNewsArticle(results)
 			}
 		}
 		getPosts()
@@ -53,6 +54,7 @@ function Home() {
 
 	return (
 		<div className="home-container">
+			{console.log(newsArticle)}
 			<div className="home-sidebar-wrapper">
 				<div className="home-sidebar">
 					<div

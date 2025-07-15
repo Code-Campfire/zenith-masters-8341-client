@@ -28,7 +28,7 @@ export function EditPost({ newsArticle, setNewsArticle, setIsOpen }) {
 		<form>
 			<div className="create-post-container">
 				<div className="create-post-heading-container">
-					<h3 className="create-post-heading">Create Post</h3>
+					<h3 className="create-post-heading">Edit Post</h3>
 				</div>
 				<div className="create-post-user-info">
 					<img alt="profile-pic" src="profile-img.svg" />

@@ -3,7 +3,7 @@ import { fetchRefreshAccessToken } from './apiRefreshToken'
 const base_url = `http://localhost:8000/`
 const getToken = () => localStorage.getItem('token')
 
-export const fetchApiPost = async (endpoint, body) => {
+export const fetchApiPost = async (endpoint, body = null) => {
 	console.log(body)
 	try {
 		const accessToken = getToken()
@@ -50,4 +50,5 @@ export const getUrls = {
 	friends: 'bookface/simps/accepted_relationships/',
 	usersWithRelationships: 'bookface/users/AndRelationships/',
 	userById: userId => `bookface/users/${userId}/`,
+	likes: postId => `bookface/posts/${postId}/like/`,
 }
