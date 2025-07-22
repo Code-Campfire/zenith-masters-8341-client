@@ -1,14 +1,33 @@
 // src/components/Modal.jsx
 import ReactDOM from 'react-dom'
 import '../../styles/Modal.css'
+import { useRef, useState } from 'react'
 
 // Portal lets you render modal outside the normal DOM flow
 function Modal({ isOpen, onClose, children }) {
-	if (!isOpen) return null
+	const modalRef = useRef(null)
 
+	const mouseDown = useRef(null)
+
+	function handleMouseDown(e) {
+		if (e.target.id === 'modal-backdrop') {
+			mouseDown.current = true
+			console.log('mouse goes down')
+		}
+	}
+
+	function handleMouseUp(e) {
+		if (e.target.id === 'modal-backdrop' && mouseDown.current) {
+			onClose()
+		}
+		mouseDown.current = null
+	}
+
+	if (!isOpen) return null
+	//onClick={onClose}
 	return ReactDOM.createPortal(
-		<div className="modal-backdrop" onClick={onClose}>
-			<div className="modal-content" onClick={e => e.stopPropagation()}>
+		<div ref={modalRef} id="modal-backdrop" className="modal-backdrop" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+			<div id="modal-content" className="modal-content" onClick={e => e.stopPropagation()}>
 				{children}
 				<button onClick={onClose} className="modal-close">
 					&times;
