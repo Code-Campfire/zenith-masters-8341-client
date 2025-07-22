@@ -10,6 +10,7 @@ import { AuthorizedRoute } from "./components/auth/AuthorizedRoute";
 import Register from "./components/Register";
 import FriendsList from "./components/friends-list/FriendsList";
 import AccountPage from "./components/AccountPage";
+import Marketplace from "./components/MarketPlace/MarketPlace.jsx";
 
 export default function App() {
   return (
@@ -74,17 +75,20 @@ export default function App() {
             </AuthorizedRoute>
           }
         />
+        {/* MARKETPLACE BELOW */}
 
         <Route path="marketplace">
           <Route
             index
             element={
               <AuthorizedRoute>
-                <div>Marketplace Go Here</div>
+                <Marketplace />
               </AuthorizedRoute>
             }
           />
         </Route>
+
+        {/* MARKETPLACE ABOVE */}
 
         <Route path="posts">
           <Route
