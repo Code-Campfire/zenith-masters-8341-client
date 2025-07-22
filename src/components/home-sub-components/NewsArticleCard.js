@@ -9,11 +9,10 @@ import { fetchApiPost, postUrls } from '../../services/apiPost'
 import Comment from '../post-components/Comment'
 
 export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
-	console.log(newsArticle, ' newsArticle')
 	const [count, setCount] = useState(999)
 	const { loggedInUser } = useAppContext()
 	const { author } = newsArticle
-	const [userIsAuthor] = useState(loggedInUser.id === author.id ? true : false)
+	const [userIsAuthor] = useState(loggedInUser?.id === author?.id ? true : false)
 	const [isOpen, setIsOpen] = useState(false)
 	const [modalType, setModalType] = useState(null)
 
@@ -58,11 +57,13 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 						/>
 					</picture>
 					<div className="name-timestamp-container">
-						<div className="article-username">{author.username}</div>
+						<div className="article-username">
+							{author?.username} ID: {newsArticle.id}
+						</div>
 						<div className="article-timestamp">{newsArticle.timestamp}</div>
 					</div>
 				</div>
-				<div className="news-article-title">{newsArticle.title}--------------------------</div>
+				<div className="news-article-title">{newsArticle.title}</div>
 			</div>
 			<div className="news-article-body">
 				{newsArticle?.content}

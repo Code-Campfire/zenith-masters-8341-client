@@ -47,4 +47,5 @@ export const getUrls = {
 	friends: 'bookface/simps/accepted_relationships/',
 	usersWithRelationships: 'bookface/users/AndRelationships/',
 	userById: userId => `bookface/users/${userId}/`,
+	paginatedPosts: (page, pageSize) => `bookface/posts/?page=${page}&page_size=${pageSize}`,
 }
