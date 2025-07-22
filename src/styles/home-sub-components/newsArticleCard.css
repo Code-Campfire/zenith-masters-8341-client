@@ -3,6 +3,7 @@
 	flex-direction: column;
 	background-color: white;
 	width: 100%;
+	/* max-width: 680px; */
 	border-radius: 8px;
 	box-shadow: var(--border-box-shadow);
 }
@@ -12,20 +13,38 @@
 }
 
 .news-heading-container {
-	padding: 6px;
-	box-sizing: border-box;
+	padding: 10px;
 	border-bottom: 2px solid grey;
+	box-sizing: border-box;
 }
 
 .news-article-title {
 }
-.news-article-body {
-	min-height: 294px;
-	max-height: 594px;
-	max-width: 680px;
+.news-article-text-body {
 	width: 100%;
-	border: 2px solid black;
+	overflow-wrap: break-word;
+	white-space: normal;
+}
+.news-article-body {
+	/* min-height: 294px; */
+	max-height: 594px;
+	/* max-width: 680px; */
+	width: 100%;
+	/* border-top: 2px solid grey; */
 	align-self: center;
+}
+
+.news-article-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.news-article-buttons button {
+	background-color: var(--fb-primary-button-color);
+	width: 100px;
+}
+.news-article-buttons button:hover {
+	background-color: var(--fb-primary-button-hover-color);
 }
 
 .article-username {
@@ -73,7 +92,8 @@
 	font-size: 17px;
 	background-color: white;
 	color: grey;
-	min-width: 200px;
+	max-width: 200px;
+	width: 100%;
 	font-weight: 600;
 	border-radius: 4px;
 }

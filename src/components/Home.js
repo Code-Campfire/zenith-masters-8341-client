@@ -36,7 +36,7 @@ function Home() {
 		async function handleScroll() {
 			let { scrollTop, clientHeight, scrollHeight } = mainContent
 			scrollInfo.current = {
-				scrollTop: Math.ceil(scrollTop),
+				scrollTop,
 				clientHeight,
 				scrollHeight,
 			}
@@ -46,11 +46,11 @@ function Home() {
 
 					debounceTimer.current = setTimeout(() => {
 						const { scrollTop, clientHeight, scrollHeight } = scrollInfo.current
-						if (scrollTop + clientHeight >= scrollHeight) {
+						if (scrollTop + clientHeight >= scrollHeight - 1) {
 							setPage(prev => prev + 1)
 						}
 						debounceTimer.current = null
-					}, 500)
+					}, 2000)
 				}
 			}
 		}

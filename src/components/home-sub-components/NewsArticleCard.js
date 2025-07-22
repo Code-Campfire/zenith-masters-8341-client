@@ -57,20 +57,14 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 						/>
 					</picture>
 					<div className="name-timestamp-container">
-						<div className="article-username">
-							{author?.username} ID: {newsArticle.id}
-						</div>
-						<div className="article-timestamp">{newsArticle.timestamp}</div>
+						<div className="article-username">{author?.username}</div>
+						<div className="article-timestamp">{newsArticle.created_at.slice(0, 10)}</div>
 					</div>
 				</div>
 				<div className="news-article-title">{newsArticle.title}</div>
+				<div className="news-article-text-body">{newsArticle?.content}</div>
 			</div>
-			<div className="news-article-body">
-				{newsArticle?.content}
-				{/* <picture>
-					<img alt src={article.img} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-				</picture> */}
-			</div>
+			<div className="news-article-body">{newsArticle.imge && <img alt="post image" src={newsArticle?.img} />}</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
 					<div>Likes: {count}</div>
@@ -82,8 +76,12 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 				</div>
 				{userIsAuthor && (
 					<div className="news-article-buttons">
-						<button onClick={() => openModal('edit')}>Edit</button>
-						<button onClick={handleDeletePost}>Delete</button>
+						<button className="default-button" onClick={() => openModal('edit')}>
+							Edit
+						</button>
+						<button className="default-button" onClick={handleDeletePost}>
+							Delete
+						</button>
 					</div>
 				)}
 			</div>

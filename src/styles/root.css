@@ -36,3 +36,16 @@
 	--bg-color: #f2f4f7;
 	--dark-bg-color: #1c1c1d;
 }
+.default-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	border-radius: 6px;
+	height: 30px;
+	width: 100%;
+	max-width: 200px;
+	margin: 6px;
+	color: white;
+	font-weight: 600;
+}
