@@ -12,11 +12,14 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 	const [count, setCount] = useState(999)
 	const { loggedInUser } = useAppContext()
 	const { author } = newsArticle
-	const [userIsAuthor] = useState(loggedInUser?.id === author?.id ? true : false)
+	const userIsAuthor = loggedInUser?.id === author?.id ? true : false
 	const [isOpen, setIsOpen] = useState(false)
 	const [modalType, setModalType] = useState(null)
 
 	async function handleDeletePost() {
+		console.log(loggedInUser, ' logged in user')
+		console.log(author, ' logged in user')
+		console.log(userIsAuthor, ' user is author')
 		await fetchApiDelete(deleteUrls.deletePost, newsArticle.id)
 		const getPosts = async () => {
 			const { results } = await fetchApiGet(postUrls.posts)
@@ -58,6 +61,7 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 					</picture>
 					<div className="name-timestamp-container">
 						<div className="article-username">{author?.username}</div>
+						<div className="article-username">ID: {author.id} (testing only)</div>
 						<div className="article-timestamp">{newsArticle.created_at.slice(0, 10)}</div>
 					</div>
 				</div>

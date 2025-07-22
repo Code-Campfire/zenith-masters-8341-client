@@ -14,7 +14,7 @@
 
 .news-heading-container {
 	padding: 10px;
-	border-bottom: 2px solid grey;
+	border-bottom: 2px solid var(--secondary-border-color);
 	box-sizing: border-box;
 }
 
@@ -26,11 +26,8 @@
 	white-space: normal;
 }
 .news-article-body {
-	/* min-height: 294px; */
 	max-height: 594px;
-	/* max-width: 680px; */
 	width: 100%;
-	/* border-top: 2px solid grey; */
 	align-self: center;
 }
 

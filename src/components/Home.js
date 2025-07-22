@@ -61,35 +61,6 @@ function Home() {
 		}
 	}, [])
 
-	// useEffect(() => {
-	// 	const mainContent = document.querySelector('.main-content')
-
-	// 	mainContentRef.current = mainContent
-
-	// 	async function handleScroll() {
-	// 		let { scrollTop, clientHeight, scrollHeight } = mainContent
-	// 		if (scrollTop + clientHeight >= scrollHeight - 200 && !isLoadingRef.current) {
-	// 			setPage(prev => prev + 1)
-	// 		}
-	// 	}
-
-	// 	const debounce = (fn, delay = 200) => {
-	// 		let timeout
-	// 		return function (...args) {
-	// 			clearTimeout(timeout)
-	// 			timeout = setTimeout(() => fn.apply(this, args), delay)
-	// 		}
-	// 	}
-
-	// 	const debouncedScroll = debounce(handleScroll, 250)
-	// 	mainContent.addEventListener('scroll', debouncedScroll)
-
-	// 	// mainContent.addEventListener('scroll', handleScroll)
-	// 	return () => {
-	// 		mainContent.removeEventListener('scroll', debouncedScroll)
-	// 	}
-	// }, [])
-
 	useEffect(() => {
 		async function fetchMorePosts() {
 			setIsLoading(true)
@@ -182,7 +153,7 @@ function Home() {
 						.sort((a, b) => new Date(b.last_update) - new Date(a.last_update))
 						.map((newsArticle, index) => {
 							console.log(newsArticle, ' ARTICLE')
-							return <NewsArticleCard key={newsArticle.id} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
+							return <NewsArticleCard key={index} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
 						})}
 				</div>
 			</div>
