@@ -136,6 +136,7 @@ export default function FriendsList() {
 					<div style={{ display: 'flex', flexDirection: 'column' }}>
 						<div id="friends-list-content" className="friends-list-content">
 							{pagination?.friends?.map((friend, _) => {
+								console.log(friend)
 								if (view.findFriends) return <FindFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
 								if (view.allFriends) return <AllFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
 								if (view.incomingRequests) return <IncomingRequests key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
