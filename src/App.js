@@ -10,7 +10,8 @@ import { AuthorizedRoute } from "./components/auth/AuthorizedRoute";
 import Register from "./components/Register";
 import FriendsList from "./components/friends-list/FriendsList";
 import AccountPage from "./components/AccountPage";
-import Marketplace from "./components/MarketPlace/MarketPlace.jsx";
+import Marketplace from "./components/MarketplaceWorking/Marketplace.jsx";
+import ListingDetails from "./components/MarketplaceWorking/ListingDetails.jsx";
 
 export default function App() {
   return (
@@ -87,6 +88,8 @@ export default function App() {
             }
           />
         </Route>
+
+        <Route path="/details/:id" element={<ListingDetails />} />
 
         {/* MARKETPLACE ABOVE */}
 
