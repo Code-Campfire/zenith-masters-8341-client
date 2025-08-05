@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../styles/Home.css'
 import { useAppContext } from './AppContext'
 import { NewsArticleCard } from './home-sub-components/NewsArticleCard'
@@ -13,18 +13,66 @@ function Home() {
 	const [newsArticle, setNewsArticle] = useState([
 		// { id: 2, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
 	])
-	const [cardsToRender, setCardsToRender] = useState(5)
+	const [page, setPage] = useState(1)
+	const [isLoading, setIsLoading] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
+	const isLoadingRef = useRef(false)
+	const mainContentRef = useRef(null)
+	const navigate = useNavigate()
+
+	const debounceTimer = useRef(null)
+
+	const scrollInfo = useRef({
+		scrollTop: 0,
+		clientHeight: 0,
+		scrollHeight: 0,
+	})
+
 	useEffect(() => {
-		const getPosts = async () => {
-			const posts = await fetchApiGet(getUrls.posts)
-			if (posts) {
-				setNewsArticle(posts)
+		const mainContent = document.querySelector('.main-content')
+
+		mainContentRef.current = mainContent
+
+		async function handleScroll() {
+			let { scrollTop, clientHeight, scrollHeight } = mainContent
+			scrollInfo.current = {
+				scrollTop,
+				clientHeight,
+				scrollHeight,
+			}
+			if (scrollTop + clientHeight >= scrollHeight - 200) {
+				if (debounceTimer.current === null) {
+					setPage(prev => prev + 1)
+
+					debounceTimer.current = setTimeout(() => {
+						const { scrollTop, clientHeight, scrollHeight } = scrollInfo.current
+						if (scrollTop + clientHeight >= scrollHeight - 1) {
+							setPage(prev => prev + 1)
+						}
+						debounceTimer.current = null
+					}, 2000)
+				}
 			}
 		}
-		getPosts()
+
+		mainContent.addEventListener('scroll', handleScroll)
+		return () => {
+			mainContent.removeEventListener('scroll', handleScroll)
+		}
 	}, [])
-	const navigate = useNavigate()
-	const [isOpen, setIsOpen] = useState(false)
+
+	useEffect(() => {
+		async function fetchMorePosts() {
+			setIsLoading(true)
+			const { results } = await fetchApiGet(getUrls.paginatedPosts(page, 3))
+			if (results) {
+				setNewsArticle(prev => [...prev, ...results])
+			}
+			setIsLoading(false)
+		}
+		fetchMorePosts()
+	}, [page])
+
 	function handleSidebarClick(e) {
 		const sideBarItems = document.querySelectorAll('.home-sidebar-item')
 		const sideBarItemsArray = Array.from(sideBarItems)
@@ -33,23 +81,6 @@ function Home() {
 		})
 		e.target.classList.add('active')
 	}
-
-	useEffect(() => {
-		const mainContent = document.querySelector('.main-content')
-		function handleScroll() {
-			const { scrollTop, clientHeight, scrollHeight } = mainContent
-			console.log(scrollTop, clientHeight, scrollHeight)
-			console.log(cardsToRender)
-			if (scrollTop + clientHeight >= scrollHeight - 200) {
-				setCardsToRender(prev => prev + 5)
-				console.log('BOOM RENDER MORE')
-			}
-		}
-		mainContent.addEventListener('scroll', handleScroll)
-		// homeContainer.addEventListener('scroll', () => console.log('home scroll'))
-		// mainContent.addEventListener('scroll', () => console.log('home scroll'))
-		return () => mainContent.removeEventListener('scroll', handleScroll)
-	}, [])
 
 	return (
 		<div className="home-container">
@@ -122,10 +153,7 @@ function Home() {
 						.sort((a, b) => new Date(b.last_update) - new Date(a.last_update))
 						.map((newsArticle, index) => {
 							console.log(newsArticle, ' ARTICLE')
-							console.log(index, ' INDEX')
-							if (index < cardsToRender) {
-								return <NewsArticleCard key={newsArticle.id} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
-							}
+							return <NewsArticleCard key={index} newsArticle={newsArticle} setNewsArticle={setNewsArticle} />
 						})}
 				</div>
 			</div>

@@ -3,6 +3,7 @@
 	flex-direction: column;
 	background-color: white;
 	width: 100%;
+	/* max-width: 680px; */
 	border-radius: 8px;
 	box-shadow: var(--border-box-shadow);
 }
@@ -12,20 +13,35 @@
 }
 
 .news-heading-container {
-	padding: 6px;
+	padding: 10px;
+	border-bottom: 2px solid var(--secondary-border-color);
 	box-sizing: border-box;
-	border-bottom: 2px solid grey;
 }
 
 .news-article-title {
 }
-.news-article-body {
-	min-height: 294px;
-	max-height: 594px;
-	max-width: 680px;
+.news-article-text-body {
 	width: 100%;
-	border: 2px solid black;
+	overflow-wrap: break-word;
+	white-space: normal;
+}
+.news-article-body {
+	max-height: 594px;
+	width: 100%;
 	align-self: center;
+}
+
+.news-article-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.news-article-buttons button {
+	background-color: var(--fb-primary-button-color);
+	width: 100px;
+}
+.news-article-buttons button:hover {
+	background-color: var(--fb-primary-button-hover-color);
 }
 
 .article-username {
@@ -50,6 +66,9 @@
 }
 
 .footer-top {
+	display: flex;
+	color: grey;
+	justify-content: space-between;
 	border-bottom: 2px solid #dbdde0;
 }
 
@@ -60,6 +79,24 @@
 	padding: 8px;
 	font-size: 18px;
 	font-weight: 600;
-	margin-left: 8rem;
-	margin-right: 8rem;
+	margin-left: 4rem;
+	margin-right: 4rem;
+}
+
+.footer-bottom button {
+	border: none;
+	padding: 10px;
+	font-size: 17px;
+	background-color: white;
+	color: grey;
+	max-width: 200px;
+	width: 100%;
+	font-weight: 600;
+	border-radius: 4px;
+}
+.footer-bottom button:hover {
+	background-color: var(--fb-hover-link-color);
+}
+.footer-bottom button:hover:active {
+	background-color: var(--fb-active-class-link-color);
 }

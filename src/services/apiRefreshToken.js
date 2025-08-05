@@ -17,6 +17,7 @@ export const fetchRefreshAccessToken = async () => {
 			console.log(refreshData, ' refresh data')
 			return refreshResponse
 		} else {
+			window.location.href = '/login'
 			throw new Error(`Could not refresh token`)
 		}
 	} catch (error) {

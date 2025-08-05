@@ -30,9 +30,23 @@
 
 	--button-accept-color: rgb(210, 255, 214);
 	--button-accept-hover-color: rgb(183, 255, 189);
+	--secondary-border-color: #dbdde0;
 
 	/* ______App.css______ */
 	--logo-color: #0866ff;
 	--bg-color: #f2f4f7;
 	--dark-bg-color: #1c1c1d;
+}
+.default-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	border-radius: 6px;
+	height: 30px;
+	width: 100%;
+	max-width: 200px;
+	margin: 6px;
+	color: white;
+	font-weight: 600;
 }

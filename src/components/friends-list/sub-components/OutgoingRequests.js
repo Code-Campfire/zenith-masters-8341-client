@@ -3,6 +3,7 @@ import { fetchWithdrawFriendRequest } from '../../../services/friends'
 import FriendCard from '../FriendCard'
 
 export const OutgoingRequests = ({ setPagination, createPagination, friend, index }) => {
+	console.log(friend)
 	async function handleWithdrawRequest() {
 		await fetchWithdrawFriendRequest(friend.other_user.id)
 		await fetchApiGet(getUrls.pendingRelationships).then(users => {
