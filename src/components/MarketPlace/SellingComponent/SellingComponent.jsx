@@ -1,8 +1,12 @@
+import Sidebar from "../Sidebar.jsx";
+
 const SellingComponent = () => {
   return (
-    <div className="selling">
-      <h2>Selling</h2>
-      <p>Manage your listings and sales here.</p>
+    <div className="container">
+      <Sidebar />
+      <div className="content">
+        <h2>Stuff you're selling</h2>
+      </div>
     </div>
   );
 };
