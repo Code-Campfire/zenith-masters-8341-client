@@ -13,6 +13,7 @@ import AccountPage from "./components/AccountPage";
 
 import Marketplace from "./components/Marketplace/Marketplace.jsx";
 import ListingDetails from "./components/Marketplace/ListingDetails.jsx";
+import SellingComponent from "./components/Marketplace/SellingComponent/SellingComponent.jsx";
 
 export default function App() {
   return (
@@ -28,6 +29,17 @@ export default function App() {
             </AuthorizedRoute>
           }
         />
+
+        {/* Selling page */}
+        <Route
+          path="selling"
+          element={
+            <AuthorizedRoute>
+              <SellingComponent />
+            </AuthorizedRoute>
+          }
+        />
+
         <Route
           path="settings"
           element={
