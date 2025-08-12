@@ -10,8 +10,9 @@ import { AuthorizedRoute } from "./components/auth/AuthorizedRoute";
 import Register from "./components/Register";
 import FriendsList from "./components/friends-list/FriendsList";
 import AccountPage from "./components/AccountPage";
-import Marketplace from "./components/MarketplaceWorking/Marketplace.jsx";
-import ListingDetails from "./components/MarketplaceWorking/ListingDetails.jsx";
+
+import Marketplace from "./components/Marketplace/Marketplace.jsx";
+import ListingDetails from "./components/Marketplace/ListingDetails.jsx";
 
 export default function App() {
   return (
