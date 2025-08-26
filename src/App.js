@@ -11,7 +11,7 @@ import Register from "./components/Register";
 import FriendsList from "./components/friends-list/FriendsList";
 import AccountPage from "./components/AccountPage";
 
-import Marketplace from "./components/Marketplace/Marketplace.jsx";
+import Marketplace from "./components/Marketplace/MarketPlace.jsx";
 import ListingDetails from "./components/Marketplace/ListingDetails.jsx";
 import SellingComponent from "./components/Marketplace/SellingComponent/SellingComponent.jsx";
 
