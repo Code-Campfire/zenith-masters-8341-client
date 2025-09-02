@@ -10,6 +10,7 @@ import { AuthorizedRoute } from "./components/auth/AuthorizedRoute";
 import Register from "./components/Register";
 import FriendsList from "./components/friends-list/FriendsList";
 import AccountPage from "./components/AccountPage";
+import CreateListingComponent from "./components/Marketplace/CreateListingComponent/CreateListingComponent.jsx";
 
 import Marketplace from "./components/Marketplace/MarketPlace.jsx";
 import ListingDetails from "./components/Marketplace/ListingDetails.jsx";
@@ -39,6 +40,8 @@ export default function App() {
             </AuthorizedRoute>
           }
         />
+
+        <Route path="/create-listing" element={<CreateListingComponent />} />
 
         <Route
           path="settings"
