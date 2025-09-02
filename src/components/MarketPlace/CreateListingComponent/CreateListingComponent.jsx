@@ -1,16 +1,20 @@
 import Sidebar from "../Sidebar.jsx";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useListings } from "../CreateListingComponent/ListingsContext.jsx";
 
 const CreateListingComponent = () => {
   const navigate = useNavigate();
+  const { addListing } = useListings();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newListing = { title, price };
-    console.log("New Listing:", newListing);
+
+    const newListing = { id: Date.now(), title, price };
+    addListing(newListing);
+
     navigate("/selling");
   };
 
