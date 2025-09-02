@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
-import SellingComponent from "./SellingComponent/SellingComponent";
+// import SellingComponent from "./SellingComponent/SellingComponent";
 
 // Icons for default, unselected states
 import selectedBrowseAllIcon from "./pictures/selected/sel-browse-all.png";
