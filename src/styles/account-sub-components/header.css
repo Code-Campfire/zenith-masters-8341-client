@@ -1032,14 +1032,15 @@ h1 {
 		max-height: fit-content;
 		background: radial-gradient(1150px circle at 50% -100%, rgb(0, 0, 0), transparent 100px), linear-gradient(to top, var(--component-cards-color), rgb(236, 236, 236));
 	}
-
 	#coverBackground {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
 		grid-area: contain;
-		width: 99vw;
+		/*width conflicts with sidebar*/
+		max-width: 100vw;
+		width: 100%;
 		margin-right: 10%;
 		margin-left: 10%;
 		max-height: 476px;
@@ -1147,79 +1148,80 @@ h1 {
 	.action-btn:hover {
 		background-color: var(--hover-effect-color);
 	}
-    #links-container {
-      grid-area: links;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      height: 60px;
-      width: 100%;
-      background-color: var(--component-cards-color);
-      box-shadow: 0px 2px 2px rgb(228, 228, 228);
-      padding-top: 5px;
-      border-top-style: solid;
-      border-top-width: 1px;
-      border-top-color: rgb(211, 211, 211);
-    }
-    
-    #links {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: space-around;
-      height: 60px;
-      width: 1500px;
-    }
-    
-    #posts-btn {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--font-color);
-      width: 25%;
-      height: 100%;
-      border-width: 3px;
-      margin-left: 15px;
-      background-color: var(--component-cards-color);
-      border-color: transparent;
-    }
-    #posts-btn.clicked {
-      border-bottom-color: var(--logo-color);
-      border-style: solid;
-      border-radius: 4px;
-      color: var(--logo-color);
-    }
-    #about-btn {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--font-color);
-      width: 25%;
-      height: 100%;
-      border-width: 3px;
-      background-color: var(--component-cards-color);
-      border-color: transparent;
-    }
-    #about-btn.clicked {
-      border-style: solid;
-      border-radius: 4px;
-      border-bottom-color: var(--logo-color);
-      color: var(--logo-color);
-    }
-    #friends-btn {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--font-color);
-      width: 25%;
-      height: 100%;
-      border-width: 3px;
-      margin-right: 15px;
-      background-color: var(--component-cards-color);
-      border-color: transparent;
-    }
-    #friends-btn.clicked {
-      border-style: solid;
-      border-radius: 4px;
-      border-bottom-color: var(--logo-color);
-      color: var(--logo-color);
-    }
-  }
+
+	#links-container {
+		grid-area: links;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		height: 60px;
+		width: 100%;
+		background-color: var(--component-cards-color);
+		box-shadow: 0px 2px 2px rgb(228, 228, 228);
+		padding-top: 5px;
+		border-top-style: solid;
+		border-top-width: 1px;
+		border-top-color: rgb(211, 211, 211);
+	}
+
+	#links {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: space-around;
+		height: 60px;
+		width: 1500px;
+	}
+
+	#posts-btn {
+		font-weight: 600;
+		font-size: 15px;
+		color: var(--font-color);
+		width: 25%;
+		height: 100%;
+		border-width: 3px;
+		margin-left: 15px;
+		background-color: var(--component-cards-color);
+		border-color: transparent;
+	}
+	#posts-btn.clicked {
+		border-bottom-color: var(--logo-color);
+		border-style: solid;
+		border-radius: 4px;
+		color: var(--logo-color);
+	}
+	#about-btn {
+		font-weight: 600;
+		font-size: 15px;
+		color: var(--font-color);
+		width: 25%;
+		height: 100%;
+		border-width: 3px;
+		background-color: var(--component-cards-color);
+		border-color: transparent;
+	}
+	#about-btn.clicked {
+		border-style: solid;
+		border-radius: 4px;
+		border-bottom-color: var(--logo-color);
+		color: var(--logo-color);
+	}
+	#friends-btn {
+		font-weight: 600;
+		font-size: 15px;
+		color: var(--font-color);
+		width: 25%;
+		height: 100%;
+		border-width: 3px;
+		margin-right: 15px;
+		background-color: var(--component-cards-color);
+		border-color: transparent;
+	}
+	#friends-btn.clicked {
+		border-style: solid;
+		border-radius: 4px;
+		border-bottom-color: var(--logo-color);
+		color: var(--logo-color);
+	}
+}

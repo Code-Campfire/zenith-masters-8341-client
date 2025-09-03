@@ -2,11 +2,13 @@ import { useState } from 'react'
 import '../../styles/Post.css'
 import { useAppContext } from '../AppContext'
 import { fetchApiPost, postUrls } from '../../services/apiPost'
+import ImageUploader from '../ImageUploader'
 
 export function CreatePost({ setNewsArticle, setIsOpen }) {
 	const { loggedInUser } = useAppContext()
 	const [bodyHasText, setBodyHasText] = useState(false)
 	const [content, setContent] = useState('')
+	const [applyImage, setApplyImage] = useState({})
 
 	function handleButtonToggle(e) {
 		if (e.target.value.length > 0) return setBodyHasText(true)
@@ -19,6 +21,7 @@ export function CreatePost({ setNewsArticle, setIsOpen }) {
 		e.preventDefault()
 		if (content.length === 0) return alert(`The body of your message must have content before posting.`)
 		const newPost = await fetchApiPost(postUrls.posts, { content })
+		newPost.img = applyImage
 		setNewsArticle(prev => [...prev, newPost])
 		setIsOpen(false)
 	}
@@ -41,7 +44,9 @@ export function CreatePost({ setNewsArticle, setIsOpen }) {
 					className="create-post-body"
 					placeholder={`What's on your mind, ${loggedInUser.username}?`}
 				></textarea>
-				<div className="create-post-media">Add media to post</div>
+				{/* <div className="create-post-media">Add media to post</div> */}
+				<ImageUploader setApplyImage={setApplyImage} />
+
 				<button type="submit" onClick={handleCreatingPost} className={`create-post-button ${bodyHasText ? 'active' : ''}`}>
 					Post
 				</button>
