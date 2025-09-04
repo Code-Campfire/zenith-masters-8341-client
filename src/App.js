@@ -10,8 +10,10 @@ import { AuthorizedRoute } from './components/auth/AuthorizedRoute'
 import Register from './components/Register'
 import FriendsList from './components/friends-list/FriendsList'
 import AccountPage from './components/AccountPage'
-import Marketplace from './components/MarketplaceWorking/Marketplace.jsx'
-import ListingDetails from './components/MarketplaceWorking/ListingDetails.jsx'
+
+import Marketplace from './components/Marketplace/MarketPlace.jsx'
+import ListingDetails from './components/Marketplace/ListingDetails.jsx'
+import SellingComponent from './components/Marketplace/SellingComponent/SellingComponent.jsx'
 
 export default function App() {
 	return (
@@ -27,6 +29,17 @@ export default function App() {
 						</AuthorizedRoute>
 					}
 				/>
+
+				{/* Selling page */}
+				<Route
+					path="selling"
+					element={
+						<AuthorizedRoute>
+							<SellingComponent />
+						</AuthorizedRoute>
+					}
+				/>
+
 				<Route
 					path="settings"
 					element={
