@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import '../styles/Home.css'
 import { useAppContext } from './AppContext'
 import { NewsArticleCard } from './home-sub-components/NewsArticleCard'
 import { useNavigate } from 'react-router-dom'
-import Modal from './post-components/Modal'
 import { CreatePost } from './post-components/CreatePost.js'
 import { fetchApiGet, getUrls } from '../services/apiGet.js'
+import Modal from './post-components/Modal'
+import '../styles/Home.css'
 
 function Home() {
 	const { loggedInUser } = useAppContext()

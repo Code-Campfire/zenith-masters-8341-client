@@ -1,5 +1,6 @@
 import FriendsList from './FriendsList'
 import '../styles/UserProfile.css'
+import ImageUploader from './ImageUploader'
 
 export default function UserProfile() {
 	return (

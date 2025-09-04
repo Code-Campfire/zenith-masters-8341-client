@@ -175,7 +175,7 @@ a {
 	.bg-lg {
 		display: none;
 	}
-	.search-bar .searchbar-xl {
+	.search-bar-nav .searchbar-xl {
 		display: none;
 	}
 	.searchbar-lg {
@@ -279,7 +279,7 @@ a {
 	.xlg-screen {
 		display: none;
 	}
-	.search-bar .searchbar-xl {
+	.search-bar-nav .searchbar-xl {
 		display: none;
 	}
 	.navButtons-mid .links-mid {
@@ -291,7 +291,7 @@ a {
 	.bg-sm {
 		display: none;
 	}
-	.searchbar-lg .search-bar {
+	.searchbar-lg .search-bar-nav {
 		display: flex;
 		width: 12em;
 		height: 1em;
@@ -462,7 +462,7 @@ a {
 	.xxlg-screen {
 		display: none;
 	}
-	.search-bar .searchbar-xl {
+	.search-bar-nav .searchbar-xl {
 		display: flex;
 		width: 12em;
 		height: 1em;
@@ -626,7 +626,7 @@ a {
 	.bg-lg {
 		display: none;
 	}
-	.search-bar .searchbar-xl {
+	.search-bar-nav .searchbar-xl {
 		display: flex;
 		width: 12em;
 		height: 1em;
