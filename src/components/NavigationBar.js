@@ -9,7 +9,7 @@ import SettingsDropdown from './SettingsDropdown'
 export default function NavigationBar() {
 	const [userInput, setUserInput] = useState('')
 	const [newNotify, setNewNotify] = useState(0)
-	const [isSidebarActive, setIsSidebarActive] = useState(false)
+	const [isDropdownActive, setIsDropdownActive] = useState(false)
 
 	const updateNotifications = () => {
 		setNewNotify(10)
@@ -117,6 +117,7 @@ export default function NavigationBar() {
 						</div>
 						<div className="bg-sm">
 							<img
+								className="nav-profile-icon"
 								src="/account-icon.png"
 								style={{
 									width: '30px',
@@ -124,7 +125,11 @@ export default function NavigationBar() {
 									cursor: 'pointer',
 								}}
 								alt="Acct Icon"
-								onClick={() => setIsSidebarActive(!isSidebarActive)}
+								onClick={e => {
+									console.log(e.target)
+									console.dir(e.target)
+									setIsDropdownActive(!isDropdownActive)
+								}}
 							/>
 						</div>
 						<div className="bg-lg">
@@ -192,6 +197,7 @@ export default function NavigationBar() {
 						</div>
 						<div className="bg-lg">
 							<img
+								className="nav-profile-icon"
 								src="/account-icon.png"
 								style={{
 									width: '30px',
@@ -199,11 +205,16 @@ export default function NavigationBar() {
 									cursor: 'pointer',
 								}}
 								alt="Acct Icon"
-								onClick={() => setIsSidebarActive(!isSidebarActive)}
+								onClick={e => {
+									console.log(e.target)
+									console.dir(e.target)
+									setIsDropdownActive(!isDropdownActive)
+								}}
 							/>
 						</div>
 						<div className="bg-xlg">
 							<img
+								className="nav-profile-icon"
 								src="/account-icon.png"
 								style={{
 									width: '30px',
@@ -211,11 +222,16 @@ export default function NavigationBar() {
 									cursor: 'pointer',
 								}}
 								alt="Acct Icon"
-								onClick={() => setIsSidebarActive(!isSidebarActive)}
+								onClick={e => {
+									console.log(e.target)
+									console.dir(e.target)
+									setIsDropdownActive(!isDropdownActive)
+								}}
 							/>
 						</div>
 						<div className="bg-xxlg">
 							<img
+								className="nav-profile-icon"
 								src="/account-icon.png"
 								style={{
 									width: '30px',
@@ -223,10 +239,14 @@ export default function NavigationBar() {
 									cursor: 'pointer',
 								}}
 								alt="Acct Icon"
-								onClick={() => setIsSidebarActive(!isSidebarActive)}
+								onClick={e => {
+									console.log(e.target)
+									console.dir(e.target)
+									setIsDropdownActive(!isDropdownActive)
+								}}
 							/>
 						</div>
-						{isSidebarActive && <SettingsDropdown />}
+						{isDropdownActive && <SettingsDropdown isDropdownActive={isDropdownActive} setIsDropdownActive={setIsDropdownActive} />}
 					</div>
 				</div>
 			</div>

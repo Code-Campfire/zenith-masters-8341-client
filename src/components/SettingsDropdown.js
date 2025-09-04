@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaCog, FaBookmark, FaSignOutAlt } from 'react-icons/fa'
 import { useAppContext } from './AppContext'
 import '../styles/SettingsDropdown.css'
 
-export default function SettingsDropdown() {
+export default function SettingsDropdown({ isDropdownActive, setIsDropdownActive }) {
 	const resetSideBar = 768
 	const [isCollapsed, setIsCollapsed] = useState(true)
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= resetSideBar)
+	const [currentClassName, setCurrentClassName] = useState()
 	const { setLoggedInUser } = useAppContext()
 	const navigate = useNavigate()
 
@@ -34,6 +35,23 @@ export default function SettingsDropdown() {
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
 
+	//useEffect to add an event listener to window
+	const menuRef = useRef(null)
+
+	useEffect(() => {
+		function handleClick(e) {
+			// If click is outside the dropdown, close it
+			console.log(e.target.className === 'nav-profile-icon')
+			if (e.target.className === 'nav-profile-icon') return
+			if (menuRef.current && !menuRef.current.contains(e.target)) {
+				setIsDropdownActive(false)
+			}
+		}
+		document.addEventListener('click', handleClick)
+
+		return () => document.removeEventListener('click', handleClick)
+	}, [])
+
 	function handleLogout() {
 		localStorage.removeItem('user')
 		localStorage.removeItem('token')
@@ -42,23 +60,41 @@ export default function SettingsDropdown() {
 		navigate('/login')
 	}
 	return (
-		<div className="dropdown-nav">
-			<div className="dropdown-profile">test</div>
+		<div className="dropdown-nav" ref={menuRef}>
+			<div
+				className="dropdown-profile"
+				onClick={() => {
+					navigate('/account')
+					setIsDropdownActive(false)
+				}}
+			>
+				<img className="dropdown-profile-pic" alt="img" src="" />
+				<div className="dropdown-profile-name">Name</div>
+			</div>
 			<div className="dropdown-settings">
 				<ul className="d-flex flex-column">
-					<li className={activeLink('/posts/saved') ? 'active' : ''}>
+					<li onClick={() => setIsDropdownActive(false)} className="dropdown-button">
 						<Link to="posts/saved" className="dropdown-link">
-							<FaBookmark /> Saved Posts
+							<FaBookmark />
+							<p style={{ marginLeft: '10px' }}>Saved Posts</p>
 						</Link>
 					</li>
-					<li className={activeLink('/settings') ? 'active' : ''}>
+					<li onClick={() => setIsDropdownActive(false)} className="dropdown-button">
 						<Link to="settings" className="dropdown-link">
-							<FaCog /> Settings
+							<FaCog />
+							<p style={{ marginLeft: '10px' }}>Settings</p>
 						</Link>
 					</li>
-					<li className={activeLink('/login') ? 'active' : ''} onClick={handleLogout}>
+					<li
+						onClick={() => {
+							setIsDropdownActive(false)
+							handleLogout()
+						}}
+						className="dropdown-button"
+					>
 						<Link to="login" className="dropdown-link">
-							<FaSignOutAlt /> Logout
+							<FaSignOutAlt />
+							<p style={{ marginLeft: '10px' }}>Logout</p>
 						</Link>
 					</li>
 				</ul>
