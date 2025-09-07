@@ -6,6 +6,8 @@ import { fetchApiGet, getUrls } from '../services/apiGet'
 export const AppProvider = ({ children }) => {
 	const [loggedInUser, setLoggedInUser] = useState(null)
 	const [loading, setLoading] = useState(false)
+	const [profilePicture, setProfilePicture] = useState(null)
+	const [backgroundPicture, setBackgroundPicture] = useState(null)
 	const location = useLocation()
 
 	const validateUser = async () => {
@@ -44,5 +46,5 @@ export const AppProvider = ({ children }) => {
 		validateUser()
 	}, [location.pathname])
 
-	return <AppContext.Provider value={{ loggedInUser, setLoggedInUser, loading, setLoading }}>{children}</AppContext.Provider>
+	return <AppContext.Provider value={{ profilePicture, setProfilePicture, backgroundPicture, setBackgroundPicture, loggedInUser, setLoggedInUser, loading, setLoading }}>{children}</AppContext.Provider>
 }

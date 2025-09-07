@@ -53,4 +53,7 @@ export const postUrls = {
 	userById: userId => `bookface/users/${userId}/`,
 	likes: postId => `bookface/posts/${postId}/like/`,
 	comments: postId => `bookface/posts/${postId}/comments/`,
+	imageUpload: `bookface/imageUploads/`,
+	assignProfilePic: `bookface/user-pictures/set-profile-pic/`,
+	// profileImageUpload: `bookface/user-pictures/set-profile-pic/`,
 }

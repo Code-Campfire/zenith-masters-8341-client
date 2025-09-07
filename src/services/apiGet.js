@@ -52,4 +52,5 @@ export const getUrls = {
 	postById: postId => `bookface/posts/${postId}/`,
 	commentsByPostId: postId => `bookface/posts/${postId}/with-comments/`,
 	paginatedPosts: (page, pageSize) => `bookface/posts/?page=${page}&page_size=${pageSize}`,
+	imageById: userId => `bookface/imageUploads/profile-pic/${userId}/`,
 }

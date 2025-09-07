@@ -3,9 +3,11 @@ import '../styles/Login.css'
 import { useReducer } from 'react'
 import { fetchLogin } from '../services/apiLoginAndRegister'
 import { useAppContext } from './AppContext'
+import { fetchApiGet, getUrls } from '../services/apiGet'
+import { fetchApiPost, postUrls } from '../services/apiPost'
 
 export default function Login() {
-	const { loggedInUser, setLoggedInUser } = useAppContext()
+	const { loggedInUser, setLoggedInUser, setProfilePicture } = useAppContext()
 	const [user, dispatch] = useReducer(
 		(state, action) => ({
 			...state,
@@ -27,6 +29,12 @@ export default function Login() {
 			const data = await fetchLogin(user.username, user.password)
 			if (data.user) {
 				setLoggedInUser(data.user)
+				if (data.user.profile_pic) {
+					const { image_base64 } = await fetchApiGet(getUrls.imageById(data.user.id))
+					console.log(image_base64)
+					setProfilePicture(`data:image/png;base64,${image_base64}`)
+				}
+				console.log(data.user, ' USER WHO JUST LOGGED IN')
 				navigate('/')
 			} else {
 				throw new Error('Login failed: Failed to retrieve token')

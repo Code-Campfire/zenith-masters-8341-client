@@ -3,7 +3,7 @@ import { fetchApiPost, postUrls } from '../../services/apiPost'
 import { fetchApiGet, getUrls } from '../../services/apiGet'
 import '../../styles/Comment.css'
 
-export function Comment({ newsArticle, setNewsArticle, setIsOpen }) {
+export function Comment({ newsArticle, setNewsArticle, setIsOpen, postImage }) {
 	const [content, setContent] = useState(null)
 	const [tempImage, setTempImage] = useState('https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=')
 
@@ -28,7 +28,7 @@ export function Comment({ newsArticle, setNewsArticle, setIsOpen }) {
 					<h3 className="create-comment-heading">Make a comment</h3>
 				</div>
 				<div className="user-post-body">{newsArticle.content}</div>
-				<img src={tempImage} className="user-post-image" />
+				<img src={postImage || tempImage} className="user-post-image" />
 				<div>Placeholder for user comments</div>
 				<textarea
 					onChange={e => {

@@ -3,7 +3,7 @@ import { fetchApiPost, postUrls } from '../../services/apiPost'
 import '../../styles/ViewSinglePost.css'
 import { fetchApiGet, getUrls } from '../../services/apiGet'
 
-export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen }) {
+export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen, postImage }) {
 	const [content, setContent] = useState(null)
 	const [comments, setComments] = useState(null)
 	const [isLoading, setIsLoading] = useState(true)
@@ -47,7 +47,7 @@ export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen }) {
 				</div>
 				<div className="sp-title">{newsArticle.title}</div>
 				<div className="sp-text-body">{newsArticle?.content}</div>
-				<div className="sp-image-body">{tempImage ? <img className="sp-image" alt="post image" src={tempImage} /> : <div>NOT IMAGE</div>}</div>
+				<div className="sp-image-body">{<img className="sp-image" alt="post image" src={postImage || tempImage} />}</div>
 				{/* <div className="sp-image-body">{newsArticle.img ? <img alt="post image" src={newsArticle?.img} /> : <div>NOT IMAGE</div>}</div> */}
 			</div>
 			<div className="sp-lower-half">

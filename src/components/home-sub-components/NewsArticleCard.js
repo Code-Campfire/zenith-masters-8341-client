@@ -12,15 +12,13 @@ import { ViewSinglePost } from '../post-components/ViewSinglePost'
 export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 	const { loggedInUser } = useAppContext()
 	const { author } = newsArticle
+	const postImage = newsArticle?.images[0]?.image_base64 ? `data:image/png;base64,${newsArticle?.images[0]?.image_base64}` : null
 	const userIsAuthor = loggedInUser?.id === author?.id ? true : false
 	const [isOpen, setIsOpen] = useState(false)
 	const [modalType, setModalType] = useState(null)
 	const [tempImage, setTempImage] = useState(newsArticle?.img ? newsArticle.img : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=')
 
 	async function handleDeletePost() {
-		console.log(loggedInUser, ' logged in user')
-		console.log(author, ' logged in user')
-		console.log(userIsAuthor, ' user is author')
 		await fetchApiDelete(deleteUrls.deletePost, newsArticle.id)
 		const getPosts = async () => {
 			const { results } = await fetchApiGet(postUrls.posts)
@@ -33,7 +31,6 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 
 	async function handleLike() {
 		try {
-			console.log(newsArticle, ' news article from clicking')
 			if (author.id === loggedInUser.id) return alert(`You cannot like your own post`)
 			await fetchApiPost(postUrls.likes(newsArticle.id))
 			const updatedPost = await fetchApiGet(getUrls.postById(newsArticle.id))
@@ -74,7 +71,7 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 				<div className="news-article-title">{newsArticle.title}</div>
 				<div className="news-article-text-body">{newsArticle?.content}</div>
 			</div>
-			<div className="news-article-body">{newsArticle.img ? <img className="user-post-image" alt="post image" src={newsArticle?.img} /> : <img className="user-post-image" src={tempImage} />}</div>
+			<div className="news-article-body">{newsArticle.images ? <img className="user-post-image" alt="post image" src={postImage} /> : <img className="user-post-image" src={tempImage} />}</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
 					<div>Likes: {newsArticle?.like_count}</div>
@@ -97,9 +94,9 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 			</div>
 			{isOpen && (
 				<Modal isOpen={isOpen} onClose={closeModal}>
-					{modalType === 'edit' && <EditPost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />}
-					{modalType === 'comment' && <Comment newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />}
-					{modalType === 'viewPost' && <ViewSinglePost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />}
+					{modalType === 'edit' && <EditPost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} />}
+					{modalType === 'comment' && <Comment newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} />}
+					{modalType === 'viewPost' && <ViewSinglePost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} />}
 				</Modal>
 			)}
 		</div>

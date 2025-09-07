@@ -32,9 +32,10 @@
 	border-bottom: 2px solid var(--secondary-border-color);
 }
 .sp-image-body {
-	max-height: 594px;
+	max-height: 680px;
 	width: 100%;
 	align-self: center;
+	overflow: hidden;
 }
 
 .sp-image {

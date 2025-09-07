@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import '../styles/ImageUploader.css'
+import { fetchApiPost, postUrls } from '../services/apiPost'
 
-export function ImageUploader({ setApplyImage }) {
+export function ImageUploader({ setApplyImage, setBase64, base64 }) {
 	const [selectedFile, setSelectedFile] = useState(null)
 	const [previewURL, setPreviewURL] = useState(null)
-	const [base64, setBase64] = useState('')
 	const [uploadStatus, setUploadStatus] = useState('')
 
 	const handleFileChange = e => {
@@ -13,9 +13,13 @@ export function ImageUploader({ setApplyImage }) {
 			const reader = new FileReader()
 			reader.onloadend = () => {
 				const base64String = reader.result.split(',')[1] // Remove "data:image/png;base64,"
-				setBase64(base64String)
+				setBase64(prev => ({
+					...prev,
+					upload_image: base64String,
+				}))
+				console.log(reader.result)
 				setPreviewURL(reader.result)
-				setApplyImage(previewURL)
+				setApplyImage(`data:image/png;base64,${previewURL}`)
 				setSelectedFile(file)
 				const formData = new FormData()
 				formData.append('image', reader.result)
@@ -31,42 +35,12 @@ export function ImageUploader({ setApplyImage }) {
 		console.log(selectedFile, ' selected file')
 	}, [base64])
 
-	const handleUpload = async (e, body) => {
-		console.log(body)
-		e.preventDefault()
-		try {
-			const token = localStorage.getItem('token')
-			const response = await fetch('http://localhost:8000/bookface/imageUploads/', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					caption: 'Test',
-					upload_image: body,
-				}),
-			})
-			const data = await response.json()
-			console.log(data)
-			if (response.ok) {
-				setUploadStatus('Upload successful!')
-			} else {
-				setUploadStatus('Upload failed.')
-			}
-		} catch (error) {
-			console.error(error)
-			setUploadStatus('An error occurred.')
-		}
-	}
-
 	return (
 		<div className="create-post-media">
 			<div>Add media to post</div>
-			<input style={{}} type="file" accept="image/*" onChange={handleFileChange} />
+			<input type="file" accept="image/*" onChange={handleFileChange} />
 			{previewURL && <img src={previewURL} alt="Preview" style={{ maxWidth: '200px' }} />}
 			<p>{uploadStatus}</p>
-			{previewURL && <button onClick={e => handleUpload(e, base64)}>Upload</button>}
 		</div>
 	)
 }
