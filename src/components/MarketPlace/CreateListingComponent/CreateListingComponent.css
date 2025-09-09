@@ -2,9 +2,17 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 300px;
 }
 
 .form input,
 .form button {
   padding: 8px;
+}
+
+@media (max-width: 768px) {
+  .form {
+    padding-right: 80px;
+    width: 280px;
+  }
 }
