@@ -2,6 +2,7 @@ import Sidebar from "../Sidebar.jsx";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useListings } from "../CreateListingComponent/ListingsContext.jsx";
+import "./CreateListingComponent.css";
 
 const CreateListingComponent = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const CreateListingComponent = () => {
       <Sidebar />
       <div className="content">
         <h2>Create New Listing</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
           <input
             type="text"
             placeholder="Short Title"
