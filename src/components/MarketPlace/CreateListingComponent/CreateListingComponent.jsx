@@ -8,12 +8,14 @@ const CreateListingComponent = () => {
   const navigate = useNavigate();
   const { addListing } = useListings();
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [location, setLocation] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newListing = { id: Date.now(), title, price };
+    const newListing = { id: Date.now(), title, description, price };
     addListing(newListing);
 
     navigate("/selling");
@@ -34,20 +36,20 @@ const CreateListingComponent = () => {
           <input
             type="text"
             placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Price"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            type="text"
             placeholder="Location"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
           />
           <button type="submit">Post Listing</button>
         </form>
