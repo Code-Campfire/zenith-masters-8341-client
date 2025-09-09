@@ -26,15 +26,27 @@ const CreateListingComponent = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Item Title"
+            placeholder="Short Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Price"
+            placeholder="Description"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Price"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Location"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <button type="submit">Post Listing</button>
         </form>
