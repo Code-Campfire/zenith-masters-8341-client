@@ -3,6 +3,7 @@ import '../../styles/Post.css'
 import { useAppContext } from '../AppContext'
 import { fetchApiPost, postUrls } from '../../services/apiPost'
 import ImageUploader from '../ImageUploader'
+import { ProfilePicture } from '../ProfilePicture'
 
 export function CreatePost({ setNewsArticle, setIsOpen }) {
 	const { loggedInUser } = useAppContext()
@@ -40,7 +41,7 @@ export function CreatePost({ setNewsArticle, setIsOpen }) {
 					<h3 className="create-post-heading">Create Post</h3>
 				</div>
 				<div className="create-post-user-info">
-					<img alt="profile-pic" src="profile-img.svg" />
+					<ProfilePicture customClass={`pp-post`} />
 					<p>{loggedInUser && `${loggedInUser.username}`}</p>
 				</div>
 				<textarea

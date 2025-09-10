@@ -7,7 +7,7 @@ import { fetchApiGet, getUrls } from '../services/apiGet'
 import { fetchApiPost, postUrls } from '../services/apiPost'
 
 export default function Login() {
-	const { loggedInUser, setLoggedInUser, setProfilePicture } = useAppContext()
+	const { loggedInUser, setLoggedInUser, setProfilePicture, setBackgroundPicture } = useAppContext()
 	const [user, dispatch] = useReducer(
 		(state, action) => ({
 			...state,
@@ -29,11 +29,17 @@ export default function Login() {
 			const data = await fetchLogin(user.username, user.password)
 			if (data.user) {
 				setLoggedInUser(data.user)
-				if (data.user.profile_pic) {
-					const { image_base64 } = await fetchApiGet(getUrls.imageById(data.user.id))
-					console.log(image_base64)
-					setProfilePicture(`data:image/png;base64,${image_base64}`)
-				}
+				console.log(data.user, ' data.user')
+
+				const [bgRes, ppRes] = await Promise.all([await fetchApiGet(getUrls.backgroundImageById(data.user.id)), await fetchApiGet(getUrls.imageById(data.user.id))])
+				const ppPic = `data:image/png;base64,${ppRes?.image_base64}`
+				const bgPic = `data:image/png;base64,${bgRes?.image_base64}`
+				console.log(ppPic, ' PP PIC')
+				localStorage.setItem('profile-picture', ppPic)
+				localStorage.setItem('background-picture', bgPic)
+				setBackgroundPicture(bgPic)
+				setProfilePicture(ppPic)
+
 				console.log(data.user, ' USER WHO JUST LOGGED IN')
 				navigate('/')
 			} else {

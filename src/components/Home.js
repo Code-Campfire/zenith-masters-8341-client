@@ -6,17 +6,14 @@ import { CreatePost } from './post-components/CreatePost.js'
 import { fetchApiGet, getUrls } from '../services/apiGet.js'
 import Modal from './post-components/Modal'
 import '../styles/Home.css'
+import { ProfilePicture } from './ProfilePicture.js'
 
 function Home() {
 	const { loggedInUser } = useAppContext()
 	const username = loggedInUser?.username
-	const [newsArticle, setNewsArticle] = useState([
-		// { id: 2, name: 'Bucky', timestamp: '5-22-2025', title: 'Article 1', body: 'Body of article 1', img: 'https://images.pexels.com/photos/2071882/pexels-photo-2071882.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', like: 'Like', comment: 'Comment', share: 'Share' },
-	])
+	const [newsArticle, setNewsArticle] = useState([])
 	const [page, setPage] = useState(1)
-	const [isLoading, setIsLoading] = useState(false)
 	const [isOpen, setIsOpen] = useState(false)
-	const isLoadingRef = useRef(false)
 	const mainContentRef = useRef(null)
 	const navigate = useNavigate()
 
@@ -63,12 +60,10 @@ function Home() {
 
 	useEffect(() => {
 		async function fetchMorePosts() {
-			setIsLoading(true)
 			const { results } = await fetchApiGet(getUrls.paginatedPosts(page, 3))
 			if (results) {
 				setNewsArticle(prev => [...prev, ...results])
 			}
-			setIsLoading(false)
 		}
 		fetchMorePosts()
 	}, [page])
@@ -94,8 +89,8 @@ function Home() {
 						}}
 					>
 						<picture>
-							<source srcset="profile-img.svg" />
-							<img alt="placeholder" style={{ borderRadius: '20px', width: '40px', marginRight: '20px' }} />
+							<ProfilePicture customClass={`pp-sidebar`} />
+							{/* <img alt="placeholder" style={{ borderRadius: '20px', width: '40px', marginRight: '20px' }} /> */}
 						</picture>
 						<div>{username}</div>
 					</div>
@@ -123,8 +118,7 @@ function Home() {
 				<div className="status">
 					<div className="status-top">
 						<picture>
-							<source srcSet="profile-img.svg" />
-							<img style={{ borderRadius: '25px' }} src="profile-image.svg" alt="placeholder" width="50px" />
+							<ProfilePicture customClass={`pp-home`} />
 						</picture>
 						<div onClick={() => setIsOpen(true)} className="whats-on-your-mind">
 							{username && `What's on your mind, ${username}?`}

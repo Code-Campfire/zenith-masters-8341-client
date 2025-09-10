@@ -5,11 +5,13 @@ import SearchBar from './SearchBar'
 import NotificationsBubble from './Notifications'
 import '../styles/index.css'
 import SettingsDropdown from './SettingsDropdown'
+import { useAppContext } from './AppContext'
 
 export default function NavigationBar() {
 	const [userInput, setUserInput] = useState('')
 	const [newNotify, setNewNotify] = useState(0)
 	const [isDropdownActive, setIsDropdownActive] = useState(false)
+	const { profilePicture, setProfilePicture } = useAppContext()
 
 	const updateNotifications = () => {
 		setNewNotify(10)
@@ -118,11 +120,12 @@ export default function NavigationBar() {
 						<div className="bg-sm">
 							<img
 								className="nav-profile-icon"
-								src="/account-icon.png"
+								src={profilePicture}
 								style={{
 									width: '30px',
 									height: '30px',
 									cursor: 'pointer',
+									borderRadius: '50%',
 								}}
 								alt="Acct Icon"
 								onClick={e => {
@@ -198,11 +201,12 @@ export default function NavigationBar() {
 						<div className="bg-lg">
 							<img
 								className="nav-profile-icon"
-								src="/account-icon.png"
+								src={profilePicture}
 								style={{
 									width: '30px',
 									height: '30px',
 									cursor: 'pointer',
+									borderRadius: '50%',
 								}}
 								alt="Acct Icon"
 								onClick={e => {
@@ -215,11 +219,12 @@ export default function NavigationBar() {
 						<div className="bg-xlg">
 							<img
 								className="nav-profile-icon"
-								src="/account-icon.png"
+								src={profilePicture}
 								style={{
 									width: '30px',
 									height: '30px',
 									cursor: 'pointer',
+									borderRadius: '50%',
 								}}
 								alt="Acct Icon"
 								onClick={e => {
@@ -232,11 +237,12 @@ export default function NavigationBar() {
 						<div className="bg-xxlg">
 							<img
 								className="nav-profile-icon"
-								src="/account-icon.png"
+								src={profilePicture}
 								style={{
 									width: '30px',
 									height: '30px',
 									cursor: 'pointer',
+									borderRadius: '50%',
 								}}
 								alt="Acct Icon"
 								onClick={e => {

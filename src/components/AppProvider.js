@@ -26,6 +26,16 @@ export const AppProvider = ({ children }) => {
 			const user = await fetchApiGet(getUrls.userById(userToValidate.id))
 			if (user) {
 				setLoggedInUser(user)
+				if (!profilePicture) {
+					const storedProfilePicture = localStorage.getItem('profile-picture')
+					setProfilePicture(storedProfilePicture)
+					console.log(storedProfilePicture)
+				}
+				if (!backgroundPicture) {
+					const storedBackgroundPicture = localStorage.getItem('background-picture')
+					console.log(storedBackgroundPicture)
+					setBackgroundPicture(storedBackgroundPicture)
+				}
 			} else {
 				localStorage.removeItem('token')
 				localStorage.removeItem('refresh')
@@ -45,6 +55,23 @@ export const AppProvider = ({ children }) => {
 	useEffect(() => {
 		validateUser()
 	}, [location.pathname])
+
+	useEffect(() => {
+		console.log(loggedInUser, ' loggedInUser')
+		if (loggedInUser) {
+			if (!profilePicture) {
+				const storedProfilePicture = localStorage.getItem('profile-picture')
+				setProfilePicture(storedProfilePicture)
+				console.log(storedProfilePicture)
+			}
+			console.log(backgroundPicture)
+			if (!backgroundPicture) {
+				const storedBackgroundPicture = localStorage.getItem('background-picture')
+				console.log(storedBackgroundPicture)
+				setBackgroundPicture(storedBackgroundPicture)
+			}
+		}
+	}, [])
 
 	return <AppContext.Provider value={{ profilePicture, setProfilePicture, backgroundPicture, setBackgroundPicture, loggedInUser, setLoggedInUser, loading, setLoading }}>{children}</AppContext.Provider>
 }

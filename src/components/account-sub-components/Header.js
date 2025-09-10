@@ -8,37 +8,47 @@ import NameTitle from './NameTitle'
 import FriendsList from '../friends-list/FriendsList'
 import { useAppContext } from '../AppContext'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { fetchApiPost, postUrls } from '../../services/apiPost'
+import { BackgroundPicture } from '../BackgroundPicture'
 
 export default function Header({ friendListAmount, userObject }) {
 	const [currentPosts, setCurrentPosts] = useState([])
 	const [currentComponent, setCurrentComponent] = useState('posts')
 	const { loggedInUser } = useAppContext()
 	const navigate = useNavigate()
+	const { backgroundPicture, setBackgroundPicture } = useAppContext()
 
-	let userID = true
+	let userId = true
+
+	const handleFileChange = async e => {
+		const file = e.target.files[0]
+		if (file) {
+			const reader = new FileReader()
+			reader.onloadend = async () => {
+				const base64String = reader.result.split(',')[1] // Remove "data:image/png;base64,"
+				// setImage(reader.result)
+				setBackgroundPicture(reader.result)
+				localStorage.setItem('background-picture', reader.result)
+				const createdImage = await fetchApiPost(postUrls.imageUpload, { caption: 'Background pic!', upload_image: base64String })
+				const assignProfilePic = await fetchApiPost(postUrls.assignBackgroundPic, { image_id: createdImage.id })
+
+				const formData = new FormData()
+				formData.append('image', reader.result)
+			}
+
+			reader.readAsDataURL(file)
+		}
+		console.log(file, ' this is the file')
+	}
+
 	return (
 		<>
 			<div id="header">
 				<div id="coverBackgroundContainer">
-					<div id="coverBackground">
-						<picture>
-							<source srcSet="cover-img.svg" alt="cover-img" />
-							<img
-								src="cover-img.svg"
-								alt="cover-img"
-								style={{
-									display: 'flex',
-									flexDirection: 'row',
-									alignItems: 'center',
-									width: '100%',
-									height: '100%',
-									maxHeight: '476px',
-									borderBottomRightRadius: '10px',
-									borderBottomLeftRadius: '10px',
-								}}
-							/>
-						</picture>
-					</div>
+					<label className="upload-label" for="fileInput">
+						<BackgroundPicture customClass={`bg-profile`} />
+						<input id="fileInput" style={{ display: 'none' }} type="file" accept="image/*" onChange={handleFileChange} />
+					</label>
 				</div>
 				<div id="main-container">
 					<div id="main">
@@ -53,7 +63,7 @@ export default function Header({ friendListAmount, userObject }) {
 						</div>
 						<div className="action-btn-area">
 							<div className="action-btn-container">
-								{userID ? <AddToStoryBtn customStyles={{ width: '100px', height: '100px' }} /> : <AddFriendBtn />}
+								{userId ? <AddToStoryBtn customStyles={{ width: '100px', height: '100px' }} /> : <AddFriendBtn />}
 								<EditProfileBtn />
 							</div>
 						</div>

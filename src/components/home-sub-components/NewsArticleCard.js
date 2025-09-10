@@ -28,10 +28,10 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 		}
 		getPosts()
 	}
-
+	console.log(author, ' author')
 	async function handleLike() {
 		try {
-			if (author.id === loggedInUser.id) return alert(`You cannot like your own post`)
+			// if (author.id === loggedInUser.id) return alert(`You cannot like your own post`)
 			await fetchApiPost(postUrls.likes(newsArticle.id))
 			const updatedPost = await fetchApiGet(getUrls.postById(newsArticle.id))
 			setNewsArticle(prev => prev.map(post => (post.id === updatedPost.id ? updatedPost : post)))
@@ -55,11 +55,7 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 			<div className="news-heading-container" onClick={() => openModal('viewPost')}>
 				<div className="picture-name-timestamp-container">
 					<picture className="article-icon">
-						<img
-							alt="placeholder"
-							src="https://static.vecteezy.com/system/resources/previews/027/989/305/non_2x/placeholder-icon-in-trendy-flat-style-isolated-on-white-background-placeholder-silhouette-symbol-for-your-website-design-logo-app-ui-illustration-eps10-free-vector.jpg"
-							style={{ height: '40px' }}
-						/>
+						<img alt="placeholder" src={`data:image/png;base64,${newsArticle?.images?.image_base64}`} style={{ height: '40px' }} />
 					</picture>
 					<div className="name-timestamp-container">
 						<div className="article-username">{author?.username}</div>

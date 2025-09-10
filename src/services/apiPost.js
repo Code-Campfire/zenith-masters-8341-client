@@ -55,5 +55,6 @@ export const postUrls = {
 	comments: postId => `bookface/posts/${postId}/comments/`,
 	imageUpload: `bookface/imageUploads/`,
 	assignProfilePic: `bookface/user-pictures/set-profile-pic/`,
+	assignBackgroundPic: `bookface/user-pictures/set-background-pic/`,
 	// profileImageUpload: `bookface/user-pictures/set-profile-pic/`,
 }
