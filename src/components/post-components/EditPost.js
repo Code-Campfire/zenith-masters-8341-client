@@ -25,7 +25,7 @@ export function EditPost({ newsArticle, setNewsArticle, setIsOpen }) {
 	}
 	console.log(loggedInUser)
 	return (
-		<form>
+		<form style={{ width: '100%' }}>
 			<div className="create-post-container">
 				<div className="create-post-heading-container">
 					<h3 className="create-post-heading">Edit Post</h3>

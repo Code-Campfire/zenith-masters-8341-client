@@ -1,35 +1,45 @@
-.sideBar {
+.dropdown-nav {
 	display: flex;
-	flex-direction: row-reverse;
-	align-items: center;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: center;
 	box-shadow: 1px 1px 5px rgb(193, 193, 193);
-	height: 89vh; /* Subtract navbar height from viewport */
-	max-width: 250px;
-	min-width: 28px;
+	max-width: 400px;
+	width: 100%;
+	padding: 12px;
 	border-radius: 7px;
-	transition: max-width 0.3s ease;
 	overflow: hidden;
 	background-color: white;
-	margin-top: 20px;
-	margin-bottom: 20px;
 	z-index: 1000;
+	position: absolute;
+	top: 50px;
+	right: 20px;
 }
 
-.sideBarToggle {
-	opacity: 0;
-	width: 28px;
-	height: 250px;
-	font-size: 14px;
+.dropdown-nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+.dropdown-profile {
+	display: flex;
+	align-items: center;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
-	border: 0px solid white;
-	background-color: rgb(243, 243, 243);
-	box-shadow: 0px 0px 5px rgb(135, 135, 135);
-	transition: opacity 0.5s ease;
+	height: 70px;
+	width: 100%;
+	cursor: pointer;
+}
+.dropdown-profile:hover {
+	background-color: #f2f2f2;
 }
 
-.sideBarToggle:hover {
-	opacity: 100%;
+.dropdown-profile:active {
+	background-color: #dddddd;
+}
+.dropdown-profile-pic {
+}
+.dropdown-profile-name {
+	margin-left: 8px;
 }
 
 .sideBarToggle.isMobile {
@@ -43,19 +53,24 @@
 	padding: 0 !important;
 }
 
-.sideBar-link {
+.dropdown-link {
 	display: flex;
 	align-items: center;
-	color: rgb(97, 97, 97) !important;
+	color: rgb(30, 30, 30);
 	font-size: 20px;
-	text-decoration: none;
 	cursor: pointer;
 	text-wrap: nowrap;
+	text-decoration: none;
 	margin: 10px;
 	height: 40px;
 	width: 100%;
 }
-
+.dropdown-button:hover {
+	background: var(--fb-hover-link-color);
+}
+.dropdown-button:active {
+	background: var(--fb-active-class-link-color);
+}
 .sideBar-link svg {
 	color: rgb(71, 71, 71);
 	height: 25px;
@@ -73,14 +88,6 @@
 	opacity: 100%;
 }
 
-.sideBar li {
-	display: flex;
-	border-radius: 7px;
-	cursor: pointer;
-	margin: 10px 0 10px 0;
-	box-shadow: 2px 2px 0px rgb(215, 215, 215);
-	transition: background-color 0.3s ease;
-}
 .sideBar li:hover {
 	background-color: #f2f2f2;
 }

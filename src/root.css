@@ -37,3 +37,6 @@
 button {
 	cursor: pointer !important;
 }
+textarea {
+	resize: none;
+}

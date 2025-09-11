@@ -46,6 +46,10 @@ export const getUrls = {
 	posts: 'bookface/posts/',
 	friends: 'bookface/simps/accepted_relationships/',
 	usersWithRelationships: 'bookface/users/AndRelationships/',
+	comments: `bookface/comments/`,
+	images: `bookface/imageUploads`,
 	userById: userId => `bookface/users/${userId}/`,
+	postById: postId => `bookface/posts/${postId}/`,
+	commentsByPostId: postId => `bookface/posts/${postId}/with-comments/`,
 	paginatedPosts: (page, pageSize) => `bookface/posts/?page=${page}&page_size=${pageSize}`,
 }

@@ -12,7 +12,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 export default function Header({ friendListAmount, userObject }) {
 	const [currentPosts, setCurrentPosts] = useState([])
 	const [currentComponent, setCurrentComponent] = useState('posts')
-	const { loggedInUser, setLoggedInUser } = useAppContext()
+	const { loggedInUser } = useAppContext()
 	const navigate = useNavigate()
 
 	let userID = true
