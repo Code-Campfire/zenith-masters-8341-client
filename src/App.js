@@ -10,10 +10,12 @@ import { AuthorizedRoute } from './components/auth/AuthorizedRoute'
 import Register from './components/Register'
 import FriendsList from './components/friends-list/FriendsList'
 import AccountPage from './components/AccountPage'
+import { ListingsProvider } from './components/Marketplace/CreateListingComponent/ListingsContext.jsx'
 
-import ListingDetails from './components/MarketPlace/ListingDetails.jsx'
-import SellingComponent from './components/MarketPlace/SellingComponent/SellingComponent.jsx'
-import Marketplace from './components/MarketPlace/MarketPlace.jsx'
+import CreateListingComponent from './components/Marketplace/CreateListingComponent/CreateListingComponent.jsx'
+import Marketplace from './components/Marketplace/MarketPlace.jsx'
+import ListingDetails from './components/Marketplace/ListingDetails.jsx'
+import SellingComponent from './components/Marketplace/SellingComponent/SellingComponent.jsx'
 
 export default function App() {
 	return (
