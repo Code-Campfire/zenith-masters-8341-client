@@ -25,3 +25,4 @@ yarn-error.log*
 /.storybook
 src/stories
 src/components/account-sub-components/AddToStoryBtn.js
+/myImages
