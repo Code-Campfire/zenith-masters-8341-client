@@ -61,7 +61,7 @@
 	cursor: pointer;
 	text-wrap: nowrap;
 	text-decoration: none;
-	margin: 10px;
+	padding: 10px;
 	height: 40px;
 	width: 100%;
 }

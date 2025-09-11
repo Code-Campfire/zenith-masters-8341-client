@@ -4,13 +4,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaCog, FaBookmark, FaSignOutAlt } from 'react-icons/fa'
 import { useAppContext } from './AppContext'
 import '../styles/SettingsDropdown.css'
+import { ProfilePicture } from './ProfilePicture'
 
-export default function SettingsDropdown({ isDropdownActive, setIsDropdownActive }) {
+export default function SettingsDropdown({ setIsDropdownActive }) {
 	const resetSideBar = 768
 	const [isCollapsed, setIsCollapsed] = useState(true)
 	const [isMobile, setIsMobile] = useState(window.innerWidth <= resetSideBar)
-	const [currentClassName, setCurrentClassName] = useState()
-	const { setLoggedInUser } = useAppContext()
+	const { setLoggedInUser, loggedInUser } = useAppContext()
+	console.log(loggedInUser)
 	const navigate = useNavigate()
 
 	const toggleSideBar = () => {
@@ -68,8 +69,8 @@ export default function SettingsDropdown({ isDropdownActive, setIsDropdownActive
 					setIsDropdownActive(false)
 				}}
 			>
-				<img className="dropdown-profile-pic" alt="img" src="" />
-				<div className="dropdown-profile-name">Name</div>
+				<ProfilePicture customClass={`pp-dropdown`} />
+				<div className="dropdown-profile-name">{loggedInUser.username}</div>
 			</div>
 			<div className="dropdown-settings">
 				<ul className="d-flex flex-column">
