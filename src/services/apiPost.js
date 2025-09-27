@@ -16,6 +16,7 @@ export const fetchApiPost = async (endpoint, body = null) => {
 			},
 			body: JSON.stringify(body),
 		})
+		console.log(response, ' THIS IS THE RESPONSE')
 		if (response.ok) {
 			const data = await response.json()
 			return data

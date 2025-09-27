@@ -115,7 +115,6 @@ export default function FriendsList() {
 								<h2>Friends</h2>
 							</div>
 							<div className="top-nav-right">
-								<input type="text" placeholder="Search" />
 								<button className={`word-button ${view.incomingRequests ? 'active' : ''}`} data-name="incomingRequests" onClick={handleFriendBar}>
 									Incoming Requests
 								</button>
@@ -128,38 +127,37 @@ export default function FriendsList() {
 								<button className={`word-button ${view.findFriends ? 'active' : ''}`} data-name="findFriends" onClick={handleFriendBar}>
 									Find Friends
 								</button>
+								<input style={{ marginLeft: '10px' }} type="text" placeholder="Search" />
 							</div>
 						</div>
 						<div className="bot-nav"></div>
 					</div>
 					<div ref={friendsRef} id="friends-anchor" />
-					<div style={{ display: 'flex', flexDirection: 'column' }}>
-						<div id="friends-list-content" className="friends-list-content">
-							{pagination?.friends?.map((friend, _) => {
-								console.log(friend)
-								if (view.findFriends) return <FindFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
-								if (view.allFriends) return <AllFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
-								if (view.incomingRequests) return <IncomingRequests key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
-								if (view.outgoingRequests) return <OutgoingRequests key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+					<div id="friends-list-content" className="friends-list-content">
+						{pagination?.friends?.map((friend, _) => {
+							console.log(friend)
+							if (view.findFriends) return <FindFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+							if (view.allFriends) return <AllFriends key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+							if (view.incomingRequests) return <IncomingRequests key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+							if (view.outgoingRequests) return <OutgoingRequests key={friend.id} friend={friend} createPagination={createPagination} setPagination={setPagination} />
+						})}
+					</div>
+					<div className="friends-list-pagination">
+						<button className="pagination-arrow" onClick={previous}>
+							{'<'}
+						</button>
+						<div className="pagination-numbers-container">
+							{Array.from({ length: pagination.numberOfPages }).map((item, index) => {
+								return (
+									<button className="pagination-number" onClick={() => goToPage(index + 1)} style={{ backgroundColor: index + 1 === currentPage ? 'lightgrey' : '' }}>
+										{index + 1}
+									</button>
+								)
 							})}
 						</div>
-						<div className="friends-list-pagination">
-							<button className="pagination-arrow" onClick={previous}>
-								{'<'}
-							</button>
-							<div className="pagination-numbers-container">
-								{Array.from({ length: pagination.numberOfPages }).map((item, index) => {
-									return (
-										<button className="pagination-number" onClick={() => goToPage(index + 1)} style={{ backgroundColor: index + 1 === currentPage ? 'lightgrey' : '' }}>
-											{index + 1}
-										</button>
-									)
-								})}
-							</div>
-							<button className="pagination-arrow" onClick={next}>
-								{'>'}
-							</button>
-						</div>
+						<button className="pagination-arrow" onClick={next}>
+							{'>'}
+						</button>
 					</div>
 				</div>
 			) : (

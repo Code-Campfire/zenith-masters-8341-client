@@ -95,7 +95,7 @@ export default function Header({ friendListAmount, userObject }) {
 								document.getElementById('about-btn').classList.add('clicked')
 							}}
 						>
-							About
+							Image Gallery
 						</button>
 						<button
 							id="friends-btn"

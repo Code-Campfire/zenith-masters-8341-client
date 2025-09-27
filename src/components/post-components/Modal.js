@@ -29,9 +29,9 @@ function Modal({ isOpen, onClose, children }) {
 		<div ref={modalRef} id="modal-backdrop" className="modal-backdrop" onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
 			<div id="modal-content" className="modal-content" onClick={e => e.stopPropagation()}>
 				{children}
-				<button onClick={onClose} className="modal-close">
+				{/* <button onClick={onClose} className="modal-close">
 					&times;
-				</button>
+				</button> */}
 			</div>
 		</div>,
 		document.body

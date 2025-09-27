@@ -44,4 +44,5 @@ export const fetchApiDelete = async (endpoint, articleId) => {
 
 export const deleteUrls = {
 	deletePost: 'bookface/posts/',
+	deleteImage: 'bookface/',
 }

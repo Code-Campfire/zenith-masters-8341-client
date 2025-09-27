@@ -57,6 +57,8 @@ export default function SettingsDropdown({ setIsDropdownActive }) {
 		localStorage.removeItem('user')
 		localStorage.removeItem('token')
 		localStorage.removeItem('refresh')
+		localStorage.removeItem('background-picture')
+		localStorage.removeItem('profile-picture')
 		setLoggedInUser(null)
 		navigate('/login')
 	}
