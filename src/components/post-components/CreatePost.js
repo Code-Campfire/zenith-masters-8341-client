@@ -10,10 +10,7 @@ export function CreatePost({ setNewsArticle, setIsOpen }) {
 	const [bodyHasText, setBodyHasText] = useState(false)
 	const [content, setContent] = useState('')
 	const [applyImage, setApplyImage] = useState({})
-	const [base64, setBase64] = useState({
-		upload_image: '',
-		caption: 'Look at this picture!',
-	})
+	const [base64, setBase64] = useState(null)
 
 	function handleButtonToggle(e) {
 		if (e.target.value.length > 0) return setBodyHasText(true)
@@ -24,14 +21,21 @@ export function CreatePost({ setNewsArticle, setIsOpen }) {
 	}
 	async function handleCreatingPost(e) {
 		e.preventDefault()
-		if (content.length === 0) return alert(`The body of your message must have content before posting.`)
-		const uploadedImage = await fetchApiPost(postUrls.imageUpload, base64)
-		console.log(uploadedImage)
-		const newPost = await fetchApiPost(postUrls.posts, { content, image_ids: [uploadedImage.id] })
-		newPost.img = applyImage
-		console.log(newPost, ' NEW POST')
-		setNewsArticle(prev => [...prev, newPost])
-		setIsOpen(false)
+		try {
+			if (content.length === 0) return alert(`The body of your message must have content before posting.`)
+			let uploadedImage
+
+			if (base64) uploadedImage = await fetchApiPost(postUrls.imageUpload, { caption: 'Image uploaded successfully', upload_image: base64.upload_image })
+
+			console.log({ content, image_ids: uploadedImage ? uploadedImage.id : [] })
+			const newPost = await fetchApiPost(postUrls.posts, { content, image_ids: uploadedImage ? [uploadedImage.id] : [] })
+			newPost.img = applyImage
+			console.log(newPost, ' NEW POST')
+			setNewsArticle(prev => [...prev, newPost])
+			setIsOpen(false)
+		} catch (err) {
+			console.log(`Error: `, err)
+		}
 	}
 	console.log(loggedInUser)
 	return (

@@ -59,13 +59,22 @@ function Home() {
 	}, [])
 
 	useEffect(() => {
-		async function fetchMorePosts() {
-			const { results } = await fetchApiGet(getUrls.paginatedPosts(page, 3))
-			if (results) {
-				setNewsArticle(prev => [...prev, ...results])
+		async function run() {
+			try {
+				async function fetchMorePosts() {
+					const { results } = await fetchApiGet(getUrls.paginatedPosts(page, 3))
+					console.log(results[0].author.profile_pic)
+					// const profileImages = await fetchApiGet(getUrls.profileImageById())
+					if (results) {
+						setNewsArticle(prev => [...prev, ...results])
+					}
+				}
+				await fetchMorePosts()
+			} catch (err) {
+				console.log(`Error: `, err)
 			}
 		}
-		fetchMorePosts()
+		run()
 	}, [page])
 
 	function handleSidebarClick(e) {

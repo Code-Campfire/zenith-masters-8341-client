@@ -3,7 +3,7 @@ import { fetchApiPost, postUrls } from '../../services/apiPost'
 import '../../styles/ViewSinglePost.css'
 import { fetchApiGet, getUrls } from '../../services/apiGet'
 
-export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen, postImage }) {
+export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen, postImage, profilePicture }) {
 	const [content, setContent] = useState(null)
 	const [comments, setComments] = useState(null)
 	const [isLoading, setIsLoading] = useState(true)
@@ -31,13 +31,7 @@ export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen, postIma
 		<div className="sp-container">
 			<div className="sp-upper-half">
 				<div className="sp-heading">
-					<picture className="sp-icon">
-						<img
-							alt="placeholder"
-							src="https://static.vecteezy.com/system/resources/previews/027/989/305/non_2x/placeholder-icon-in-trendy-flat-style-isolated-on-white-background-placeholder-silhouette-symbol-for-your-website-design-logo-app-ui-illustration-eps10-free-vector.jpg"
-							style={{ height: '40px' }}
-						/>
-					</picture>
+					<img className="pp-post" alt="placeholder" src={profilePicture} />
 					<div className="name-timestamp-container">
 						{/* <div className="article-username">{author?.username}</div> */}
 						{/* <div className="article-username">User Id: {author.id} (testing only)</div> */}

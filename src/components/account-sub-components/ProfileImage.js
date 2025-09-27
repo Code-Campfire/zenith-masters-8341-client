@@ -48,11 +48,11 @@ export default function ProfileImage() {
 			<div>
 				<picture>
 					{/* <source srcSet="profile-img.svg" alt="" /> */}
-					<label for="fileInput">
+					<label for="profilePicInput">
 						{/* <img style={{ cursor: 'pointer' }} src={profilePicture || 'profile-img.svg'} alt="profile" id="profile-photo" /> */}
 						<ProfilePicture customClass={`pp-profile`} />
 					</label>
-					<input id="fileInput" style={{ display: 'none' }} type="file" accept="image/*" onChange={handleFileChange} />
+					<input id="profilePicInput" style={{ display: 'none' }} type="file" accept="image/*" onChange={handleFileChange} />
 				</picture>
 			</div>
 		</>

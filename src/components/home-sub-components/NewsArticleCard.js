@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../../styles/home-sub-components/newsArticleCard.css'
 import { useAppContext } from '../AppContext'
 import { deleteUrls, fetchApiDelete } from '../../services/apiDelete'
@@ -16,7 +16,8 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 	const userIsAuthor = loggedInUser?.id === author?.id ? true : false
 	const [isOpen, setIsOpen] = useState(false)
 	const [modalType, setModalType] = useState(null)
-	const [tempImage, setTempImage] = useState(newsArticle?.img ? newsArticle.img : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=')
+	const [tempImage, setTempImage] = useState('https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=')
+	const [profilePicture, setProfilePicture] = useState(null)
 
 	async function handleDeletePost() {
 		await fetchApiDelete(deleteUrls.deletePost, newsArticle.id)
@@ -31,7 +32,6 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 	console.log(author, ' author')
 	async function handleLike() {
 		try {
-			// if (author.id === loggedInUser.id) return alert(`You cannot like your own post`)
 			await fetchApiPost(postUrls.likes(newsArticle.id))
 			const updatedPost = await fetchApiGet(getUrls.postById(newsArticle.id))
 			setNewsArticle(prev => prev.map(post => (post.id === updatedPost.id ? updatedPost : post)))
@@ -50,13 +50,31 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 		setIsOpen(false)
 	}
 
+	useEffect(() => {
+		async function run() {
+			try {
+				if (!author.profile_pic) return setProfilePicture(`https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=`)
+
+				console.log(author)
+				const userImage = await fetchApiGet(getUrls.profileImageById(author.id))
+				if (!userImage?.image_base64) {
+					setProfilePicture(`https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=`)
+				} else {
+					setProfilePicture(`data:image/png;base64,${userImage.image_base64}`)
+				}
+			} catch (err) {
+				console.error(`Error: `, err)
+			}
+		}
+		run()
+		console.log('runs')
+	}, [])
+
 	return (
 		<div className="news-article-container">
 			<div className="news-heading-container" onClick={() => openModal('viewPost')}>
 				<div className="picture-name-timestamp-container">
-					<picture className="article-icon">
-						<img alt="placeholder" src={`data:image/png;base64,${newsArticle?.images?.image_base64}`} style={{ height: '40px' }} />
-					</picture>
+					<img className="pp-post" alt="placeholder" src={!profilePicture ? tempImage : profilePicture} />
 					<div className="name-timestamp-container">
 						<div className="article-username">{author?.username}</div>
 						<div className="article-username">User Id: {author.id} (testing only)</div>
@@ -67,7 +85,8 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 				<div className="news-article-title">{newsArticle.title}</div>
 				<div className="news-article-text-body">{newsArticle?.content}</div>
 			</div>
-			<div className="news-article-body">{newsArticle.images ? <img className="user-post-image" alt="post image" src={postImage} /> : <img className="user-post-image" src={tempImage} />}</div>
+			{console.log(newsArticle.images)}
+			<div className="news-article-body">{newsArticle.images.length > 0 ? <img className="user-post-image" alt="post image" src={postImage} /> : ''}</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
 					<div>Likes: {newsArticle?.like_count}</div>
@@ -90,9 +109,9 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 			</div>
 			{isOpen && (
 				<Modal isOpen={isOpen} onClose={closeModal}>
-					{modalType === 'edit' && <EditPost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} />}
-					{modalType === 'comment' && <Comment newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} />}
-					{modalType === 'viewPost' && <ViewSinglePost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} />}
+					{modalType === 'edit' && <EditPost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} profilePicture={profilePicture} />}
+					{modalType === 'comment' && <Comment newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} profilePicture={profilePicture} />}
+					{modalType === 'viewPost' && <ViewSinglePost newsArticle={newsArticle} setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} postImage={postImage} profilePicture={profilePicture} />}
 				</Modal>
 			)}
 		</div>

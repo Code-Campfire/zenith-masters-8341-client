@@ -26,16 +26,14 @@ export const AppProvider = ({ children }) => {
 			const user = await fetchApiGet(getUrls.userById(userToValidate.id))
 			if (user) {
 				setLoggedInUser(user)
-				if (!profilePicture) {
-					const storedProfilePicture = localStorage.getItem('profile-picture')
-					setProfilePicture(storedProfilePicture)
-					console.log(storedProfilePicture)
-				}
-				if (!backgroundPicture) {
-					const storedBackgroundPicture = localStorage.getItem('background-picture')
-					console.log(storedBackgroundPicture)
-					setBackgroundPicture(storedBackgroundPicture)
-				}
+
+				const storedProfilePicture = localStorage.getItem('profile-picture')
+				if (!storedProfilePicture) setProfilePicture(`https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=`)
+				else setProfilePicture(storedProfilePicture)
+
+				const storedBackgroundPicture = localStorage.getItem('background-picture')
+				if (!storedBackgroundPicture) setBackgroundPicture(`https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=`)
+				else setBackgroundPicture(storedBackgroundPicture)
 			} else {
 				localStorage.removeItem('token')
 				localStorage.removeItem('refresh')

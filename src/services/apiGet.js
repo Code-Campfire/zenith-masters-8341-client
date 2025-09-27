@@ -4,39 +4,33 @@ const base_url = `http://localhost:8000/`
 const getToken = () => localStorage.getItem('token')
 
 export const fetchApiGet = async endpoint => {
-	try {
-		const accessToken = getToken()
-		console.log(base_url + endpoint)
-		const response = await fetch(`${base_url}${endpoint}`, {
-			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-				'Content-Type': 'application/json',
-			},
-		})
-		if (response.ok) {
-			const data = await response.json()
+	const accessToken = getToken()
+	console.log(base_url + endpoint)
+	const response = await fetch(`${base_url}${endpoint}`, {
+		method: 'GET',
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			'Content-Type': 'application/json',
+		},
+	})
+	if (response.ok) {
+		const data = await response.json()
+		return data
+	} else if (response.status === 401 || response.status === 500) {
+		const refreshResponse = await fetchRefreshAccessToken()
+		if (refreshResponse.ok) {
+			const updatedAccessToken = getToken()
+			const retryResponse = await fetch(`${base_url}${endpoint}`, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${updatedAccessToken}`,
+					'Content-Type': 'application/json',
+				},
+			})
+			if (!retryResponse.ok) throw Error(`Attempted to retry the request and failed`)
+			const data = await retryResponse.json()
 			return data
-		} else if (response.status === 401) {
-			const refreshResponse = await fetchRefreshAccessToken()
-			if (refreshResponse.ok) {
-				const updatedAccessToken = getToken()
-				const retryResponse = await fetch(`${base_url}${endpoint}`, {
-					method: 'GET',
-					headers: {
-						Authorization: `Bearer ${updatedAccessToken}`,
-						'Content-Type': 'application/json',
-					},
-				})
-				const data = await retryResponse.json()
-				return data
-			}
-		} else {
-			throw new Error(`Response not ok and couldn't refresh`)
 		}
-	} catch (error) {
-		console.error(error)
-		throw error
 	}
 }
 
@@ -47,11 +41,12 @@ export const getUrls = {
 	friends: 'bookface/simps/accepted_relationships/',
 	usersWithRelationships: 'bookface/users/AndRelationships/',
 	comments: `bookface/comments/`,
-	images: `bookface/imageUploads`,
+	images: page => `bookface/imageUploads/?page=${page}`,
+	// images: `bookface/imageUploads/`,
 	userById: userId => `bookface/users/${userId}/`,
 	postById: postId => `bookface/posts/${postId}/`,
 	commentsByPostId: postId => `bookface/posts/${postId}/with-comments/`,
-	paginatedPosts: (page, pageSize) => `bookface/posts/?page=${page}&page_size=${pageSize}`,
-	imageById: userId => `bookface/imageUploads/profile-pic/${userId}/`,
-	backgroundImageById: userId => `bookface/imageUploads/background-pic/${userId}/`,
+	paginatedPosts: (page, pageSize) => `bookface/posts/?page=${page}&page_size=${pageSize}/`,
+	profileImageById: userId => `bookface/imageUploads/profile-pic/${userId}/`,
+	backgroundprofileImageById: userId => `bookface/imageUploads/background-pic/${userId}/`,
 }

@@ -13,10 +13,10 @@ export function ImageUploader({ setApplyImage, setBase64, base64 }) {
 			const reader = new FileReader()
 			reader.onloadend = () => {
 				const base64String = reader.result.split(',')[1] // Remove "data:image/png;base64,"
-				setBase64(prev => ({
-					...prev,
+				setBase64({
 					upload_image: base64String,
-				}))
+					caption: 'Post Image',
+				})
 				console.log(reader.result)
 				setPreviewURL(reader.result)
 				setApplyImage(`data:image/png;base64,${previewURL}`)

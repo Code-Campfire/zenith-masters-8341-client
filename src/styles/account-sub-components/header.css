@@ -622,7 +622,7 @@ h1 {
 		align-items: center;
 		width: 100%;
 		max-width: 1500px;
-		height: 8.5em;
+		height: 8em;
 		padding-left: 25px;
 		padding-right: 25px;
 		background-color: var(--component-cards-color);
