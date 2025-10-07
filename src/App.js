@@ -1,20 +1,19 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from './components/Home'
-import './styles/App.css'
-import AppLayout from './components/AppLayout'
+import Home from './components/HomePage/Home/Home.js'
+import './App.css'
+import AppLayout from './components/App/AppLayout/AppLayout.js'
 import Settings from './components/Settings'
-import NotFound from './components/NotFound'
-import Login from './components/Login'
-import SavedPosts from './components/SavedPosts'
-import { AuthorizedRoute } from './components/auth/AuthorizedRoute'
-import Register from './components/Register'
-import FriendsList from './components/friends-list/FriendsList'
-import AccountPage from './components/AccountPage'
+import NotFound from './components/GlobalComponents/NotFound/NotFound.js'
+import Login from './components/Auth/Login/Login.js'
+import { AuthorizedRoute } from './components/Auth/AuthorizedRoute/AuthorizedRoute.js'
+import Register from './components/Auth/Register/Register.js'
+import FriendsList from './components/FriendsList/FriendsList/FriendsList.js'
+import AccountPage from './components/UserProfile/AccountPage/AccountPage.js'
 
 import MarketPlace from './components/MarketPlace/MarketPlace.jsx'
 import ListingDetails from './components/MarketPlace/ListingDetails.jsx'
 import SellingComponent from './components/MarketPlace/SellingComponent/SellingComponent.jsx'
-import { ImageGallery } from './components/ImageGallery.js'
+import { ImageGallery } from './components/UserProfile/ImageGallery/ImageGallery.js'
 
 export default function App() {
 	return (
@@ -113,14 +112,6 @@ export default function App() {
 						element={
 							<AuthorizedRoute>
 								<div>Posts Go Here</div>
-							</AuthorizedRoute>
-						}
-					/>
-					<Route
-						path="saved"
-						element={
-							<AuthorizedRoute>
-								<SavedPosts />
 							</AuthorizedRoute>
 						}
 					/>
