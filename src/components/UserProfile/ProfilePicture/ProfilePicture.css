@@ -28,7 +28,7 @@
 	height: 100%;
 	cursor: pointer;
 	border-radius: 50%;
-	border: none;
+	box-shadow: 0 0 3px 3px #ebebeb;
 }
 .pp-post {
 	width: 50px;

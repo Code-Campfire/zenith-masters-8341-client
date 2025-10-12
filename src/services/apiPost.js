@@ -21,6 +21,7 @@ export const fetchApiPost = async (endpoint, body = null) => {
 			const data = await response.json()
 			return data
 		} else if (response.status === 401) {
+			//Try request again after refreshing access token
 			const refreshResponse = await fetchRefreshAccessToken()
 			if (refreshResponse.ok) {
 				const updatedAccessToken = getToken()
