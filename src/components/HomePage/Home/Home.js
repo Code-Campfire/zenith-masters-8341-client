@@ -143,7 +143,7 @@ function Home() {
 					<CreatePost setNewsArticle={setNewsArticle} setIsOpen={setIsOpen} />
 				</Modal>
 
-				<div className="create-story-container">
+				<div className="create-story-container" onClick={() => setIsOpen(true)}>
 					<div style={{ fontSize: '40px', margin: '10px' }}>+</div>
 					<div style={{ display: 'flex', flexDirection: 'column' }}>
 						<h3>Create Story</h3>

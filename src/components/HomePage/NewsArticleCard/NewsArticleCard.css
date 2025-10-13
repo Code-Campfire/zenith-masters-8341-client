@@ -9,6 +9,10 @@
 	border-radius: 8px;
 	box-shadow: var(--border-box-shadow);
 }
+.name-timestamp-container {
+	display: flex;
+	flex-direction: column;
+}
 
 .picture-name-timestamp-container {
 	display: flex;
@@ -31,7 +35,6 @@
 	margin-bottom: 10px;
 }
 .news-article-body {
-	max-height: 680px;
 	width: 100%;
 	align-self: center;
 }

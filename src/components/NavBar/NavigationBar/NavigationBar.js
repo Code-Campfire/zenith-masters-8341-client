@@ -82,7 +82,7 @@ export default function NavigationBar() {
 							<img src="/marketplace-icon.png" alt="Marketplace Icon" style={{ width: '25px' }} />
 						</picture>
 					</Link>
-					<Link className={`links-mid ${isActiveLink('/groups') ? 'active' : ''}`} to="/groups">
+					<Link className={`links-mid ${isActiveLink('/groups') ? 'active' : ''}`} to="/account/friends">
 						<picture>
 							<source media="(min-width: 913px)" srcSet="/group.png" />
 							<img src="/group.png" alt="Marketplace Icon" style={{ width: '25px' }} />

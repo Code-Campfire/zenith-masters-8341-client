@@ -14,7 +14,7 @@ import MarketPlace from './components/MarketPlace/MarketPlace.jsx'
 import ListingDetails from './components/MarketPlace/ListingDetails.jsx'
 import SellingComponent from './components/MarketPlace/SellingComponent/SellingComponent.jsx'
 import { ImageGallery } from './components/UserProfile/ImageGallery/ImageGallery.js'
-import { SavedPosts } from './components/UserProfile/SavedPosts/SavedPosts.js'
+import { StoredPosts } from './components/UserProfile/StoredPosts/StoredPosts.js'
 
 export default function App() {
 	return (
@@ -77,7 +77,7 @@ export default function App() {
 						path="posts"
 						element={
 							<AuthorizedRoute>
-								<SavedPosts />
+								<StoredPosts />
 							</AuthorizedRoute>
 						}
 					/>

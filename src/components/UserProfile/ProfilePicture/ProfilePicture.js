@@ -3,7 +3,6 @@ import './ProfilePicture.css'
 
 export const ProfilePicture = ({ customClass, customContainerClass }) => {
 	const { profilePicture } = useAppContext()
-	console.log(profilePicture)
 	return (
 		<div className={customContainerClass}>
 			<img

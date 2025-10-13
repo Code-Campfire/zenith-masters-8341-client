@@ -49,7 +49,7 @@ export default function SideBar() {
 			<ul className="d-flex flex-column">
 				<li className={activeLink('/posts/saved') ? 'active' : ''}>
 					<Link to="posts/saved" className="sideBar-link">
-						<FaBookmark /> Saved Posts
+						<FaBookmark /> My Posts
 					</Link>
 				</li>
 				<li className={activeLink('/settings') ? 'active' : ''}>

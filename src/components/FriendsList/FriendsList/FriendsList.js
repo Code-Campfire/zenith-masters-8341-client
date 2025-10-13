@@ -7,6 +7,7 @@ import { FindFriends } from '../FindFriends/FindFriends'
 import { AllFriends } from '../AllFriends/AllFriends'
 import { IncomingRequests } from '../IncomingRequests/IncomingRequests'
 import { OutgoingRequests } from '../OutgoingRequests/OutgoingRequests'
+import { fetchApiGet, getUrls } from '../../../services/apiGet'
 
 export default function FriendsList() {
 	const friendsRef = useRef(null)
@@ -104,6 +105,21 @@ export default function FriendsList() {
 		}
 		setViews()
 	}, [view, currentPage])
+	const [friendCount, setFriendCount] = useState(0)
+
+	useEffect(() => {
+		async function retrieveFriends() {
+			const friends = await fetchApiGet(getUrls.userFriends)
+			setFriendCount(() => {
+				let count = 0
+				friends.forEach(friend => {
+					if (friend?.simpery?.status === 'accepted') count++
+				})
+				return count
+			})
+		}
+		retrieveFriends()
+	}, [])
 
 	return (
 		<>
@@ -113,6 +129,7 @@ export default function FriendsList() {
 						<div className="top-nav">
 							<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: '10px' }}>
 								<h2>Friends</h2>
+								<p style={{ marginLeft: '10px' }}>{friendCount} friend(s)</p>
 							</div>
 							<div className="top-nav-right">
 								<button className={`word-button ${view.incomingRequests ? 'active' : ''}`} data-name="incomingRequests" onClick={handleFriendBar}>
@@ -127,7 +144,7 @@ export default function FriendsList() {
 								<button className={`word-button ${view.findFriends ? 'active' : ''}`} data-name="findFriends" onClick={handleFriendBar}>
 									Find Friends
 								</button>
-								<input style={{ marginLeft: '10px' }} type="text" placeholder="Search" />
+								<input style={{ marginLeft: '10px', marginRight: '10px' }} type="text" placeholder="Search" />
 							</div>
 						</div>
 						<div className="bot-nav"></div>

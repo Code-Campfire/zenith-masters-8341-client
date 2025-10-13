@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchApiPost, postUrls } from '../../../services/apiPost'
 import './ViewSinglePost.css'
 import { fetchApiGet, getUrls } from '../../../services/apiGet'
+import { ProfilePicture } from '../../UserProfile/ProfilePicture/ProfilePicture'
 
 export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen, postImage, profilePicture }) {
 	const [content, setContent] = useState(null)
@@ -31,7 +32,7 @@ export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen, postIma
 		<div className="sp-container">
 			<div className="sp-upper-half">
 				<div className="sp-heading">
-					<img className="pp-post" alt="placeholder" src={profilePicture} />
+					<ProfilePicture customClass={'pp-post'} />
 					<div className="name-timestamp-container">
 						{/* <div className="article-username">{author?.username}</div> */}
 						{/* <div className="article-username">User Id: {author.id} (testing only)</div> */}
@@ -41,7 +42,7 @@ export function ViewSinglePost({ newsArticle, setNewsArticle, setIsOpen, postIma
 				</div>
 				<div className="sp-title">{newsArticle.title}</div>
 				<div className="sp-text-body">{newsArticle?.content}</div>
-				<div className="sp-image-body">{<img className="sp-image" alt="post image" src={postImage || tempImage} />}</div>
+				<div className="sp-image-body">{postImage && <img className="sp-image" alt="post image" src={postImage} />}</div>
 				{/* <div className="sp-image-body">{newsArticle.img ? <img alt="post image" src={newsArticle?.img} /> : <div>NOT IMAGE</div>}</div> */}
 			</div>
 			<div className="sp-lower-half">

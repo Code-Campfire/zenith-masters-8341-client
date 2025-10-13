@@ -10,8 +10,9 @@ import { BackgroundPicture } from '../BackgroundPicture/BackgroundPicture'
 import AddToStoryBtn from '../../GlobalComponents/Buttons/AddToStoryBtn'
 import EditProfileBtn from '../../GlobalComponents/Buttons/EditProfileBtn'
 import AddFriendBtn from '../../GlobalComponents/Buttons/AddFriendBtn'
+import { fetchApiGet, getUrls } from '../../../services/apiGet'
 
-export default function Header({ friendListAmount, userObject }) {
+export default function Header() {
 	const [currentPosts, setCurrentPosts] = useState([])
 	const [currentComponent, setCurrentComponent] = useState('posts')
 	const { loggedInUser } = useAppContext()
@@ -19,6 +20,7 @@ export default function Header({ friendListAmount, userObject }) {
 	const { backgroundPicture, setBackgroundPicture } = useAppContext()
 
 	let userId = true
+	console.log(loggedInUser, ' logged in user')
 
 	const handleFileChange = async e => {
 		const file = e.target.files[0]
@@ -57,9 +59,6 @@ export default function Header({ friendListAmount, userObject }) {
 						</div>
 						<div className="title-name">
 							<NameTitle fname={loggedInUser?.first_name} lname={loggedInUser?.last_name} />
-							<div className="title-friendAmount">
-								<p>{friendListAmount} friends</p>
-							</div>
 						</div>
 						<div className="action-btn-area">
 							<div className="action-btn-container">

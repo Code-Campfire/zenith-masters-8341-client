@@ -8,6 +8,7 @@ import { fetchApiGet, getUrls } from '../../../services/apiGet'
 import { fetchApiPost, postUrls } from '../../../services/apiPost'
 import Comment from '../Comment/Comment'
 import { ViewSinglePost } from '../ViewSinglePost/ViewSinglePost'
+import { ProfilePicture } from '../../UserProfile/ProfilePicture/ProfilePicture'
 
 export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 	const { loggedInUser } = useAppContext()
@@ -72,21 +73,24 @@ export const NewsArticleCard = ({ newsArticle, setNewsArticle }) => {
 
 	return (
 		<div className="news-article-container">
-			<div className="news-heading-container" onClick={() => openModal('viewPost')}>
-				<div className="picture-name-timestamp-container">
-					<img className="pp-post" alt="placeholder" src={!profilePicture ? tempImage : profilePicture} />
-					<div className="name-timestamp-container">
-						<div className="article-username">{author?.username}</div>
-						<div className="article-username">User Id: {author.id} (testing only)</div>
-						<div className="article-username">Post Id: {newsArticle.id} (testing only)</div>
-						<div className="article-timestamp">{newsArticle.created_at.slice(0, 10)}</div>
+			<div className="clickable" onClick={() => openModal('viewPost')}>
+				<div className="news-heading-container">
+					<div className="picture-name-timestamp-container">
+						{/* <ProfilePicture customClass={'pp-post'} /> */}
+						<img className="pp-post" alt="placeholder" src={!profilePicture ? tempImage : profilePicture} />
+						<div className="name-timestamp-container">
+							<div className="article-username">{author?.username}</div>
+							{/* <div className="article-username">User Id: {author.id} (testing only)</div> */}
+							{/* <div className="article-username">Post Id: {newsArticle.id} (testing only)</div> */}
+							<div className="article-timestamp">{newsArticle.created_at.slice(0, 10)}</div>
+						</div>
 					</div>
+					<div className="news-article-title">{newsArticle.title}</div>
+					<div className="news-article-text-body">{newsArticle?.content}</div>
 				</div>
-				<div className="news-article-title">{newsArticle.title}</div>
-				<div className="news-article-text-body">{newsArticle?.content}</div>
+				{console.log(newsArticle.images)}
+				<div className="news-article-body">{newsArticle.images.length > 0 ? <img className="user-post-image" alt="post image" src={postImage} /> : ''}</div>
 			</div>
-			{console.log(newsArticle.images)}
-			<div className="news-article-body">{newsArticle.images.length > 0 ? <img className="user-post-image" alt="post image" src={postImage} /> : ''}</div>
 			<div className="news-article-footer">
 				<div className="footer-top">
 					<div>Likes: {newsArticle?.like_count}</div>

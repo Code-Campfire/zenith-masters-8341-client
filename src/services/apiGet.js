@@ -42,6 +42,7 @@ export const getUrls = {
 	usersWithRelationships: 'bookface/users/AndRelationships/',
 	comments: `bookface/comments/`,
 	allUsersPosts: `bookface/posts/my_posts/`,
+	userFriends: `bookface/users/AndRelationships/`,
 	images: page => `bookface/imageUploads/?page=${page}`,
 	userById: userId => `bookface/users/${userId}/`,
 	postById: postId => `bookface/posts/${postId}/`,

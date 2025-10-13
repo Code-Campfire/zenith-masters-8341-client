@@ -79,7 +79,7 @@ export default function SettingsDropdown({ setIsDropdownActive }) {
 					<li onClick={() => setIsDropdownActive(false)} className="dropdown-button">
 						<Link to="posts/saved" className="dropdown-link">
 							<FaBookmark />
-							<p style={{ marginLeft: '10px' }}>Saved Posts</p>
+							<p style={{ marginLeft: '10px' }}>My Posts</p>
 						</Link>
 					</li>
 					<li onClick={() => setIsDropdownActive(false)} className="dropdown-button">
